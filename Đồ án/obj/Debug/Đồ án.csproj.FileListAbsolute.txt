@@ -1,0 +1,11 @@
+E:\.Net\Đồ_Án\Đồ án\bin\Debug\Đồ án.exe.config
+E:\.Net\Đồ_Án\Đồ án\bin\Debug\Đồ án.exe
+E:\.Net\Đồ_Án\Đồ án\bin\Debug\Đồ án.pdb
+E:\.Net\Đồ_Án\Đồ án\obj\Debug\Đồ án.csproj.AssemblyReference.cache
+E:\.Net\Đồ_Án\Đồ án\obj\Debug\Đồ_án.Dashboard.resources
+E:\.Net\Đồ_Án\Đồ án\obj\Debug\Đồ_án.Properties.Resources.resources
+E:\.Net\Đồ_Án\Đồ án\obj\Debug\Đồ_án.Login.resources
+E:\.Net\Đồ_Án\Đồ án\obj\Debug\Đồ án.csproj.GenerateResource.cache
+E:\.Net\Đồ_Án\Đồ án\obj\Debug\Đồ án.csproj.CoreCompileInputs.cache
+E:\.Net\Đồ_Án\Đồ án\obj\Debug\Đồ án.exe
+E:\.Net\Đồ_Án\Đồ án\obj\Debug\Đồ án.pdb

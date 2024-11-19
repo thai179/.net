@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Đồ_án
 {
-    public partial class Application : Form
+    public partial class frmApplication : Form
     {
-        public Application()
+        public frmApplication()
         {
             InitializeComponent();
         }

@@ -10,11 +10,17 @@ using System.Windows.Forms;
 
 namespace Đồ_án
 {
-    public partial class Payment : Form
+    public partial class frmThanhToan : Form
     {
-        public Payment()
+        public frmThanhToan()
         {
             InitializeComponent();
+            this.TopLevel = false;
+        }
+
+        private void txtMSSV_Leave(object sender, EventArgs e)
+        {
+            
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace Đồ_án
 {
-    partial class Application
+    partial class frmApplication
     {
         /// <summary>
         /// Required designer variable.
@@ -255,7 +255,7 @@
             this.label1.TabIndex = 21;
             this.label1.Text = "Họ Tên:";
             // 
-            // Application
+            // frmApplication
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -282,7 +282,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "Application";
+            this.Name = "frmApplication";
             this.ResumeLayout(false);
             this.PerformLayout();
 

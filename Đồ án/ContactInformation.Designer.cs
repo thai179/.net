@@ -1,6 +1,6 @@
 ﻿namespace Đồ_án
 {
-    partial class ContactInformation
+    partial class frmQLTTLienLac
     {
         /// <summary>
         /// Required designer variable.
@@ -28,156 +28,156 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label8 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
+            this.lblQLTTLienLac = new System.Windows.Forms.Label();
+            this.lblMSSV = new System.Windows.Forms.Label();
+            this.lblTenTN = new System.Windows.Forms.Label();
+            this.lblSDTTN = new System.Windows.Forms.Label();
+            this.lblQuanhe = new System.Windows.Forms.Label();
+            this.txtMSSV = new System.Windows.Forms.TextBox();
+            this.txtTenTN = new System.Windows.Forms.TextBox();
+            this.txtSDTTN = new System.Windows.Forms.TextBox();
+            this.cbbQuanHe = new System.Windows.Forms.ComboBox();
+            this.btnThem = new System.Windows.Forms.Button();
+            this.btnXoa = new System.Windows.Forms.Button();
+            this.btnSua = new System.Windows.Forms.Button();
+            this.btnQuayLai = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // label8
+            // lblQLTTLienLac
             // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 25.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(96, 32);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(562, 51);
-            this.label8.TabIndex = 43;
-            this.label8.Text = "Quản Lý Thông Tin Liên Lạc";
+            this.lblQLTTLienLac.AutoSize = true;
+            this.lblQLTTLienLac.Font = new System.Drawing.Font("Microsoft Sans Serif", 25.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblQLTTLienLac.Location = new System.Drawing.Point(96, 32);
+            this.lblQLTTLienLac.Name = "lblQLTTLienLac";
+            this.lblQLTTLienLac.Size = new System.Drawing.Size(562, 51);
+            this.lblQLTTLienLac.TabIndex = 43;
+            this.lblQLTTLienLac.Text = "Quản Lý Thông Tin Liên Lạc";
             // 
-            // label1
+            // lblMSSV
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(78, 126);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(61, 20);
-            this.label1.TabIndex = 44;
-            this.label1.Text = "MSSV:";
+            this.lblMSSV.AutoSize = true;
+            this.lblMSSV.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMSSV.Location = new System.Drawing.Point(78, 126);
+            this.lblMSSV.Name = "lblMSSV";
+            this.lblMSSV.Size = new System.Drawing.Size(61, 20);
+            this.lblMSSV.TabIndex = 44;
+            this.lblMSSV.Text = "MSSV:";
             // 
-            // label2
+            // lblTenTN
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(78, 179);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(120, 20);
-            this.label2.TabIndex = 45;
-            this.label2.Text = "Tên thân nhân:";
+            this.lblTenTN.AutoSize = true;
+            this.lblTenTN.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTenTN.Location = new System.Drawing.Point(78, 179);
+            this.lblTenTN.Name = "lblTenTN";
+            this.lblTenTN.Size = new System.Drawing.Size(120, 20);
+            this.lblTenTN.TabIndex = 45;
+            this.lblTenTN.Text = "Tên thân nhân:";
             // 
-            // label3
+            // lblSDTTN
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(78, 232);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(125, 20);
-            this.label3.TabIndex = 46;
-            this.label3.Text = "SĐT thân nhân:";
+            this.lblSDTTN.AutoSize = true;
+            this.lblSDTTN.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSDTTN.Location = new System.Drawing.Point(78, 232);
+            this.lblSDTTN.Name = "lblSDTTN";
+            this.lblSDTTN.Size = new System.Drawing.Size(125, 20);
+            this.lblSDTTN.TabIndex = 46;
+            this.lblSDTTN.Text = "SĐT thân nhân:";
             // 
-            // label4
+            // lblQuanhe
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(78, 285);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(77, 20);
-            this.label4.TabIndex = 47;
-            this.label4.Text = "Quan hệ:";
+            this.lblQuanhe.AutoSize = true;
+            this.lblQuanhe.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblQuanhe.Location = new System.Drawing.Point(78, 285);
+            this.lblQuanhe.Name = "lblQuanhe";
+            this.lblQuanhe.Size = new System.Drawing.Size(77, 20);
+            this.lblQuanhe.TabIndex = 47;
+            this.lblQuanhe.Text = "Quan hệ:";
             // 
-            // textBox1
+            // txtMSSV
             // 
-            this.textBox1.Location = new System.Drawing.Point(250, 126);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(421, 22);
-            this.textBox1.TabIndex = 48;
+            this.txtMSSV.Location = new System.Drawing.Point(250, 126);
+            this.txtMSSV.Name = "txtMSSV";
+            this.txtMSSV.Size = new System.Drawing.Size(421, 22);
+            this.txtMSSV.TabIndex = 48;
             // 
-            // textBox2
+            // txtTenTN
             // 
-            this.textBox2.Location = new System.Drawing.Point(250, 179);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(421, 22);
-            this.textBox2.TabIndex = 49;
+            this.txtTenTN.Location = new System.Drawing.Point(250, 179);
+            this.txtTenTN.Name = "txtTenTN";
+            this.txtTenTN.Size = new System.Drawing.Size(421, 22);
+            this.txtTenTN.TabIndex = 49;
             // 
-            // textBox3
+            // txtSDTTN
             // 
-            this.textBox3.Location = new System.Drawing.Point(250, 232);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(421, 22);
-            this.textBox3.TabIndex = 50;
+            this.txtSDTTN.Location = new System.Drawing.Point(250, 232);
+            this.txtSDTTN.Name = "txtSDTTN";
+            this.txtSDTTN.Size = new System.Drawing.Size(421, 22);
+            this.txtSDTTN.TabIndex = 50;
             // 
-            // comboBox1
+            // cbbQuanHe
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(250, 285);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(218, 24);
-            this.comboBox1.TabIndex = 51;
+            this.cbbQuanHe.FormattingEnabled = true;
+            this.cbbQuanHe.Location = new System.Drawing.Point(250, 285);
+            this.cbbQuanHe.Name = "cbbQuanHe";
+            this.cbbQuanHe.Size = new System.Drawing.Size(218, 24);
+            this.cbbQuanHe.TabIndex = 51;
             // 
-            // button1
+            // btnThem
             // 
-            this.button1.Location = new System.Drawing.Point(32, 388);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(135, 52);
-            this.button1.TabIndex = 52;
-            this.button1.Text = "Thêm";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnThem.Location = new System.Drawing.Point(32, 388);
+            this.btnThem.Name = "btnThem";
+            this.btnThem.Size = new System.Drawing.Size(135, 52);
+            this.btnThem.TabIndex = 52;
+            this.btnThem.Text = "Thêm";
+            this.btnThem.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // btnXoa
             // 
-            this.button2.Location = new System.Drawing.Point(217, 388);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(135, 52);
-            this.button2.TabIndex = 53;
-            this.button2.Text = "Xóa";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnXoa.Location = new System.Drawing.Point(217, 388);
+            this.btnXoa.Name = "btnXoa";
+            this.btnXoa.Size = new System.Drawing.Size(135, 52);
+            this.btnXoa.TabIndex = 53;
+            this.btnXoa.Text = "Xóa";
+            this.btnXoa.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // btnSua
             // 
-            this.button3.Location = new System.Drawing.Point(402, 388);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(135, 52);
-            this.button3.TabIndex = 54;
-            this.button3.Text = "Sửa";
-            this.button3.UseVisualStyleBackColor = true;
+            this.btnSua.Location = new System.Drawing.Point(402, 388);
+            this.btnSua.Name = "btnSua";
+            this.btnSua.Size = new System.Drawing.Size(135, 52);
+            this.btnSua.TabIndex = 54;
+            this.btnSua.Text = "Sửa";
+            this.btnSua.UseVisualStyleBackColor = true;
             // 
-            // button4
+            // btnQuayLai
             // 
-            this.button4.Location = new System.Drawing.Point(587, 388);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(135, 52);
-            this.button4.TabIndex = 55;
-            this.button4.Text = "Quay lại";
-            this.button4.UseVisualStyleBackColor = true;
+            this.btnQuayLai.Location = new System.Drawing.Point(587, 388);
+            this.btnQuayLai.Name = "btnQuayLai";
+            this.btnQuayLai.Size = new System.Drawing.Size(135, 52);
+            this.btnQuayLai.TabIndex = 55;
+            this.btnQuayLai.Text = "Quay lại";
+            this.btnQuayLai.UseVisualStyleBackColor = true;
             // 
-            // ContactInformation
+            // frmQLTTLienLac
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(755, 525);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.label8);
+            this.Controls.Add(this.btnQuayLai);
+            this.Controls.Add(this.btnSua);
+            this.Controls.Add(this.btnXoa);
+            this.Controls.Add(this.btnThem);
+            this.Controls.Add(this.cbbQuanHe);
+            this.Controls.Add(this.txtSDTTN);
+            this.Controls.Add(this.txtTenTN);
+            this.Controls.Add(this.txtMSSV);
+            this.Controls.Add(this.lblQuanhe);
+            this.Controls.Add(this.lblSDTTN);
+            this.Controls.Add(this.lblTenTN);
+            this.Controls.Add(this.lblMSSV);
+            this.Controls.Add(this.lblQLTTLienLac);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "ContactInformation";
+            this.Name = "frmQLTTLienLac";
             this.Text = "ContactInformation";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -186,18 +186,18 @@
 
         #endregion
 
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Label lblQLTTLienLac;
+        private System.Windows.Forms.Label lblMSSV;
+        private System.Windows.Forms.Label lblTenTN;
+        private System.Windows.Forms.Label lblSDTTN;
+        private System.Windows.Forms.Label lblQuanhe;
+        private System.Windows.Forms.TextBox txtMSSV;
+        private System.Windows.Forms.TextBox txtTenTN;
+        private System.Windows.Forms.TextBox txtSDTTN;
+        private System.Windows.Forms.ComboBox cbbQuanHe;
+        private System.Windows.Forms.Button btnThem;
+        private System.Windows.Forms.Button btnXoa;
+        private System.Windows.Forms.Button btnSua;
+        private System.Windows.Forms.Button btnQuayLai;
     }
 }

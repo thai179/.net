@@ -1,6 +1,6 @@
 ﻿namespace Đồ_án
 {
-    partial class RoomManagement
+    partial class frmQLPhong
     {
         /// <summary>
         /// Required designer variable.
@@ -28,11 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.So_phong = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Loai_phong = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tinh_trang = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.so_luong_sv = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvHienThi = new System.Windows.Forms.DataGridView();
             this.label7 = new System.Windows.Forms.Label();
             this.cobArray = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -41,52 +37,19 @@
             this.btnSua = new System.Windows.Forms.Button();
             this.btnThem = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvHienThi)).BeginInit();
             this.SuspendLayout();
             // 
-            // dataGridView1
+            // dgvHienThi
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.So_phong,
-            this.Loai_phong,
-            this.tinh_trang,
-            this.so_luong_sv});
-            this.dataGridView1.Location = new System.Drawing.Point(78, 164);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(589, 270);
-            this.dataGridView1.TabIndex = 25;
-            // 
-            // So_phong
-            // 
-            this.So_phong.HeaderText = "Số phòng";
-            this.So_phong.MinimumWidth = 6;
-            this.So_phong.Name = "So_phong";
-            this.So_phong.Width = 125;
-            // 
-            // Loai_phong
-            // 
-            this.Loai_phong.HeaderText = "Loại Phòng";
-            this.Loai_phong.MinimumWidth = 6;
-            this.Loai_phong.Name = "Loai_phong";
-            this.Loai_phong.Width = 125;
-            // 
-            // tinh_trang
-            // 
-            this.tinh_trang.HeaderText = "Tình trạng";
-            this.tinh_trang.MinimumWidth = 6;
-            this.tinh_trang.Name = "tinh_trang";
-            this.tinh_trang.Width = 125;
-            // 
-            // so_luong_sv
-            // 
-            this.so_luong_sv.HeaderText = "Người/Phòng";
-            this.so_luong_sv.MinimumWidth = 6;
-            this.so_luong_sv.Name = "so_luong_sv";
-            this.so_luong_sv.Width = 125;
+            this.dgvHienThi.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvHienThi.Location = new System.Drawing.Point(78, 164);
+            this.dgvHienThi.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dgvHienThi.Name = "dgvHienThi";
+            this.dgvHienThi.RowHeadersWidth = 51;
+            this.dgvHienThi.RowTemplate.Height = 24;
+            this.dgvHienThi.Size = new System.Drawing.Size(589, 270);
+            this.dgvHienThi.TabIndex = 25;
             // 
             // label7
             // 
@@ -144,6 +107,7 @@
             this.btnSua.TabIndex = 19;
             this.btnSua.Text = "Sửa";
             this.btnSua.UseVisualStyleBackColor = true;
+            this.btnSua.Click += new System.EventHandler(this.btnSua_Click);
             // 
             // btnThem
             // 
@@ -154,6 +118,7 @@
             this.btnThem.TabIndex = 18;
             this.btnThem.Text = "Thêm";
             this.btnThem.UseVisualStyleBackColor = true;
+            this.btnThem.Click += new System.EventHandler(this.btnThem_Click);
             // 
             // label1
             // 
@@ -165,12 +130,12 @@
             this.label1.TabIndex = 17;
             this.label1.Text = "Quản Lý Phòng";
             // 
-            // RoomManagement
+            // frmQLPhong
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(755, 525);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.dgvHienThi);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.cobArray);
             this.Controls.Add(this.label6);
@@ -180,9 +145,10 @@
             this.Controls.Add(this.btnThem);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "RoomManagement";
+            this.Name = "frmQLPhong";
             this.Text = "RoomManagement";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.Load += new System.EventHandler(this.frmQLPhong_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvHienThi)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -190,11 +156,7 @@
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn So_phong;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Loai_phong;
-        private System.Windows.Forms.DataGridViewTextBoxColumn tinh_trang;
-        private System.Windows.Forms.DataGridViewTextBoxColumn so_luong_sv;
+        private System.Windows.Forms.DataGridView dgvHienThi;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.ComboBox cobArray;
         private System.Windows.Forms.Label label6;

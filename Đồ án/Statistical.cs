@@ -10,11 +10,12 @@ using System.Windows.Forms;
 
 namespace Đồ_án
 {
-    public partial class Statistical : Form
+    public partial class frmThongKe : Form
     {
-        public Statistical()
+        public frmThongKe()
         {
             InitializeComponent();
+            this.TopLevel = false;
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace Đồ_án
 {
-    partial class Feedback
+    partial class frmPhanHoi
     {
         /// <summary>
         /// Required designer variable.
@@ -28,208 +28,301 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPhanHoi));
+            this.lblPhanHoiVaDanhGia = new System.Windows.Forms.Label();
+            this.lblHoTen = new System.Windows.Forms.Label();
+            this.lblMSSV = new System.Windows.Forms.Label();
+            this.lblEmail = new System.Windows.Forms.Label();
+            this.lblDanhGia = new System.Windows.Forms.Label();
+            this.lblYKiem = new System.Windows.Forms.Label();
+            this.txtHoTen = new System.Windows.Forms.TextBox();
+            this.txtSDT = new System.Windows.Forms.TextBox();
+            this.txtMSSV = new System.Windows.Forms.TextBox();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
-            this.pictureBox5 = new System.Windows.Forms.PictureBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
+            this.ptbSao1 = new System.Windows.Forms.PictureBox();
+            this.txtYKien = new System.Windows.Forms.TextBox();
+            this.btnGuiPhanHoi = new System.Windows.Forms.Button();
+            this.lblQuayLai = new System.Windows.Forms.Button();
+            this.ptbRong1 = new System.Windows.Forms.PictureBox();
+            this.ptbRong2 = new System.Windows.Forms.PictureBox();
+            this.ptbSao2 = new System.Windows.Forms.PictureBox();
+            this.ptbRong3 = new System.Windows.Forms.PictureBox();
+            this.ptbSao3 = new System.Windows.Forms.PictureBox();
+            this.ptbRong4 = new System.Windows.Forms.PictureBox();
+            this.ptbSao4 = new System.Windows.Forms.PictureBox();
+            this.ptbRong5 = new System.Windows.Forms.PictureBox();
+            this.ptbSao5 = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.ptbSao1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ptbRong1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ptbRong2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ptbSao2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ptbRong3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ptbSao3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ptbRong4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ptbSao4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ptbRong5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ptbSao5)).BeginInit();
             this.SuspendLayout();
             // 
-            // label1
+            // lblPhanHoiVaDanhGia
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(156, 29);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(400, 46);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Phản hồi và Đánh giá";
+            this.lblPhanHoiVaDanhGia.AutoSize = true;
+            this.lblPhanHoiVaDanhGia.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPhanHoiVaDanhGia.Location = new System.Drawing.Point(156, 29);
+            this.lblPhanHoiVaDanhGia.Name = "lblPhanHoiVaDanhGia";
+            this.lblPhanHoiVaDanhGia.Size = new System.Drawing.Size(400, 46);
+            this.lblPhanHoiVaDanhGia.TabIndex = 1;
+            this.lblPhanHoiVaDanhGia.Text = "Phản hồi và Đánh giá";
             // 
-            // label2
+            // lblHoTen
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(65, 115);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(69, 20);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Họ Tên:";
+            this.lblHoTen.AutoSize = true;
+            this.lblHoTen.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblHoTen.Location = new System.Drawing.Point(65, 162);
+            this.lblHoTen.Name = "lblHoTen";
+            this.lblHoTen.Size = new System.Drawing.Size(69, 20);
+            this.lblHoTen.TabIndex = 2;
+            this.lblHoTen.Text = "Họ Tên:";
             // 
-            // label3
+            // lblMSSV
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(65, 162);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(61, 20);
-            this.label3.TabIndex = 3;
-            this.label3.Text = "MSSV:";
+            this.lblMSSV.AutoSize = true;
+            this.lblMSSV.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMSSV.Location = new System.Drawing.Point(65, 113);
+            this.lblMSSV.Name = "lblMSSV";
+            this.lblMSSV.Size = new System.Drawing.Size(61, 20);
+            this.lblMSSV.TabIndex = 3;
+            this.lblMSSV.Text = "MSSV:";
             // 
-            // label4
+            // lblEmail
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(65, 213);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(56, 20);
-            this.label4.TabIndex = 4;
-            this.label4.Text = "Email:";
+            this.lblEmail.AutoSize = true;
+            this.lblEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblEmail.Location = new System.Drawing.Point(65, 213);
+            this.lblEmail.Name = "lblEmail";
+            this.lblEmail.Size = new System.Drawing.Size(47, 20);
+            this.lblEmail.TabIndex = 4;
+            this.lblEmail.Text = "SĐT:";
             // 
-            // label5
+            // lblDanhGia
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(65, 267);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(80, 20);
-            this.label5.TabIndex = 5;
-            this.label5.Text = "Đánh giá:";
+            this.lblDanhGia.AutoSize = true;
+            this.lblDanhGia.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDanhGia.Location = new System.Drawing.Point(65, 267);
+            this.lblDanhGia.Name = "lblDanhGia";
+            this.lblDanhGia.Size = new System.Drawing.Size(80, 20);
+            this.lblDanhGia.TabIndex = 5;
+            this.lblDanhGia.Text = "Đánh giá:";
             // 
-            // label6
+            // lblYKiem
             // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(65, 315);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(59, 20);
-            this.label6.TabIndex = 6;
-            this.label6.Text = "Ý kiến:";
+            this.lblYKiem.AutoSize = true;
+            this.lblYKiem.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblYKiem.Location = new System.Drawing.Point(65, 315);
+            this.lblYKiem.Name = "lblYKiem";
+            this.lblYKiem.Size = new System.Drawing.Size(59, 20);
+            this.lblYKiem.TabIndex = 6;
+            this.lblYKiem.Text = "Ý kiến:";
             // 
-            // textBox1
+            // txtHoTen
             // 
-            this.textBox1.Location = new System.Drawing.Point(175, 113);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(485, 22);
-            this.textBox1.TabIndex = 7;
+            this.txtHoTen.Location = new System.Drawing.Point(175, 160);
+            this.txtHoTen.Name = "txtHoTen";
+            this.txtHoTen.Size = new System.Drawing.Size(485, 22);
+            this.txtHoTen.TabIndex = 7;
             // 
-            // textBox2
+            // txtSDT
             // 
-            this.textBox2.Location = new System.Drawing.Point(175, 211);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(485, 22);
-            this.textBox2.TabIndex = 8;
+            this.txtSDT.Location = new System.Drawing.Point(175, 211);
+            this.txtSDT.Name = "txtSDT";
+            this.txtSDT.Size = new System.Drawing.Size(485, 22);
+            this.txtSDT.TabIndex = 8;
             // 
-            // textBox3
+            // txtMSSV
             // 
-            this.textBox3.Location = new System.Drawing.Point(175, 160);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(485, 22);
-            this.textBox3.TabIndex = 9;
+            this.txtMSSV.Location = new System.Drawing.Point(175, 113);
+            this.txtMSSV.Name = "txtMSSV";
+            this.txtMSSV.Size = new System.Drawing.Size(485, 22);
+            this.txtMSSV.TabIndex = 9;
+            this.txtMSSV.Leave += new System.EventHandler(this.txtMSSV_Leave);
             // 
-            // pictureBox1
+            // ptbSao1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(191, 257);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(37, 37);
-            this.pictureBox1.TabIndex = 10;
-            this.pictureBox1.TabStop = false;
+            this.ptbSao1.Image = ((System.Drawing.Image)(resources.GetObject("ptbSao1.Image")));
+            this.ptbSao1.Location = new System.Drawing.Point(189, 253);
+            this.ptbSao1.Name = "ptbSao1";
+            this.ptbSao1.Size = new System.Drawing.Size(45, 45);
+            this.ptbSao1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.ptbSao1.TabIndex = 10;
+            this.ptbSao1.TabStop = false;
+            this.ptbSao1.Click += new System.EventHandler(this.ptbSao1_Click);
             // 
-            // pictureBox2
+            // txtYKien
             // 
-            this.pictureBox2.Location = new System.Drawing.Point(264, 257);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(37, 37);
-            this.pictureBox2.TabIndex = 11;
-            this.pictureBox2.TabStop = false;
+            this.txtYKien.Location = new System.Drawing.Point(175, 315);
+            this.txtYKien.Multiline = true;
+            this.txtYKien.Name = "txtYKien";
+            this.txtYKien.Size = new System.Drawing.Size(485, 113);
+            this.txtYKien.TabIndex = 15;
             // 
-            // pictureBox3
+            // btnGuiPhanHoi
             // 
-            this.pictureBox3.Location = new System.Drawing.Point(337, 257);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(37, 37);
-            this.pictureBox3.TabIndex = 12;
-            this.pictureBox3.TabStop = false;
+            this.btnGuiPhanHoi.Location = new System.Drawing.Point(161, 444);
+            this.btnGuiPhanHoi.Name = "btnGuiPhanHoi";
+            this.btnGuiPhanHoi.Size = new System.Drawing.Size(138, 51);
+            this.btnGuiPhanHoi.TabIndex = 16;
+            this.btnGuiPhanHoi.Text = "Gửi phản hồi";
+            this.btnGuiPhanHoi.UseVisualStyleBackColor = true;
+            this.btnGuiPhanHoi.Click += new System.EventHandler(this.btnGuiPhanHoi_Click);
             // 
-            // pictureBox4
+            // lblQuayLai
             // 
-            this.pictureBox4.Location = new System.Drawing.Point(410, 257);
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(37, 37);
-            this.pictureBox4.TabIndex = 13;
-            this.pictureBox4.TabStop = false;
+            this.lblQuayLai.Location = new System.Drawing.Point(455, 444);
+            this.lblQuayLai.Name = "lblQuayLai";
+            this.lblQuayLai.Size = new System.Drawing.Size(138, 51);
+            this.lblQuayLai.TabIndex = 17;
+            this.lblQuayLai.Text = "Quay lại";
+            this.lblQuayLai.UseVisualStyleBackColor = true;
             // 
-            // pictureBox5
+            // ptbRong1
             // 
-            this.pictureBox5.Location = new System.Drawing.Point(483, 257);
-            this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(37, 37);
-            this.pictureBox5.TabIndex = 14;
-            this.pictureBox5.TabStop = false;
+            this.ptbRong1.Image = ((System.Drawing.Image)(resources.GetObject("ptbRong1.Image")));
+            this.ptbRong1.Location = new System.Drawing.Point(189, 253);
+            this.ptbRong1.Name = "ptbRong1";
+            this.ptbRong1.Size = new System.Drawing.Size(45, 45);
+            this.ptbRong1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.ptbRong1.TabIndex = 18;
+            this.ptbRong1.TabStop = false;
+            this.ptbRong1.Click += new System.EventHandler(this.ptbRong1_Click);
             // 
-            // textBox4
+            // ptbRong2
             // 
-            this.textBox4.Location = new System.Drawing.Point(175, 315);
-            this.textBox4.Multiline = true;
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(485, 113);
-            this.textBox4.TabIndex = 15;
+            this.ptbRong2.Image = ((System.Drawing.Image)(resources.GetObject("ptbRong2.Image")));
+            this.ptbRong2.Location = new System.Drawing.Point(275, 253);
+            this.ptbRong2.Name = "ptbRong2";
+            this.ptbRong2.Size = new System.Drawing.Size(45, 45);
+            this.ptbRong2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.ptbRong2.TabIndex = 20;
+            this.ptbRong2.TabStop = false;
+            this.ptbRong2.Click += new System.EventHandler(this.ptbRong2_Click);
             // 
-            // button1
+            // ptbSao2
             // 
-            this.button1.Location = new System.Drawing.Point(161, 444);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(138, 51);
-            this.button1.TabIndex = 16;
-            this.button1.Text = "Gửi phản hồi";
-            this.button1.UseVisualStyleBackColor = true;
+            this.ptbSao2.Image = ((System.Drawing.Image)(resources.GetObject("ptbSao2.Image")));
+            this.ptbSao2.Location = new System.Drawing.Point(275, 253);
+            this.ptbSao2.Name = "ptbSao2";
+            this.ptbSao2.Size = new System.Drawing.Size(45, 45);
+            this.ptbSao2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.ptbSao2.TabIndex = 19;
+            this.ptbSao2.TabStop = false;
+            this.ptbSao2.Click += new System.EventHandler(this.ptbSao2_Click);
             // 
-            // button2
+            // ptbRong3
             // 
-            this.button2.Location = new System.Drawing.Point(455, 444);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(138, 51);
-            this.button2.TabIndex = 17;
-            this.button2.Text = "Quay lại";
-            this.button2.UseVisualStyleBackColor = true;
+            this.ptbRong3.Image = ((System.Drawing.Image)(resources.GetObject("ptbRong3.Image")));
+            this.ptbRong3.Location = new System.Drawing.Point(364, 253);
+            this.ptbRong3.Name = "ptbRong3";
+            this.ptbRong3.Size = new System.Drawing.Size(45, 45);
+            this.ptbRong3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.ptbRong3.TabIndex = 22;
+            this.ptbRong3.TabStop = false;
+            this.ptbRong3.Click += new System.EventHandler(this.ptbRong3_Click);
             // 
-            // Feedback
+            // ptbSao3
+            // 
+            this.ptbSao3.Image = ((System.Drawing.Image)(resources.GetObject("ptbSao3.Image")));
+            this.ptbSao3.Location = new System.Drawing.Point(364, 253);
+            this.ptbSao3.Name = "ptbSao3";
+            this.ptbSao3.Size = new System.Drawing.Size(45, 45);
+            this.ptbSao3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.ptbSao3.TabIndex = 21;
+            this.ptbSao3.TabStop = false;
+            this.ptbSao3.Click += new System.EventHandler(this.ptbSao3_Click);
+            // 
+            // ptbRong4
+            // 
+            this.ptbRong4.Image = ((System.Drawing.Image)(resources.GetObject("ptbRong4.Image")));
+            this.ptbRong4.Location = new System.Drawing.Point(452, 253);
+            this.ptbRong4.Name = "ptbRong4";
+            this.ptbRong4.Size = new System.Drawing.Size(45, 45);
+            this.ptbRong4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.ptbRong4.TabIndex = 24;
+            this.ptbRong4.TabStop = false;
+            this.ptbRong4.Click += new System.EventHandler(this.ptbRong4_Click);
+            // 
+            // ptbSao4
+            // 
+            this.ptbSao4.Image = ((System.Drawing.Image)(resources.GetObject("ptbSao4.Image")));
+            this.ptbSao4.Location = new System.Drawing.Point(452, 253);
+            this.ptbSao4.Name = "ptbSao4";
+            this.ptbSao4.Size = new System.Drawing.Size(45, 45);
+            this.ptbSao4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.ptbSao4.TabIndex = 23;
+            this.ptbSao4.TabStop = false;
+            this.ptbSao4.Click += new System.EventHandler(this.ptbSao4_Click);
+            // 
+            // ptbRong5
+            // 
+            this.ptbRong5.Image = ((System.Drawing.Image)(resources.GetObject("ptbRong5.Image")));
+            this.ptbRong5.Location = new System.Drawing.Point(537, 253);
+            this.ptbRong5.Name = "ptbRong5";
+            this.ptbRong5.Size = new System.Drawing.Size(45, 45);
+            this.ptbRong5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.ptbRong5.TabIndex = 26;
+            this.ptbRong5.TabStop = false;
+            this.ptbRong5.Click += new System.EventHandler(this.ptbRong5_Click);
+            // 
+            // ptbSao5
+            // 
+            this.ptbSao5.Image = ((System.Drawing.Image)(resources.GetObject("ptbSao5.Image")));
+            this.ptbSao5.Location = new System.Drawing.Point(537, 253);
+            this.ptbSao5.Name = "ptbSao5";
+            this.ptbSao5.Size = new System.Drawing.Size(45, 45);
+            this.ptbSao5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.ptbSao5.TabIndex = 25;
+            this.ptbSao5.TabStop = false;
+            this.ptbSao5.Click += new System.EventHandler(this.ptbSao5_Click);
+            // 
+            // frmPhanHoi
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(755, 525);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.textBox4);
-            this.Controls.Add(this.pictureBox5);
-            this.Controls.Add(this.pictureBox4);
-            this.Controls.Add(this.pictureBox3);
-            this.Controls.Add(this.pictureBox2);
-            this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.ptbRong5);
+            this.Controls.Add(this.ptbSao5);
+            this.Controls.Add(this.ptbRong4);
+            this.Controls.Add(this.ptbSao4);
+            this.Controls.Add(this.ptbRong3);
+            this.Controls.Add(this.ptbSao3);
+            this.Controls.Add(this.ptbRong2);
+            this.Controls.Add(this.ptbSao2);
+            this.Controls.Add(this.ptbRong1);
+            this.Controls.Add(this.lblQuayLai);
+            this.Controls.Add(this.btnGuiPhanHoi);
+            this.Controls.Add(this.txtYKien);
+            this.Controls.Add(this.ptbSao1);
+            this.Controls.Add(this.txtMSSV);
+            this.Controls.Add(this.txtSDT);
+            this.Controls.Add(this.txtHoTen);
+            this.Controls.Add(this.lblYKiem);
+            this.Controls.Add(this.lblDanhGia);
+            this.Controls.Add(this.lblEmail);
+            this.Controls.Add(this.lblMSSV);
+            this.Controls.Add(this.lblHoTen);
+            this.Controls.Add(this.lblPhanHoiVaDanhGia);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "Feedback";
+            this.Name = "frmPhanHoi";
             this.Text = "Feedback";
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ptbSao1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ptbRong1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ptbRong2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ptbSao2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ptbRong3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ptbSao3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ptbRong4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ptbSao4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ptbRong5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ptbSao5)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -237,23 +330,28 @@
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.Label lblPhanHoiVaDanhGia;
+        private System.Windows.Forms.Label lblHoTen;
+        private System.Windows.Forms.Label lblMSSV;
+        private System.Windows.Forms.Label lblEmail;
+        private System.Windows.Forms.Label lblDanhGia;
+        private System.Windows.Forms.Label lblYKiem;
+        private System.Windows.Forms.TextBox txtHoTen;
+        private System.Windows.Forms.TextBox txtSDT;
+        private System.Windows.Forms.TextBox txtMSSV;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.PictureBox pictureBox3;
-        private System.Windows.Forms.PictureBox pictureBox4;
-        private System.Windows.Forms.PictureBox pictureBox5;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.PictureBox ptbSao1;
+        private System.Windows.Forms.TextBox txtYKien;
+        private System.Windows.Forms.Button btnGuiPhanHoi;
+        private System.Windows.Forms.Button lblQuayLai;
+        private System.Windows.Forms.PictureBox ptbRong1;
+        private System.Windows.Forms.PictureBox ptbRong2;
+        private System.Windows.Forms.PictureBox ptbSao2;
+        private System.Windows.Forms.PictureBox ptbRong3;
+        private System.Windows.Forms.PictureBox ptbSao3;
+        private System.Windows.Forms.PictureBox ptbRong4;
+        private System.Windows.Forms.PictureBox ptbSao4;
+        private System.Windows.Forms.PictureBox ptbRong5;
+        private System.Windows.Forms.PictureBox ptbSao5;
     }
 }

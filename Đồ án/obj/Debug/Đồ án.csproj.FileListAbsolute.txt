@@ -2,10 +2,22 @@ E:\.Net\Đồ_Án\Đồ án\bin\Debug\Đồ án.exe.config
 E:\.Net\Đồ_Án\Đồ án\bin\Debug\Đồ án.exe
 E:\.Net\Đồ_Án\Đồ án\bin\Debug\Đồ án.pdb
 E:\.Net\Đồ_Án\Đồ án\obj\Debug\Đồ án.csproj.AssemblyReference.cache
-E:\.Net\Đồ_Án\Đồ án\obj\Debug\Đồ_án.Dashboard.resources
 E:\.Net\Đồ_Án\Đồ án\obj\Debug\Đồ_án.Properties.Resources.resources
-E:\.Net\Đồ_Án\Đồ án\obj\Debug\Đồ_án.Login.resources
 E:\.Net\Đồ_Án\Đồ án\obj\Debug\Đồ án.csproj.GenerateResource.cache
 E:\.Net\Đồ_Án\Đồ án\obj\Debug\Đồ án.csproj.CoreCompileInputs.cache
 E:\.Net\Đồ_Án\Đồ án\obj\Debug\Đồ án.exe
 E:\.Net\Đồ_Án\Đồ án\obj\Debug\Đồ án.pdb
+E:\.Net\Đồ_Án\Đồ án\obj\Debug\Đồ_án.frmDashboard.resources
+E:\.Net\Đồ_Án\Đồ án\obj\Debug\Đồ_án.frmLogin.resources
+E:\.Net\Đồ_Án\Đồ án\obj\Debug\Đồ_án.frmApplication.resources
+E:\.Net\Đồ_Án\Đồ án\obj\Debug\Đồ_án.frmQLTTLienLac.resources
+E:\.Net\Đồ_Án\Đồ án\obj\Debug\Đồ_án.frmViPham.resources
+E:\.Net\Đồ_Án\Đồ án\obj\Debug\Đồ_án.frmThanhToan.resources
+E:\.Net\Đồ_Án\Đồ án\obj\Debug\Đồ_án.frmBaoTri.resources
+E:\.Net\Đồ_Án\Đồ án\obj\Debug\Đồ_án.frmQLPhong.resources
+E:\.Net\Đồ_Án\Đồ án\obj\Debug\Đồ_án.frmThongKe.resources
+E:\.Net\Đồ_Án\Đồ án\obj\Debug\Đồ_án.frmQLSV.resources
+E:\.Net\Đồ_Án\Đồ án\obj\Debug\Đồ_án.frmSuaPhong.resources
+E:\.Net\Đồ_Án\Đồ án\obj\Debug\Đồ_án.frmThemPhong.resources
+E:\.Net\Đồ_Án\Đồ án\obj\Debug\Đồ_án.frmQLNguoiDung.resources
+E:\.Net\Đồ_Án\Đồ án\obj\Debug\Đồ_án.frmPhanHoi.resources

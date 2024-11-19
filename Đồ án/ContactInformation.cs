@@ -10,11 +10,14 @@ using System.Windows.Forms;
 
 namespace Đồ_án
 {
-    public partial class ContactInformation : Form
+    public partial class frmQLTTLienLac : Form
     {
-        public ContactInformation()
+        public frmQLTTLienLac()
         {
             InitializeComponent();
+            this.TopLevel = false;
         }
+
+ 
     }
 }

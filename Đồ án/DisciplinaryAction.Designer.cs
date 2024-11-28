@@ -40,8 +40,9 @@
             this.txtMoTaViPham = new System.Windows.Forms.TextBox();
             this.cbbHinhThucXuLy = new System.Windows.Forms.ComboBox();
             this.btnGhiNhan = new System.Windows.Forms.Button();
-            this.btnQuayLai = new System.Windows.Forms.Button();
+            this.btnHoanTac = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
+            this.btnLuu = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblGhiNhanViPham
@@ -148,7 +149,7 @@
             // 
             // btnGhiNhan
             // 
-            this.btnGhiNhan.Location = new System.Drawing.Point(96, 433);
+            this.btnGhiNhan.Location = new System.Drawing.Point(46, 433);
             this.btnGhiNhan.Name = "btnGhiNhan";
             this.btnGhiNhan.Size = new System.Drawing.Size(147, 49);
             this.btnGhiNhan.TabIndex = 55;
@@ -156,18 +157,19 @@
             this.btnGhiNhan.UseVisualStyleBackColor = true;
             this.btnGhiNhan.Click += new System.EventHandler(this.btnGhiNhan_Click);
             // 
-            // btnQuayLai
+            // btnHoanTac
             // 
-            this.btnQuayLai.Location = new System.Drawing.Point(512, 433);
-            this.btnQuayLai.Name = "btnQuayLai";
-            this.btnQuayLai.Size = new System.Drawing.Size(147, 49);
-            this.btnQuayLai.TabIndex = 56;
-            this.btnQuayLai.Text = "Quay lại";
-            this.btnQuayLai.UseVisualStyleBackColor = true;
+            this.btnHoanTac.Location = new System.Drawing.Point(390, 433);
+            this.btnHoanTac.Name = "btnHoanTac";
+            this.btnHoanTac.Size = new System.Drawing.Size(147, 49);
+            this.btnHoanTac.TabIndex = 56;
+            this.btnHoanTac.Text = "Hoàn tác";
+            this.btnHoanTac.UseVisualStyleBackColor = true;
+            this.btnHoanTac.Click += new System.EventHandler(this.btnHoanTac_Click);
             // 
             // btnClear
             // 
-            this.btnClear.Location = new System.Drawing.Point(304, 433);
+            this.btnClear.Location = new System.Drawing.Point(218, 433);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(147, 49);
             this.btnClear.TabIndex = 57;
@@ -175,13 +177,24 @@
             this.btnClear.UseVisualStyleBackColor = true;
             this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
+            // btnLuu
+            // 
+            this.btnLuu.Location = new System.Drawing.Point(562, 433);
+            this.btnLuu.Name = "btnLuu";
+            this.btnLuu.Size = new System.Drawing.Size(147, 49);
+            this.btnLuu.TabIndex = 58;
+            this.btnLuu.Text = "Lưu";
+            this.btnLuu.UseVisualStyleBackColor = true;
+            this.btnLuu.Click += new System.EventHandler(this.btnLuu_Click);
+            // 
             // frmViPham
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(755, 525);
+            this.Controls.Add(this.btnLuu);
             this.Controls.Add(this.btnClear);
-            this.Controls.Add(this.btnQuayLai);
+            this.Controls.Add(this.btnHoanTac);
             this.Controls.Add(this.btnGhiNhan);
             this.Controls.Add(this.cbbHinhThucXuLy);
             this.Controls.Add(this.txtMoTaViPham);
@@ -197,6 +210,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmViPham";
             this.Text = "DisciplinaryAction";
+            this.Load += new System.EventHandler(this.frmViPham_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -216,7 +230,8 @@
         private System.Windows.Forms.TextBox txtMoTaViPham;
         private System.Windows.Forms.ComboBox cbbHinhThucXuLy;
         private System.Windows.Forms.Button btnGhiNhan;
-        private System.Windows.Forms.Button btnQuayLai;
+        private System.Windows.Forms.Button btnHoanTac;
         private System.Windows.Forms.Button btnClear;
+        private System.Windows.Forms.Button btnLuu;
     }
 }

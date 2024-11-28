@@ -76,5 +76,10 @@ namespace Đồ_án
                 btnDangNhap_Click(sender, e);
             }
         }
+
+        private void frmLogin_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

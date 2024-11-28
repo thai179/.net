@@ -14,11 +14,23 @@ namespace Đồ_án
 {
     public partial class frmPhanHoi : Form
     {
+        private DataSet dsPhanHoi;
+        private DataSet dsPhanHoiGoc;
         int tmp = 0;
         public frmPhanHoi()
         {
             InitializeComponent();
             this.TopLevel = false;
+            dsPhanHoi = new DataSet();
+            dsPhanHoiGoc = new DataSet();
+        }
+
+        private void frmPhanHoi_Load(object sender, EventArgs e)
+        {
+            string query = "SELECT * FROM phanhoivadanhgia";
+            SqlDataAdapter adapter = new SqlDataAdapter(query, ConnectionManager.GetConnection());
+            adapter.Fill(dsPhanHoiGoc, "PhanHoi");
+            dsPhanHoi = dsPhanHoiGoc.Copy();
         }
 
         private void txtMSSV_Leave(object sender, EventArgs e)
@@ -67,28 +79,45 @@ namespace Đồ_án
                 MessageBox.Show("Bạn chưa đánh giá sao");
                 return;
             }
-            string query = "insert into phanhoivadanhgia (masv,sosao,hoten,ykien) values(@mssv,@sosao,@hoten,@ykien)";
-            
+
+            DataTable dtPhanHoi = dsPhanHoi.Tables["PhanHoi"];
+            DataRow newRow = dtPhanHoi.NewRow();
+            newRow["masv"] = txtMSSV.Text;
+            newRow["sosao"] = tmp;
+            newRow["hoten"] = txtHoTen.Text;
+            newRow["ykien"] = txtYKien.Text;
+
+            dtPhanHoi.Rows.Add(newRow);
+
+            MessageBox.Show("Đánh giả đã gửi thành công");
+
+        }
+
+        private void btnLuu_Click(object sender, EventArgs e)
+        {
             try
             {
-                using (SqlConnection conn = ConnectionManager.GetConnection())
-                {
-                    SqlCommand cmd = new SqlCommand(query, conn);
-                    cmd.Parameters.AddWithValue("@mssv", txtMSSV.Text);
-                    cmd.Parameters.AddWithValue("@sosao", tmp);
-                    cmd.Parameters.AddWithValue("@hoten",txtHoTen.Text);
-                    cmd.Parameters.AddWithValue("@ykien", txtYKien.Text);
-                    conn.Open();
-                    cmd.ExecuteNonQuery();
+                SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM phanhoivadanhgia", ConnectionManager.GetConnection());
+                SqlCommandBuilder commandBuilder = new SqlCommandBuilder(adapter);
+                adapter.Update(dsPhanHoi, "PhanHoi");
 
-                }
-                MessageBox.Show("Đánh giả đã gửi thành công");
+                MessageBox.Show("Dữ liệu đã được lưu thành công.");
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Đã có lỗi phát sinh"+ex);
+                MessageBox.Show("Lỗi khi lưu dữ liệu: " + ex.Message);
             }
 
+        }
+
+        private void frmHuy_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Bận có muốn hoàn tác các thay đổi hay không", "Thông báo", MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
+            {
+                dsPhanHoi = dsPhanHoiGoc.Copy();
+                MessageBox.Show("Đã hoàn tác các thay đổi.");
+            }
         }
 
         private void ptbRong1_Click(object sender, EventArgs e)
@@ -190,5 +219,7 @@ namespace Đồ_án
             ptbSao4.Show();
             ptbSao5.Show();
         }
+
+        
     }
 }

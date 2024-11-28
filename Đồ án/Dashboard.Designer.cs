@@ -39,7 +39,7 @@
             this.btnBaoTri = new System.Windows.Forms.Button();
             this.btnThanhToan = new System.Windows.Forms.Button();
             this.btnQLPhong = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnQLThanNhan = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnDangXuat
@@ -149,14 +149,15 @@
             this.btnQLPhong.UseVisualStyleBackColor = true;
             this.btnQLPhong.Click += new System.EventHandler(this.btnQLPhong_Click);
             // 
-            // button1
+            // btnQLThanNhan
             // 
-            this.button1.Location = new System.Drawing.Point(39, 135);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(281, 53);
-            this.button1.TabIndex = 24;
-            this.button1.Text = "Đăng ký ký túc xá";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnQLThanNhan.Location = new System.Drawing.Point(39, 135);
+            this.btnQLThanNhan.Name = "btnQLThanNhan";
+            this.btnQLThanNhan.Size = new System.Drawing.Size(281, 53);
+            this.btnQLThanNhan.TabIndex = 24;
+            this.btnQLThanNhan.Text = "Quản lý thân nhân";
+            this.btnQLThanNhan.UseVisualStyleBackColor = true;
+            this.btnQLThanNhan.Click += new System.EventHandler(this.btnQLThanNhan_Click);
             // 
             // frmDashboard
             // 
@@ -174,11 +175,12 @@
             this.Controls.Add(this.btnBaoTri);
             this.Controls.Add(this.btnThanhToan);
             this.Controls.Add(this.btnQLPhong);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnQLThanNhan);
             this.Name = "frmDashboard";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Dashboard";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmDashboard_FormClosing);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmDashboard_FormClosed);
             this.Load += new System.EventHandler(this.Dashboard_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -198,6 +200,6 @@
         private System.Windows.Forms.Button btnBaoTri;
         private System.Windows.Forms.Button btnThanhToan;
         private System.Windows.Forms.Button btnQLPhong;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnQLThanNhan;
     }
 }

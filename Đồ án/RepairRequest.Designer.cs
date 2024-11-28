@@ -83,7 +83,7 @@
             this.cbbDoUuTien.Items.AddRange(new object[] {
             "Mức 1 (Hư hỏng nhẹ cần sử chữa thay thế)",
             "Mức 2 (Hư hỏng vừa cần thay thế sớm)",
-            "Mức 3 (Hư hỏng nặng cần thay thể sơm nhất có thể)"});
+            "Mức 3 (Hư hỏng nặng cần thay thể sớm nhất có thể)"});
             this.cbbDoUuTien.Location = new System.Drawing.Point(219, 323);
             this.cbbDoUuTien.Name = "cbbDoUuTien";
             this.cbbDoUuTien.Size = new System.Drawing.Size(250, 24);

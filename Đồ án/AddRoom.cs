@@ -13,9 +13,11 @@ namespace Đồ_án
 {
     public partial class frmThemPhong : Form
     {
-        public frmThemPhong()
+        private DataSet dsPhong;
+        public frmThemPhong(DataSet dsPhong)
         {
             InitializeComponent();
+            this.dsPhong = dsPhong;
         }
 
         private void btnClear_Click(object sender, EventArgs e)
@@ -53,26 +55,23 @@ namespace Đồ_án
                 return;
             }
 
-            string query = "INSERT INTO phong (sophong,sluongtoida,loaiphong,tinhtrangphong) Values(@sophong,@sluongtoida,@loaiphong,@tinhtrang)";
-            using(SqlConnection conn = ConnectionManager.GetConnection())
+            DataTable dataTable = dsPhong.Tables["phong"];
+            DataRow[] row = dataTable.Select($"sophong = '{sophong}'");
+            if (row.Length > 0 )
             {
-                SqlCommand cmd = new SqlCommand(query,conn);
-                cmd.Parameters.AddWithValue("@sophong", sophong);
-                cmd.Parameters.AddWithValue("@sluongtoida", songuoi);
-                cmd.Parameters.AddWithValue("@loaiphong", loaiphong);
-                cmd.Parameters.AddWithValue("@tinhtrang", tinhtrang);
-
-                try
-                {
-                    conn.Open();
-                    cmd.ExecuteNonQuery();
-                    MessageBox.Show("Phòng đã được thêm thành công");
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Đã có lỗi xảy ra "+ex.Message);
-                }
+                MessageBox.Show("Số phòng đã tồn tại.", "Lỗi");
+                txtSoPhong.Focus();
+                return;
             }
+            DataRow newrow = dataTable.NewRow();
+            newrow["sophong"] = sophong;
+            newrow["sluongtoida"]= songuoi;
+            newrow["loaiphong"] = loaiphong;
+            newrow["tinhtrangphong"] = tinhtrang;
+
+            dataTable.Rows.Add(newrow);
+            MessageBox.Show("Phòng đã được thêm vào DataSet thành công.", "Thông báo");
         }
+
     }
 }

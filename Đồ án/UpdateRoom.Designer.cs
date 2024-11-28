@@ -162,9 +162,11 @@
             // 
             // ptbTim
             // 
+            this.ptbTim.Image = global::Đồ_án.Properties.Resources.kính_lúp;
             this.ptbTim.Location = new System.Drawing.Point(588, 108);
             this.ptbTim.Name = "ptbTim";
             this.ptbTim.Size = new System.Drawing.Size(22, 22);
+            this.ptbTim.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.ptbTim.TabIndex = 26;
             this.ptbTim.TabStop = false;
             this.ptbTim.Click += new System.EventHandler(this.ptbTim_Click);

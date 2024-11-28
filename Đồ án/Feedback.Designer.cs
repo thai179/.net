@@ -42,7 +42,7 @@
             this.ptbSao1 = new System.Windows.Forms.PictureBox();
             this.txtYKien = new System.Windows.Forms.TextBox();
             this.btnGuiPhanHoi = new System.Windows.Forms.Button();
-            this.lblQuayLai = new System.Windows.Forms.Button();
+            this.frmHuy = new System.Windows.Forms.Button();
             this.ptbRong1 = new System.Windows.Forms.PictureBox();
             this.ptbRong2 = new System.Windows.Forms.PictureBox();
             this.ptbSao2 = new System.Windows.Forms.PictureBox();
@@ -52,6 +52,7 @@
             this.ptbSao4 = new System.Windows.Forms.PictureBox();
             this.ptbRong5 = new System.Windows.Forms.PictureBox();
             this.ptbSao5 = new System.Windows.Forms.PictureBox();
+            this.btnLuu = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.ptbSao1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ptbRong1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ptbRong2)).BeginInit();
@@ -167,7 +168,7 @@
             // 
             // btnGuiPhanHoi
             // 
-            this.btnGuiPhanHoi.Location = new System.Drawing.Point(161, 444);
+            this.btnGuiPhanHoi.Location = new System.Drawing.Point(120, 444);
             this.btnGuiPhanHoi.Name = "btnGuiPhanHoi";
             this.btnGuiPhanHoi.Size = new System.Drawing.Size(138, 51);
             this.btnGuiPhanHoi.TabIndex = 16;
@@ -175,14 +176,15 @@
             this.btnGuiPhanHoi.UseVisualStyleBackColor = true;
             this.btnGuiPhanHoi.Click += new System.EventHandler(this.btnGuiPhanHoi_Click);
             // 
-            // lblQuayLai
+            // frmHuy
             // 
-            this.lblQuayLai.Location = new System.Drawing.Point(455, 444);
-            this.lblQuayLai.Name = "lblQuayLai";
-            this.lblQuayLai.Size = new System.Drawing.Size(138, 51);
-            this.lblQuayLai.TabIndex = 17;
-            this.lblQuayLai.Text = "Quay lại";
-            this.lblQuayLai.UseVisualStyleBackColor = true;
+            this.frmHuy.Location = new System.Drawing.Point(496, 444);
+            this.frmHuy.Name = "frmHuy";
+            this.frmHuy.Size = new System.Drawing.Size(138, 51);
+            this.frmHuy.TabIndex = 17;
+            this.frmHuy.Text = "Hủy";
+            this.frmHuy.UseVisualStyleBackColor = true;
+            this.frmHuy.Click += new System.EventHandler(this.frmHuy_Click);
             // 
             // ptbRong1
             // 
@@ -283,11 +285,22 @@
             this.ptbSao5.TabStop = false;
             this.ptbSao5.Click += new System.EventHandler(this.ptbSao5_Click);
             // 
+            // btnLuu
+            // 
+            this.btnLuu.Location = new System.Drawing.Point(308, 444);
+            this.btnLuu.Name = "btnLuu";
+            this.btnLuu.Size = new System.Drawing.Size(138, 51);
+            this.btnLuu.TabIndex = 27;
+            this.btnLuu.Text = "Lưu";
+            this.btnLuu.UseVisualStyleBackColor = true;
+            this.btnLuu.Click += new System.EventHandler(this.btnLuu_Click);
+            // 
             // frmPhanHoi
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(755, 525);
+            this.Controls.Add(this.btnLuu);
             this.Controls.Add(this.ptbRong5);
             this.Controls.Add(this.ptbSao5);
             this.Controls.Add(this.ptbRong4);
@@ -297,7 +310,7 @@
             this.Controls.Add(this.ptbRong2);
             this.Controls.Add(this.ptbSao2);
             this.Controls.Add(this.ptbRong1);
-            this.Controls.Add(this.lblQuayLai);
+            this.Controls.Add(this.frmHuy);
             this.Controls.Add(this.btnGuiPhanHoi);
             this.Controls.Add(this.txtYKien);
             this.Controls.Add(this.ptbSao1);
@@ -313,6 +326,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmPhanHoi";
             this.Text = "Feedback";
+            this.Load += new System.EventHandler(this.frmPhanHoi_Load);
             ((System.ComponentModel.ISupportInitialize)(this.ptbSao1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ptbRong1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ptbRong2)).EndInit();
@@ -343,7 +357,7 @@
         private System.Windows.Forms.PictureBox ptbSao1;
         private System.Windows.Forms.TextBox txtYKien;
         private System.Windows.Forms.Button btnGuiPhanHoi;
-        private System.Windows.Forms.Button lblQuayLai;
+        private System.Windows.Forms.Button frmHuy;
         private System.Windows.Forms.PictureBox ptbRong1;
         private System.Windows.Forms.PictureBox ptbRong2;
         private System.Windows.Forms.PictureBox ptbSao2;
@@ -353,5 +367,6 @@
         private System.Windows.Forms.PictureBox ptbSao4;
         private System.Windows.Forms.PictureBox ptbRong5;
         private System.Windows.Forms.PictureBox ptbSao5;
+        private System.Windows.Forms.Button btnLuu;
     }
 }

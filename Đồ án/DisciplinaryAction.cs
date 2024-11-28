@@ -13,10 +13,14 @@ namespace Đồ_án
 {
     public partial class frmViPham : Form
     {
+        private DataSet dsViPham;
+        private DataSet dsViPhamGoc;
         public frmViPham()
         {
             InitializeComponent();
             this.TopLevel = false;
+            dsViPham = new DataSet();
+            dsViPhamGoc = new DataSet();
         }
 
         private void btnClear_Click(object sender, EventArgs e)
@@ -48,29 +52,14 @@ namespace Đồ_án
                 cbbHinhThucXuLy.Focus();
                 return;
             }
-
-            string query = "insert into thongtinvipham (ndvp,sophong,mssv,htxuly) values (@ndvp, @sophong, @mssv, @htxuly)";
-            using (SqlConnection conn = ConnectionManager.GetConnection())
-            {
-                SqlCommand cmd = new SqlCommand(query, conn);
-                cmd.Parameters.AddWithValue("@ndvp",txtMoTaViPham.Text);
-                cmd.Parameters.AddWithValue("@sophong",txtSoPhong.Text);
-                cmd.Parameters.AddWithValue("@mssv", txtMSSV.Text);
-                cmd.Parameters.AddWithValue("@htxuly",cbbHinhThucXuLy.Text);
-
-                conn.Open();
-                cmd.ExecuteNonQuery();
-                try
-                {
-                    conn.Open();
-                    cmd.ExecuteNonQuery();
-                    MessageBox.Show("vi pham da duoc ghi nhan");
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Đã có lỗi xảy ra " + ex.Message);
-                }
-            }
+            DataTable dataTable = dsViPham.Tables["ViPham"];
+            DataRow newRow = dataTable.NewRow();
+            newRow["ndvp"] = txtMoTaViPham.Text;
+            newRow["sophong"] = txtSoPhong.Text;
+            newRow["masv"] = txtMSSV.Text;
+            newRow["htxuly"] = cbbHinhThucXuLy.Text;
+            dataTable.Rows.Add(newRow);
+            MessageBox.Show("Vi phạm đã được ghi nhận vào DataSet");
         }
 
         private void txtMSSV_Leave(object sender, EventArgs e)
@@ -79,7 +68,7 @@ namespace Đồ_án
             {
                 string mssv = txtMSSV.Text;
 
-                string query = "select hoten, sophong from sinhvien where mssv = @mssv";
+                string query = "select hoten, sophong from sinhvien where masv = @mssv";
                 using(SqlConnection conn = ConnectionManager.GetConnection())
                 {
                     SqlCommand cmd = new SqlCommand(query,conn);
@@ -96,6 +85,54 @@ namespace Đồ_án
                     reader.Close();
                 }
             }
+        }
+
+        private void btnHoanTac_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Bận có muốn hoàn tác các thay đổi hay không","Thông báo",MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
+            {
+                dsViPham = dsViPhamGoc.Copy();
+                MessageBox.Show("Đã hoàn tác các thay đổi.");
+            }
+            
+        }
+
+        private void btnLuu_Click(object sender, EventArgs e)
+        {
+            if (dsViPham.GetChanges() == null)
+            {
+                MessageBox.Show("Không có thay đổi để lưu.");
+                return;
+            }
+
+            try
+            {
+                SqlConnection conn = ConnectionManager.GetConnection();
+                SqlDataAdapter dataAdapter = new SqlDataAdapter("SELECT * FROM thongtinvipham", conn);
+                SqlCommandBuilder commandBuilder = new SqlCommandBuilder(dataAdapter);
+                if (commandBuilder.GetInsertCommand() == null || commandBuilder.GetUpdateCommand() == null || commandBuilder.GetDeleteCommand() == null)
+                {
+                    MessageBox.Show("Không thể tự động tạo các câu lệnh SQL.");
+                    return;
+                }
+                dataAdapter.Update(dsViPham, "ViPham");
+                dsViPham.AcceptChanges();
+
+                MessageBox.Show("Dữ liệu đã được lưu thành công.");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Có lỗi xảy ra khi lưu dữ liệu: " + ex.Message);
+            }
+        }
+
+        private void frmViPham_Load(object sender, EventArgs e)
+        {
+            string query = "SELECT * FROM thongtinvipham";
+            SqlDataAdapter adapter = new SqlDataAdapter(query, ConnectionManager.GetConnection());
+            adapter.Fill(dsViPhamGoc, "ViPham");
+            dsViPham = dsViPhamGoc.Copy();
         }
     }
 }

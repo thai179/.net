@@ -35,7 +35,6 @@
             this.lblMatKhau = new System.Windows.Forms.Label();
             this.txtTaiKhoan = new System.Windows.Forms.TextBox();
             this.txtMatKhau = new System.Windows.Forms.TextBox();
-            this.chbNhoMK = new System.Windows.Forms.CheckBox();
             this.lblQuenMK = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
@@ -93,6 +92,7 @@
             this.txtTaiKhoan.Name = "txtTaiKhoan";
             this.txtTaiKhoan.Size = new System.Drawing.Size(287, 22);
             this.txtTaiKhoan.TabIndex = 0;
+            this.txtTaiKhoan.Text = "admin";
             // 
             // txtMatKhau
             // 
@@ -101,17 +101,8 @@
             this.txtMatKhau.PasswordChar = '*';
             this.txtMatKhau.Size = new System.Drawing.Size(287, 22);
             this.txtMatKhau.TabIndex = 1;
+            this.txtMatKhau.Text = "admin";
             this.txtMatKhau.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtMatKhau_KeyPress);
-            // 
-            // chbNhoMK
-            // 
-            this.chbNhoMK.AutoSize = true;
-            this.chbNhoMK.Location = new System.Drawing.Point(42, 252);
-            this.chbNhoMK.Name = "chbNhoMK";
-            this.chbNhoMK.Size = new System.Drawing.Size(111, 20);
-            this.chbNhoMK.TabIndex = 7;
-            this.chbNhoMK.Text = "Nhớ mật khẩu";
-            this.chbNhoMK.UseVisualStyleBackColor = true;
             // 
             // lblQuenMK
             // 
@@ -129,7 +120,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(459, 409);
             this.Controls.Add(this.lblQuenMK);
-            this.Controls.Add(this.chbNhoMK);
             this.Controls.Add(this.txtMatKhau);
             this.Controls.Add(this.txtTaiKhoan);
             this.Controls.Add(this.lblMatKhau);
@@ -140,6 +130,7 @@
             this.Name = "frmLogin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Đăng nhập";
+            this.Load += new System.EventHandler(this.frmLogin_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -154,7 +145,6 @@
         private System.Windows.Forms.Label lblMatKhau;
         private System.Windows.Forms.TextBox txtTaiKhoan;
         private System.Windows.Forms.TextBox txtMatKhau;
-        private System.Windows.Forms.CheckBox chbNhoMK;
         private System.Windows.Forms.Label lblQuenMK;
     }
 }

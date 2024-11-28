@@ -37,6 +37,8 @@
             this.btnSua = new System.Windows.Forms.Button();
             this.btnThem = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.btnHoanTac = new System.Windows.Forms.Button();
+            this.btnLuu = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvHienThi)).BeginInit();
             this.SuspendLayout();
             // 
@@ -90,17 +92,18 @@
             // 
             // btnXoa
             // 
-            this.btnXoa.Location = new System.Drawing.Point(539, 441);
+            this.btnXoa.Location = new System.Drawing.Point(313, 451);
             this.btnXoa.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnXoa.Name = "btnXoa";
             this.btnXoa.Size = new System.Drawing.Size(128, 43);
             this.btnXoa.TabIndex = 20;
             this.btnXoa.Text = "Xóa";
             this.btnXoa.UseVisualStyleBackColor = true;
+            this.btnXoa.Click += new System.EventHandler(this.btnXoa_Click);
             // 
             // btnSua
             // 
-            this.btnSua.Location = new System.Drawing.Point(307, 441);
+            this.btnSua.Location = new System.Drawing.Point(167, 451);
             this.btnSua.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnSua.Name = "btnSua";
             this.btnSua.Size = new System.Drawing.Size(128, 43);
@@ -111,7 +114,7 @@
             // 
             // btnThem
             // 
-            this.btnThem.Location = new System.Drawing.Point(78, 441);
+            this.btnThem.Location = new System.Drawing.Point(21, 451);
             this.btnThem.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnThem.Name = "btnThem";
             this.btnThem.Size = new System.Drawing.Size(128, 43);
@@ -130,11 +133,35 @@
             this.label1.TabIndex = 17;
             this.label1.Text = "Quản Lý Phòng";
             // 
+            // btnHoanTac
+            // 
+            this.btnHoanTac.Location = new System.Drawing.Point(459, 451);
+            this.btnHoanTac.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnHoanTac.Name = "btnHoanTac";
+            this.btnHoanTac.Size = new System.Drawing.Size(128, 43);
+            this.btnHoanTac.TabIndex = 26;
+            this.btnHoanTac.Text = "Hoàn tác";
+            this.btnHoanTac.UseVisualStyleBackColor = true;
+            this.btnHoanTac.Click += new System.EventHandler(this.btnHoanTac_Click);
+            // 
+            // btnLuu
+            // 
+            this.btnLuu.Location = new System.Drawing.Point(605, 448);
+            this.btnLuu.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnLuu.Name = "btnLuu";
+            this.btnLuu.Size = new System.Drawing.Size(128, 43);
+            this.btnLuu.TabIndex = 27;
+            this.btnLuu.Text = "Lưu thay đổi";
+            this.btnLuu.UseVisualStyleBackColor = true;
+            this.btnLuu.Click += new System.EventHandler(this.btnLuu_Click);
+            // 
             // frmQLPhong
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(755, 525);
+            this.Controls.Add(this.btnLuu);
+            this.Controls.Add(this.btnHoanTac);
             this.Controls.Add(this.dgvHienThi);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.cobArray);
@@ -165,5 +192,7 @@
         private System.Windows.Forms.Button btnSua;
         private System.Windows.Forms.Button btnThem;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnHoanTac;
+        private System.Windows.Forms.Button btnLuu;
     }
 }

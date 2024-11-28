@@ -14,6 +14,7 @@ namespace Đồ_án
     public partial class frmDashboard : Form
     {
         private string username;
+        private frmQLTTLienLac qlThanNhan;
         private frmQLPhong qlPhong;
         private frmThanhToan thanhToan;
         private frmBaoTri baoTri;
@@ -22,6 +23,7 @@ namespace Đồ_án
         private frmQLNguoiDung qlNguoiDung;
         private frmQLSV qlSV;
         private frmViPham viPham;
+        private DataSet dsNguoiDung;
         public frmDashboard(string username)
         {
             InitializeComponent();
@@ -30,7 +32,7 @@ namespace Đồ_án
 
         private void btnDangXuat_Click(object sender, EventArgs e)
         {
-            DialogResult result = MessageBox.Show("ban co muon dang xuat khong", "thong bao", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult result = MessageBox.Show("Bạn có muốn đăng xuất không", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result == DialogResult.Yes)
             {
                 this.Close();
@@ -39,16 +41,22 @@ namespace Đồ_án
 
         private void Dashboard_Load(object sender, EventArgs e)
         {
+            dsNguoiDung = new DataSet();
             string chucvu = "";
             using (SqlConnection connection = ConnectionManager.GetConnection())
             {
                 connection.Open();
                 string query = "SELECT chucvu FROM nguoidung WHERE userid = @Username";
-                SqlCommand command = new SqlCommand(query, connection);
-                command.Parameters.AddWithValue("@Username", username);
 
-                object result = command.ExecuteScalar();
-                chucvu = (string)result;
+                SqlDataAdapter adapter = new SqlDataAdapter(query, connection);
+                adapter.SelectCommand.Parameters.AddWithValue("@Username", username);
+
+                adapter.Fill(dsNguoiDung, "nguoidung");
+
+                if (dsNguoiDung.Tables["nguoidung"].Rows.Count > 0)
+                {
+                    chucvu = dsNguoiDung.Tables["nguoidung"].Rows[0]["chucvu"].ToString();
+                }
                 if (chucvu == "Sinh Vien")
                 {
                     btnQLNguoiDung.Enabled = false;
@@ -62,6 +70,7 @@ namespace Đồ_án
                     btnPhanHoi.Enabled = false;
                 }
             }
+            qlThanNhan = new frmQLTTLienLac();
             qlPhong = new frmQLPhong();
             thanhToan = new frmThanhToan();
             baoTri = new frmBaoTri();
@@ -72,12 +81,15 @@ namespace Đồ_án
             viPham = new frmViPham();
         }
 
+        private void btnQLThanNhan_Click(object sender, EventArgs e)
+        {
+            SwitchToForm(qlThanNhan);
+        }
+
         private void btnQLPhong_Click(object sender, EventArgs e)
         {
             SwitchToForm(qlPhong);
         }
-
-        
 
         private void btnThanhToan_Click(object sender, EventArgs e)
         {
@@ -127,9 +139,19 @@ namespace Đồ_án
 
         private void frmDashboard_FormClosing(object sender, FormClosingEventArgs e)
         {
-            //DialogResult result = MessageBox.Show("Bạn có chắc là muốn thoát chương trình không?","Thông Báo",MessageBoxButtons.YesNo);
-            //if (result == DialogResult.Yes) 
-                Application.Exit();
+            DialogResult result = MessageBox.Show("Bạn có chắc là muốn thoát chương trình không?", "Thông Báo", MessageBoxButtons.YesNo);
+            if (result == DialogResult.No)
+                e.Cancel = true;
+
+
+                // Application.Exit();
         }
+
+        private void frmDashboard_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
+        }
+
+        
     }
 }

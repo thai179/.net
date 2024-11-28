@@ -3,28 +3,28 @@
   "WorkspaceRootPath": "E:\\.Net\\\u0110\u1ED3_\u00C1n\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{83CB128D-7B40-41E4-B593-2EEDD71170F4}|\u0110\u1ED3 \u00E1n\\\u0110\u1ED3 \u00E1n.csproj|e:\\.net\\\u0111\u1ED3_\u00E1n\\\u0111\u1ED3 \u00E1n\\dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{83CB128D-7B40-41E4-B593-2EEDD71170F4}|\u0110\u1ED3 \u00E1n\\\u0110\u1ED3 \u00E1n.csproj|solutionrelative:\u0111\u1ED3 \u00E1n\\dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{83CB128D-7B40-41E4-B593-2EEDD71170F4}|\u0110\u1ED3 \u00E1n\\\u0110\u1ED3 \u00E1n.csproj|e:\\.net\\\u0111\u1ED3_\u00E1n\\\u0111\u1ED3 \u00E1n\\usermanagement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{83CB128D-7B40-41E4-B593-2EEDD71170F4}|\u0110\u1ED3 \u00E1n\\\u0110\u1ED3 \u00E1n.csproj|solutionrelative:\u0111\u1ED3 \u00E1n\\usermanagement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{83CB128D-7B40-41E4-B593-2EEDD71170F4}|\u0110\u1ED3 \u00E1n\\\u0110\u1ED3 \u00E1n.csproj|E:\\.Net\\\u0110\u1ED3_\u00C1n\\\u0111\u1ED3 \u00E1n\\usermanagement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{83CB128D-7B40-41E4-B593-2EEDD71170F4}|\u0110\u1ED3 \u00E1n\\\u0110\u1ED3 \u00E1n.csproj|solutionrelative:\u0111\u1ED3 \u00E1n\\usermanagement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{83CB128D-7B40-41E4-B593-2EEDD71170F4}|\u0110\u1ED3 \u00E1n\\\u0110\u1ED3 \u00E1n.csproj|E:\\.Net\\\u0110\u1ED3_\u00C1n\\\u0111\u1ED3 \u00E1n\\studentmanagement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{83CB128D-7B40-41E4-B593-2EEDD71170F4}|\u0110\u1ED3 \u00E1n\\\u0110\u1ED3 \u00E1n.csproj|solutionrelative:\u0111\u1ED3 \u00E1n\\studentmanagement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{83CB128D-7B40-41E4-B593-2EEDD71170F4}|\u0110\u1ED3 \u00E1n\\\u0110\u1ED3 \u00E1n.csproj|E:\\.Net\\\u0110\u1ED3_\u00C1n\\\u0111\u1ED3 \u00E1n\\studentmanagement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{83CB128D-7B40-41E4-B593-2EEDD71170F4}|\u0110\u1ED3 \u00E1n\\\u0110\u1ED3 \u00E1n.csproj|solutionrelative:\u0111\u1ED3 \u00E1n\\studentmanagement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{83CB128D-7B40-41E4-B593-2EEDD71170F4}|\u0110\u1ED3 \u00E1n\\\u0110\u1ED3 \u00E1n.csproj|e:\\.net\\\u0111\u1ED3_\u00E1n\\\u0111\u1ED3 \u00E1n\\contactinformation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{83CB128D-7B40-41E4-B593-2EEDD71170F4}|\u0110\u1ED3 \u00E1n\\\u0110\u1ED3 \u00E1n.csproj|solutionrelative:\u0111\u1ED3 \u00E1n\\contactinformation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{83CB128D-7B40-41E4-B593-2EEDD71170F4}|\u0110\u1ED3 \u00E1n\\\u0110\u1ED3 \u00E1n.csproj|E:\\.Net\\\u0110\u1ED3_\u00C1n\\\u0111\u1ED3 \u00E1n\\contactinformation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{83CB128D-7B40-41E4-B593-2EEDD71170F4}|\u0110\u1ED3 \u00E1n\\\u0110\u1ED3 \u00E1n.csproj|solutionrelative:\u0111\u1ED3 \u00E1n\\contactinformation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{83CB128D-7B40-41E4-B593-2EEDD71170F4}|\u0110\u1ED3 \u00E1n\\\u0110\u1ED3 \u00E1n.csproj|E:\\.Net\\\u0110\u1ED3_\u00C1n\\\u0111\u1ED3 \u00E1n\\dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{83CB128D-7B40-41E4-B593-2EEDD71170F4}|\u0110\u1ED3 \u00E1n\\\u0110\u1ED3 \u00E1n.csproj|solutionrelative:\u0111\u1ED3 \u00E1n\\dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{83CB128D-7B40-41E4-B593-2EEDD71170F4}|\u0110\u1ED3 \u00E1n\\\u0110\u1ED3 \u00E1n.csproj|E:\\.Net\\\u0110\u1ED3_\u00C1n\\\u0111\u1ED3 \u00E1n\\dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{83CB128D-7B40-41E4-B593-2EEDD71170F4}|\u0110\u1ED3 \u00E1n\\\u0110\u1ED3 \u00E1n.csproj|solutionrelative:\u0111\u1ED3 \u00E1n\\dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{83CB128D-7B40-41E4-B593-2EEDD71170F4}|\u0110\u1ED3 \u00E1n\\\u0110\u1ED3 \u00E1n.csproj|E:\\.Net\\\u0110\u1ED3_\u00C1n\\\u0111\u1ED3 \u00E1n\\roommanagement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{83CB128D-7B40-41E4-B593-2EEDD71170F4}|\u0110\u1ED3 \u00E1n\\\u0110\u1ED3 \u00E1n.csproj|solutionrelative:\u0111\u1ED3 \u00E1n\\roommanagement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{83CB128D-7B40-41E4-B593-2EEDD71170F4}|\u0110\u1ED3 \u00E1n\\\u0110\u1ED3 \u00E1n.csproj|E:\\.Net\\\u0110\u1ED3_\u00C1n\\\u0111\u1ED3 \u00E1n\\studentmanagement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{83CB128D-7B40-41E4-B593-2EEDD71170F4}|\u0110\u1ED3 \u00E1n\\\u0110\u1ED3 \u00E1n.csproj|solutionrelative:\u0111\u1ED3 \u00E1n\\studentmanagement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -47,74 +47,77 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Dashboard.cs",
-              "DocumentMoniker": "E:\\.Net\\\u0110\u1ED3_\u00C1n\\\u0110\u1ED3 \u00E1n\\Dashboard.cs",
-              "RelativeDocumentMoniker": "\u0110\u1ED3 \u00E1n\\Dashboard.cs",
-              "ToolTip": "E:\\.Net\\\u0110\u1ED3_\u00C1n\\\u0110\u1ED3 \u00E1n\\Dashboard.cs*",
-              "RelativeToolTip": "\u0110\u1ED3 \u00E1n\\Dashboard.cs*",
-              "ViewState": "AgIAAHAAAAAAAAAAAAAAAIIAAAAuAAAAAAAAAA==",
+              "Title": "ContactInformation.cs",
+              "DocumentMoniker": "E:\\.Net\\\u0110\u1ED3_\u00C1n\\\u0110\u1ED3 \u00E1n\\ContactInformation.cs",
+              "RelativeDocumentMoniker": "\u0110\u1ED3 \u00E1n\\ContactInformation.cs",
+              "ToolTip": "E:\\.Net\\\u0110\u1ED3_\u00C1n\\\u0110\u1ED3 \u00E1n\\ContactInformation.cs",
+              "RelativeToolTip": "\u0110\u1ED3 \u00E1n\\ContactInformation.cs",
+              "ViewState": "AgIAAKMAAAAAAAAAAAAYwLQAAAA3AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-19T13:54:39.384Z",
+              "WhenOpened": "2024-11-28T01:59:14.245Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c64b9c2-e352-428e-a56d-0ace190b99a6}"
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "UserManagement.cs [Design]",
-              "DocumentMoniker": "E:\\.Net\\\u0110\u1ED3_\u00C1n\\\u0110\u1ED3 \u00E1n\\UserManagement.cs",
-              "RelativeDocumentMoniker": "\u0110\u1ED3 \u00E1n\\UserManagement.cs",
-              "ToolTip": "E:\\.Net\\\u0110\u1ED3_\u00C1n\\\u0110\u1ED3 \u00E1n\\UserManagement.cs [Design]",
-              "RelativeToolTip": "\u0110\u1ED3 \u00E1n\\UserManagement.cs [Design]",
+              "Title": "Dashboard.cs",
+              "DocumentMoniker": "E:\\.Net\\\u0110\u1ED3_\u00C1n\\\u0110\u1ED3 \u00E1n\\Dashboard.cs",
+              "RelativeDocumentMoniker": "\u0110\u1ED3 \u00E1n\\Dashboard.cs",
+              "ToolTip": "E:\\.Net\\\u0110\u1ED3_\u00C1n\\\u0110\u1ED3 \u00E1n\\Dashboard.cs",
+              "RelativeToolTip": "\u0110\u1ED3 \u00E1n\\Dashboard.cs",
+              "ViewState": "AgIAAGAAAAAAAAAAAAAowFUAAAAjAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-15T02:19:37.083Z",
-              "EditorCaption": " [Design]"
+              "WhenOpened": "2024-11-28T03:35:24.636Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "StudentManagement.cs",
-              "DocumentMoniker": "E:\\.Net\\\u0110\u1ED3_\u00C1n\\\u0110\u1ED3 \u00E1n\\StudentManagement.cs",
-              "RelativeDocumentMoniker": "\u0110\u1ED3 \u00E1n\\StudentManagement.cs",
-              "ToolTip": "E:\\.Net\\\u0110\u1ED3_\u00C1n\\\u0110\u1ED3 \u00E1n\\StudentManagement.cs",
-              "RelativeToolTip": "\u0110\u1ED3 \u00E1n\\StudentManagement.cs",
-              "ViewState": "AgIAABUAAAAAAAAAAIAzwNkAAABCAAAAAAAAAA==",
+              "Title": "Dashboard.cs [Design]",
+              "DocumentMoniker": "E:\\.Net\\\u0110\u1ED3_\u00C1n\\\u0110\u1ED3 \u00E1n\\Dashboard.cs",
+              "RelativeDocumentMoniker": "\u0110\u1ED3 \u00E1n\\Dashboard.cs",
+              "ToolTip": "E:\\.Net\\\u0110\u1ED3_\u00C1n\\\u0110\u1ED3 \u00E1n\\Dashboard.cs [Design]",
+              "RelativeToolTip": "\u0110\u1ED3 \u00E1n\\Dashboard.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-15T02:31:00.298Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "UserManagement.cs",
-              "DocumentMoniker": "E:\\.Net\\\u0110\u1ED3_\u00C1n\\\u0110\u1ED3 \u00E1n\\UserManagement.cs",
-              "RelativeDocumentMoniker": "\u0110\u1ED3 \u00E1n\\UserManagement.cs",
-              "ToolTip": "E:\\.Net\\\u0110\u1ED3_\u00C1n\\\u0110\u1ED3 \u00E1n\\UserManagement.cs",
-              "RelativeToolTip": "\u0110\u1ED3 \u00E1n\\UserManagement.cs",
-              "ViewState": "AgIAAIUAAAAAAAAAAAAQwGoAAAAvAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-15T02:21:21.171Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-28T03:34:36.213Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "StudentManagement.cs [Design]",
-              "DocumentMoniker": "E:\\.Net\\\u0110\u1ED3_\u00C1n\\\u0110\u1ED3 \u00E1n\\StudentManagement.cs",
-              "RelativeDocumentMoniker": "\u0110\u1ED3 \u00E1n\\StudentManagement.cs",
-              "ToolTip": "E:\\.Net\\\u0110\u1ED3_\u00C1n\\\u0110\u1ED3 \u00E1n\\StudentManagement.cs [Design]",
-              "RelativeToolTip": "\u0110\u1ED3 \u00E1n\\StudentManagement.cs [Design]",
+              "Title": "RoomManagement.cs",
+              "DocumentMoniker": "E:\\.Net\\\u0110\u1ED3_\u00C1n\\\u0110\u1ED3 \u00E1n\\RoomManagement.cs",
+              "RelativeDocumentMoniker": "\u0110\u1ED3 \u00E1n\\RoomManagement.cs",
+              "ToolTip": "E:\\.Net\\\u0110\u1ED3_\u00C1n\\\u0110\u1ED3 \u00E1n\\RoomManagement.cs",
+              "RelativeToolTip": "\u0110\u1ED3 \u00E1n\\RoomManagement.cs",
+              "ViewState": "AgIAAGMAAAAAAAAAAAAowIMAAAAUAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-15T02:30:58.636Z"
+              "WhenOpened": "2024-11-28T02:34:48.955Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 1,
               "Title": "ContactInformation.cs [Design]",
               "DocumentMoniker": "E:\\.Net\\\u0110\u1ED3_\u00C1n\\\u0110\u1ED3 \u00E1n\\ContactInformation.cs",
               "RelativeDocumentMoniker": "\u0110\u1ED3 \u00E1n\\ContactInformation.cs",
               "ToolTip": "E:\\.Net\\\u0110\u1ED3_\u00C1n\\\u0110\u1ED3 \u00E1n\\ContactInformation.cs [Design]",
               "RelativeToolTip": "\u0110\u1ED3 \u00E1n\\ContactInformation.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-18T08:13:29.78Z"
+              "WhenOpened": "2024-11-28T01:52:03.151Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "StudentManagement.cs",
+              "DocumentMoniker": "E:\\.Net\\\u0110\u1ED3_\u00C1n\\\u0110\u1ED3 \u00E1n\\StudentManagement.cs",
+              "RelativeDocumentMoniker": "\u0110\u1ED3 \u00E1n\\StudentManagement.cs",
+              "ToolTip": "E:\\.Net\\\u0110\u1ED3_\u00C1n\\\u0110\u1ED3 \u00E1n\\StudentManagement.cs",
+              "RelativeToolTip": "\u0110\u1ED3 \u00E1n\\StudentManagement.cs",
+              "ViewState": "AgIAADgAAAAAAAAAAAAiwEoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-26T13:32:01.903Z"
             }
           ]
         }

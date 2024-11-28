@@ -9,7 +9,7 @@ namespace Đồ_án
 {
     internal class ConnectionManager
     {
-        private static string connectionString = "Data Source=LAPTOP-VSAJD1CH\\THAI; Database=QLKTX;User ID=sa; Password=tahabie@1204;TrustServerCertificate=True";
+        private static string connectionString = "Data Source=LAPTOP-VSAJD1CH\\THAI; Database=QLKTX_V1;User ID=sa; Password=tahabie@1204;TrustServerCertificate=True";
 
         // Phương thức trả về đối tượng SqlConnection
         public static SqlConnection GetConnection()

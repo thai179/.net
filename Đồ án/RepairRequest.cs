@@ -51,7 +51,7 @@ namespace Đồ_án
                 {
                     conn.Open();
                     cmd.ExecuteNonQuery();
-                    MessageBox.Show("da gui yeu cau thanh cong");
+                    MessageBox.Show("Đã gửi yêu cầu thành công");
                 }
                 catch (Exception ex)
                 {
@@ -62,7 +62,7 @@ namespace Đồ_án
 
         private void btnHuy_Click(object sender, EventArgs e)
         {
-            DialogResult result = MessageBox.Show("ban co chac muon huy khong", "thong bao", MessageBoxButtons.YesNo);
+            DialogResult result = MessageBox.Show("Bạn có muốn hủy không?", "Thông báo", MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes) 
             {
                 txtMoTaVanDe.Text = "";

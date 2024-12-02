@@ -83,46 +83,55 @@ namespace Đồ_án
 
         private void btnQLThanNhan_Click(object sender, EventArgs e)
         {
+            timer1.Start();
             SwitchToForm(qlThanNhan);
         }
 
         private void btnQLPhong_Click(object sender, EventArgs e)
         {
+            timer1.Start();
             SwitchToForm(qlPhong);
         }
 
         private void btnThanhToan_Click(object sender, EventArgs e)
         {
+            timer1.Start();
             SwitchToForm(thanhToan);
         }
 
         private void btnBaoTri_Click(object sender, EventArgs e)
         {
+            timer1.Start();
             SwitchToForm(baoTri);
         }
 
         private void btnThongKe_Click(object sender, EventArgs e)
         {
+            timer1.Start();
             SwitchToForm(thongKe);
         }
 
         private void btnPhanHoi_Click(object sender, EventArgs e)
         {
+            timer1.Start();
             SwitchToForm(phanHoi);
         }
 
         private void btnQLNguoiDung_Click(object sender, EventArgs e)
         {
+            timer1.Start();
             SwitchToForm(qlNguoiDung);
         }
 
         private void btnQLSinhVien_Click(object sender, EventArgs e)
         {
+            timer1.Start();
             SwitchToForm(qlSV);
         }
 
         private void btnQLViPham_Click(object sender, EventArgs e)
         {
+            timer1.Start();
             SwitchToForm(viPham);
         }
 
@@ -142,9 +151,6 @@ namespace Đồ_án
             DialogResult result = MessageBox.Show("Bạn có chắc là muốn thoát chương trình không?", "Thông Báo", MessageBoxButtons.YesNo);
             if (result == DialogResult.No)
                 e.Cancel = true;
-
-
-                // Application.Exit();
         }
 
         private void frmDashboard_FormClosed(object sender, FormClosedEventArgs e)
@@ -152,6 +158,34 @@ namespace Đồ_án
             Application.Exit();
         }
 
-        
+        bool isCollapsed=false;
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            timer1.Start();
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            if (isCollapsed)
+            {
+                panel1.Width += 10;
+                if (panel1.Width >= 318)
+                {
+                    timer1.Stop();
+                    panel1.Width = 235;
+                    isCollapsed = false;
+                }
+            }
+            else
+            {
+                panel1.Width -= 10;
+                if (panel1.Width <= 0 )
+                {
+                    timer1.Stop();
+                    panel1.Width= 0;
+                    isCollapsed = true;
+                }
+            }
+        }
     }
 }

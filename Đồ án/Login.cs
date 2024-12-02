@@ -5,6 +5,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -51,11 +52,32 @@ namespace Đồ_án
             }
         }
 
+        private string GetMD5Hash(string input)
+        {
+            using (MD5 md5 = MD5.Create())
+            {
+                byte[] inputBytes = Encoding.UTF8.GetBytes(input);
+                byte[] hashBytes = md5.ComputeHash(inputBytes);
+
+                // Chuyển đổi mảng byte thành chuỗi hex
+                StringBuilder sb = new StringBuilder();
+                foreach (byte b in hashBytes)
+                {
+                    sb.Append(b.ToString("x2"));
+                }
+
+                return sb.ToString();
+            }
+        }
+
         private void btnDangNhap_Click(object sender, EventArgs e)
         {
             string username = txtTaiKhoan.Text;
             string password = txtMatKhau.Text;
-            if (AuthenticateUser(username, password))
+
+            string hashedPassword = GetMD5Hash(password);
+
+            if (AuthenticateUser(username, hashedPassword))
             {
                 frmDashboard frmDashboard = new frmDashboard(username);
                 this.Hide();

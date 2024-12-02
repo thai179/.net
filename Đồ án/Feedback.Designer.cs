@@ -243,6 +243,7 @@
             // 
             // ptbRong4
             // 
+            this.ptbRong4.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.ptbRong4.Image = ((System.Drawing.Image)(resources.GetObject("ptbRong4.Image")));
             this.ptbRong4.Location = new System.Drawing.Point(452, 253);
             this.ptbRong4.Name = "ptbRong4";
@@ -299,6 +300,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(755, 525);
             this.Controls.Add(this.btnLuu);
             this.Controls.Add(this.ptbRong5);

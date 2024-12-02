@@ -73,7 +73,7 @@ namespace Đồ_án
                 // Đổi tên cột
                 dgvHienThi.Columns["sophong"].HeaderText = "Số phòng";
                 dgvHienThi.Columns["sluongtoida"].HeaderText = "Số lượng tối đa";
-                dgvHienThi.Columns["sluongsv"].HeaderText = "Số lượng sinh viên";
+                //dgvHienThi.Columns["sluongsv"].HeaderText = "Số lượng sinh viên";
                 dgvHienThi.Columns["loaiphong"].HeaderText = "Loại phòng";
                 dgvHienThi.Columns["tinhtrangphong"].HeaderText = "Tình Trạng";
             }

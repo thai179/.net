@@ -52,7 +52,7 @@ namespace Đồ_án
             newSinhVienRow["masv"] = txtMSSV.Text;
             newSinhVienRow["hoten"] = txtName.Text;
             newSinhVienRow["ngaysinh"] = dtpNgaySinh.Value;
-            newSinhVienRow["gioitinh"] = rdbNam.Checked ? "nam" : "nu";
+            newSinhVienRow["gioitinh"] = rdbNam.Checked ? "nam" : "nữ";
             newSinhVienRow["cccd"] = txtCCCD.Text;
             newSinhVienRow["sdt"] = txtSDT.Text;
             newSinhVienRow["sophong"] = txtSoPhong.Text;
@@ -124,7 +124,7 @@ namespace Đồ_án
                 // Cập nhật các thông tin sinh viên (không thay đổi masv vì nó là khóa chính)
                 sinhVienRow["hoten"] = txtName.Text;
                 sinhVienRow["ngaysinh"] = dtpNgaySinh.Value;
-                sinhVienRow["gioitinh"] = rdbNam.Checked ? "nam" : "nu";
+                sinhVienRow["gioitinh"] = rdbNam.Checked ? "nam" : "nữ";
                 sinhVienRow["cccd"] = txtCCCD.Text;
                 sinhVienRow["sdt"] = txtSDT.Text;
                 sinhVienRow["sophong"] = txtSoPhong.Text;

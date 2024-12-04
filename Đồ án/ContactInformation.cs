@@ -6,6 +6,7 @@ using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -54,6 +55,43 @@ namespace Đồ_án
             }
         }
 
+        private bool KiemTraDuLieu()
+        {
+            if (string.IsNullOrEmpty(txtMSSV.Text))
+            {
+                MessageBox.Show("Mã sinh viên không được để trống!", "Thông báo");
+                txtMSSV.Focus();
+                return false;
+            }
+            if (string.IsNullOrEmpty(txtTenTN.Text))
+            {
+                MessageBox.Show("Họ tên người thân không được để trống!", "Thông báo");
+                txtTenTN.Focus();
+                return false;
+            }
+            if (string.IsNullOrEmpty(cbbQuanHe.Text))
+            {
+                MessageBox.Show("Mối quan hệ không được để trống!", "Thông báo");
+                cbbQuanHe.Focus();
+                return false;
+            }
+            string sdtChuan = @"^(0[3|5|7|8|9])+([0-9]{8})$";
+            if (string.IsNullOrEmpty(txtSDTTN.Text) || !Regex.IsMatch(txtSDTTN.Text.Trim(), sdtChuan))
+            {
+                MessageBox.Show("Số điện thoại không hợp lệ. Vui lòng nhập lại!", "Thông báo");
+                txtSDTTN.Focus();
+                return false;
+            }
+
+            return true; // Dữ liệu hợp lệ
+        }
+
+        private void ChuanHoaHoTen()
+        {
+            // Chuẩn hóa họ tên: Xóa khoảng trắng thừa và viết hoa chữ cái đầu
+            txtTenTN.Text = System.Threading.Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(txtTenTN.Text.Trim().ToLower());
+        }
+
         private void btnThem_Click(object sender, EventArgs e)
         {
             if(!KiemTraMSSV(txtMSSV.Text))
@@ -62,6 +100,8 @@ namespace Đồ_án
                 txtMSSV.Focus();
                 return;
             }
+            if(!KiemTraDuLieu())
+                return;
 
             DataRow newRow = dtThanNhan.NewRow();
 
@@ -180,6 +220,11 @@ namespace Đồ_án
             dsThanNhan = dsThanNhanGoc.Copy();
             dtThanNhan = dsThanNhan.Tables["thannhan"];
             dgvThanNhan.DataSource = dtThanNhan;
+        }
+
+        private void txtTenTN_Leave(object sender, EventArgs e)
+        {
+            ChuanHoaHoTen();
         }
     }
 }

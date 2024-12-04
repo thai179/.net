@@ -3,40 +3,16 @@
   "WorkspaceRootPath": "E:\\.Net\\\u0110\u1ED3_\u00C1n\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{83CB128D-7B40-41E4-B593-2EEDD71170F4}|\u0110\u1ED3 \u00E1n\\\u0110\u1ED3 \u00E1n.csproj|e:\\.net\\\u0111\u1ED3_\u00E1n\\\u0111\u1ED3 \u00E1n\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{83CB128D-7B40-41E4-B593-2EEDD71170F4}|\u0110\u1ED3 \u00E1n\\\u0110\u1ED3 \u00E1n.csproj|solutionrelative:\u0111\u1ED3 \u00E1n\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{83CB128D-7B40-41E4-B593-2EEDD71170F4}|\u0110\u1ED3 \u00E1n\\\u0110\u1ED3 \u00E1n.csproj|E:\\.Net\\\u0110\u1ED3_\u00C1n\\\u0111\u1ED3 \u00E1n\\roommanagement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{83CB128D-7B40-41E4-B593-2EEDD71170F4}|\u0110\u1ED3 \u00E1n\\\u0110\u1ED3 \u00E1n.csproj|solutionrelative:\u0111\u1ED3 \u00E1n\\roommanagement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{83CB128D-7B40-41E4-B593-2EEDD71170F4}|\u0110\u1ED3 \u00E1n\\\u0110\u1ED3 \u00E1n.csproj|E:\\.Net\\\u0110\u1ED3_\u00C1n\\\u0111\u1ED3 \u00E1n\\roommanagement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{83CB128D-7B40-41E4-B593-2EEDD71170F4}|\u0110\u1ED3 \u00E1n\\\u0110\u1ED3 \u00E1n.csproj|solutionrelative:\u0111\u1ED3 \u00E1n\\roommanagement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{83CB128D-7B40-41E4-B593-2EEDD71170F4}|\u0110\u1ED3 \u00E1n\\\u0110\u1ED3 \u00E1n.csproj|E:\\.Net\\\u0110\u1ED3_\u00C1n\\\u0111\u1ED3 \u00E1n\\dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{83CB128D-7B40-41E4-B593-2EEDD71170F4}|\u0110\u1ED3 \u00E1n\\\u0110\u1ED3 \u00E1n.csproj|solutionrelative:\u0111\u1ED3 \u00E1n\\dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{83CB128D-7B40-41E4-B593-2EEDD71170F4}|\u0110\u1ED3 \u00E1n\\\u0110\u1ED3 \u00E1n.csproj|E:\\.Net\\\u0110\u1ED3_\u00C1n\\\u0111\u1ED3 \u00E1n\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{83CB128D-7B40-41E4-B593-2EEDD71170F4}|\u0110\u1ED3 \u00E1n\\\u0110\u1ED3 \u00E1n.csproj|solutionrelative:\u0111\u1ED3 \u00E1n\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{83CB128D-7B40-41E4-B593-2EEDD71170F4}|\u0110\u1ED3 \u00E1n\\\u0110\u1ED3 \u00E1n.csproj|E:\\.Net\\\u0110\u1ED3_\u00C1n\\\u0111\u1ED3 \u00E1n\\dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{83CB128D-7B40-41E4-B593-2EEDD71170F4}|\u0110\u1ED3 \u00E1n\\\u0110\u1ED3 \u00E1n.csproj|solutionrelative:\u0111\u1ED3 \u00E1n\\dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{83CB128D-7B40-41E4-B593-2EEDD71170F4}|\u0110\u1ED3 \u00E1n\\\u0110\u1ED3 \u00E1n.csproj|e:\\.net\\\u0111\u1ED3_\u00E1n\\\u0111\u1ED3 \u00E1n\\dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{83CB128D-7B40-41E4-B593-2EEDD71170F4}|\u0110\u1ED3 \u00E1n\\\u0110\u1ED3 \u00E1n.csproj|solutionrelative:\u0111\u1ED3 \u00E1n\\dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{83CB128D-7B40-41E4-B593-2EEDD71170F4}|\u0110\u1ED3 \u00E1n\\\u0110\u1ED3 \u00E1n.csproj|E:\\.Net\\\u0110\u1ED3_\u00C1n\\\u0111\u1ED3 \u00E1n\\contactinformation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{83CB128D-7B40-41E4-B593-2EEDD71170F4}|\u0110\u1ED3 \u00E1n\\\u0110\u1ED3 \u00E1n.csproj|solutionrelative:\u0111\u1ED3 \u00E1n\\contactinformation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{83CB128D-7B40-41E4-B593-2EEDD71170F4}|\u0110\u1ED3 \u00E1n\\\u0110\u1ED3 \u00E1n.csproj|E:\\.Net\\\u0110\u1ED3_\u00C1n\\\u0111\u1ED3 \u00E1n\\updateroom.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{83CB128D-7B40-41E4-B593-2EEDD71170F4}|\u0110\u1ED3 \u00E1n\\\u0110\u1ED3 \u00E1n.csproj|solutionrelative:\u0111\u1ED3 \u00E1n\\updateroom.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{83CB128D-7B40-41E4-B593-2EEDD71170F4}|\u0110\u1ED3 \u00E1n\\\u0110\u1ED3 \u00E1n.csproj|E:\\.Net\\\u0110\u1ED3_\u00C1n\\\u0111\u1ED3 \u00E1n\\feedback.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{83CB128D-7B40-41E4-B593-2EEDD71170F4}|\u0110\u1ED3 \u00E1n\\\u0110\u1ED3 \u00E1n.csproj|solutionrelative:\u0111\u1ED3 \u00E1n\\feedback.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
   "DocumentGroupContainers": [
@@ -46,7 +22,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
@@ -58,110 +34,39 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Login.cs",
-              "DocumentMoniker": "E:\\.Net\\\u0110\u1ED3_\u00C1n\\\u0110\u1ED3 \u00E1n\\Login.cs",
-              "RelativeDocumentMoniker": "\u0110\u1ED3 \u00E1n\\Login.cs",
-              "ToolTip": "E:\\.Net\\\u0110\u1ED3_\u00C1n\\\u0110\u1ED3 \u00E1n\\Login.cs",
-              "RelativeToolTip": "\u0110\u1ED3 \u00E1n\\Login.cs",
-              "ViewState": "AgIAAEQAAAAAAAAAAAAgwE8AAAA7AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-02T09:49:23.713Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{1c64b9c2-e352-428e-a56d-0ace190b99a6}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "RoomManagement.cs",
-              "DocumentMoniker": "E:\\.Net\\\u0110\u1ED3_\u00C1n\\\u0110\u1ED3 \u00E1n\\RoomManagement.cs",
-              "RelativeDocumentMoniker": "\u0110\u1ED3 \u00E1n\\RoomManagement.cs",
-              "ToolTip": "E:\\.Net\\\u0110\u1ED3_\u00C1n\\\u0110\u1ED3 \u00E1n\\RoomManagement.cs",
-              "RelativeToolTip": "\u0110\u1ED3 \u00E1n\\RoomManagement.cs",
-              "ViewState": "AgIAACwAAAAAAAAAAAAgwEsAAAASAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-02T11:50:48.181Z"
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "RoomManagement.cs [Design]",
-              "DocumentMoniker": "E:\\.Net\\\u0110\u1ED3_\u00C1n\\\u0110\u1ED3 \u00E1n\\RoomManagement.cs",
-              "RelativeDocumentMoniker": "\u0110\u1ED3 \u00E1n\\RoomManagement.cs",
-              "ToolTip": "E:\\.Net\\\u0110\u1ED3_\u00C1n\\\u0110\u1ED3 \u00E1n\\RoomManagement.cs [Design]",
-              "RelativeToolTip": "\u0110\u1ED3 \u00E1n\\RoomManagement.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-02T11:50:45.091Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Login.cs [Design]",
-              "DocumentMoniker": "E:\\.Net\\\u0110\u1ED3_\u00C1n\\\u0110\u1ED3 \u00E1n\\Login.cs",
-              "RelativeDocumentMoniker": "\u0110\u1ED3 \u00E1n\\Login.cs",
-              "ToolTip": "E:\\.Net\\\u0110\u1ED3_\u00C1n\\\u0110\u1ED3 \u00E1n\\Login.cs [Design]",
-              "RelativeToolTip": "\u0110\u1ED3 \u00E1n\\Login.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-02T09:49:22.276Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "Feedback.cs [Design]",
-              "DocumentMoniker": "E:\\.Net\\\u0110\u1ED3_\u00C1n\\\u0110\u1ED3 \u00E1n\\Feedback.cs",
-              "RelativeDocumentMoniker": "\u0110\u1ED3 \u00E1n\\Feedback.cs",
-              "ToolTip": "E:\\.Net\\\u0110\u1ED3_\u00C1n\\\u0110\u1ED3 \u00E1n\\Feedback.cs [Design]",
-              "RelativeToolTip": "\u0110\u1ED3 \u00E1n\\Feedback.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-02T09:08:27.628Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "UpdateRoom.cs [Design]",
-              "DocumentMoniker": "E:\\.Net\\\u0110\u1ED3_\u00C1n\\\u0110\u1ED3 \u00E1n\\UpdateRoom.cs",
-              "RelativeDocumentMoniker": "\u0110\u1ED3 \u00E1n\\UpdateRoom.cs",
-              "ToolTip": "E:\\.Net\\\u0110\u1ED3_\u00C1n\\\u0110\u1ED3 \u00E1n\\UpdateRoom.cs [Design]",
-              "RelativeToolTip": "\u0110\u1ED3 \u00E1n\\UpdateRoom.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-02T06:52:26.019Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Dashboard.cs",
-              "DocumentMoniker": "E:\\.Net\\\u0110\u1ED3_\u00C1n\\\u0110\u1ED3 \u00E1n\\Dashboard.cs",
-              "RelativeDocumentMoniker": "\u0110\u1ED3 \u00E1n\\Dashboard.cs",
-              "ToolTip": "E:\\.Net\\\u0110\u1ED3_\u00C1n\\\u0110\u1ED3 \u00E1n\\Dashboard.cs",
-              "RelativeToolTip": "\u0110\u1ED3 \u00E1n\\Dashboard.cs",
-              "ViewState": "AgIAABwAAAAAAAAAAAAqwCcAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-28T03:35:24.636Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Dashboard.cs [Design]",
-              "DocumentMoniker": "E:\\.Net\\\u0110\u1ED3_\u00C1n\\\u0110\u1ED3 \u00E1n\\Dashboard.cs",
-              "RelativeDocumentMoniker": "\u0110\u1ED3 \u00E1n\\Dashboard.cs",
-              "ToolTip": "E:\\.Net\\\u0110\u1ED3_\u00C1n\\\u0110\u1ED3 \u00E1n\\Dashboard.cs [Design]",
-              "RelativeToolTip": "\u0110\u1ED3 \u00E1n\\Dashboard.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-28T03:34:36.213Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
               "Title": "ContactInformation.cs [Design]",
               "DocumentMoniker": "E:\\.Net\\\u0110\u1ED3_\u00C1n\\\u0110\u1ED3 \u00E1n\\ContactInformation.cs",
               "RelativeDocumentMoniker": "\u0110\u1ED3 \u00E1n\\ContactInformation.cs",
               "ToolTip": "E:\\.Net\\\u0110\u1ED3_\u00C1n\\\u0110\u1ED3 \u00E1n\\ContactInformation.cs [Design]",
               "RelativeToolTip": "\u0110\u1ED3 \u00E1n\\ContactInformation.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-28T01:52:03.151Z"
+              "WhenOpened": "2024-12-03T13:49:42.432Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Dashboard.cs",
+              "DocumentMoniker": "E:\\.Net\\\u0110\u1ED3_\u00C1n\\\u0110\u1ED3 \u00E1n\\Dashboard.cs",
+              "RelativeDocumentMoniker": "\u0110\u1ED3 \u00E1n\\Dashboard.cs",
+              "ToolTip": "E:\\.Net\\\u0110\u1ED3_\u00C1n\\\u0110\u1ED3 \u00E1n\\Dashboard.cs",
+              "RelativeToolTip": "\u0110\u1ED3 \u00E1n\\Dashboard.cs",
+              "ViewState": "AgIAAJUAAAAAAAAAAAAawKoAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-03T13:36:13.899Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Dashboard.cs [Design]",
+              "DocumentMoniker": "E:\\.Net\\\u0110\u1ED3_\u00C1n\\\u0110\u1ED3 \u00E1n\\Dashboard.cs",
+              "RelativeDocumentMoniker": "\u0110\u1ED3 \u00E1n\\Dashboard.cs",
+              "ToolTip": "E:\\.Net\\\u0110\u1ED3_\u00C1n\\\u0110\u1ED3 \u00E1n\\Dashboard.cs [Design]",
+              "RelativeToolTip": "\u0110\u1ED3 \u00E1n\\Dashboard.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-03T12:46:09.461Z",
+              "EditorCaption": " [Design]"
             }
           ]
         }

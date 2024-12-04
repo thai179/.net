@@ -13,6 +13,8 @@ namespace Đồ_án
 {
     public partial class frmDashboard : Form
     {
+        private bool logoutFlag=false;
+
         private string username;
         private frmQLTTLienLac qlThanNhan;
         private frmQLPhong qlPhong;
@@ -32,6 +34,7 @@ namespace Đồ_án
 
         private void btnDangXuat_Click(object sender, EventArgs e)
         {
+            this.logoutFlag = true;
             DialogResult result = MessageBox.Show("Bạn có muốn đăng xuất không", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result == DialogResult.Yes)
             {
@@ -57,14 +60,14 @@ namespace Đồ_án
                 {
                     chucvu = dsNguoiDung.Tables["nguoidung"].Rows[0]["chucvu"].ToString();
                 }
-                if (chucvu == "Sinh Vien")
+                if (chucvu == "Sinh Viên")
                 {
                     btnQLNguoiDung.Enabled = false;
                     btnQLPhong.Enabled = false;
                     btnQLViPham.Enabled = false;
                     btnQLSinhVien.Enabled = false;
                 }
-                else if (chucvu == "Nhan Vien")
+                else if (chucvu == "Nhan Viên")
                 {
                     btnQLNguoiDung.Enabled=false;
                     btnPhanHoi.Enabled = false;
@@ -83,55 +86,55 @@ namespace Đồ_án
 
         private void btnQLThanNhan_Click(object sender, EventArgs e)
         {
-            timer1.Start();
+            timeMenu.Start();
             SwitchToForm(qlThanNhan);
         }
 
         private void btnQLPhong_Click(object sender, EventArgs e)
         {
-            timer1.Start();
+            timeMenu.Start();
             SwitchToForm(qlPhong);
         }
 
         private void btnThanhToan_Click(object sender, EventArgs e)
         {
-            timer1.Start();
+            timeMenu.Start();
             SwitchToForm(thanhToan);
         }
 
         private void btnBaoTri_Click(object sender, EventArgs e)
         {
-            timer1.Start();
+            timeMenu.Start();
             SwitchToForm(baoTri);
         }
 
         private void btnThongKe_Click(object sender, EventArgs e)
         {
-            timer1.Start();
+            timeMenu.Start();
             SwitchToForm(thongKe);
         }
 
         private void btnPhanHoi_Click(object sender, EventArgs e)
         {
-            timer1.Start();
+            timeMenu.Start();
             SwitchToForm(phanHoi);
         }
 
         private void btnQLNguoiDung_Click(object sender, EventArgs e)
         {
-            timer1.Start();
+            timeMenu.Start();
             SwitchToForm(qlNguoiDung);
         }
 
         private void btnQLSinhVien_Click(object sender, EventArgs e)
         {
-            timer1.Start();
+            timeMenu.Start();
             SwitchToForm(qlSV);
         }
 
         private void btnQLViPham_Click(object sender, EventArgs e)
         {
-            timer1.Start();
+            timeMenu.Start();
             SwitchToForm(viPham);
         }
 
@@ -148,6 +151,8 @@ namespace Đồ_án
 
         private void frmDashboard_FormClosing(object sender, FormClosingEventArgs e)
         {
+            if (logoutFlag)
+                return;
             DialogResult result = MessageBox.Show("Bạn có chắc là muốn thoát chương trình không?", "Thông Báo", MessageBoxButtons.YesNo);
             if (result == DialogResult.No)
                 e.Cancel = true;
@@ -155,34 +160,40 @@ namespace Đồ_án
 
         private void frmDashboard_FormClosed(object sender, FormClosedEventArgs e)
         {
+            if (logoutFlag)
+                return ;
             Application.Exit();
         }
 
         bool isCollapsed=false;
-        private void pictureBox1_Click(object sender, EventArgs e)
+        private void ptbMenu_Click(object sender, EventArgs e)
         {
-            timer1.Start();
+            timeMenu.Start();
         }
 
-        private void timer1_Tick(object sender, EventArgs e)
+        private void timeMenu_Tick(object sender, EventArgs e)
         {
             if (isCollapsed)
             {
-                panel1.Width += 10;
-                if (panel1.Width >= 318)
+                pnlMenu.Width += 10;
+                ptbMenu.Location = new Point(ptbMenu.Location.X + 9, ptbMenu.Location.Y);
+                if (pnlMenu.Width >= 318)
                 {
-                    timer1.Stop();
-                    panel1.Width = 235;
+                    timeMenu.Stop();
+                    pnlMenu.Width = 235;
+                    ptbMenu.Location = new Point(236, ptbMenu.Location.Y);
                     isCollapsed = false;
                 }
             }
             else
             {
-                panel1.Width -= 10;
-                if (panel1.Width <= 0 )
+                ptbMenu.Location = new Point(ptbMenu.Location.X - 10, ptbMenu.Location.Y);
+                pnlMenu.Width -= 10;
+                if (pnlMenu.Width <= 0)
                 {
-                    timer1.Stop();
-                    panel1.Width= 0;
+                    timeMenu.Stop();
+                    pnlMenu.Width = 0;
+                    ptbMenu.Location = new Point(0, ptbMenu.Location.Y);
                     isCollapsed = true;
                 }
             }

@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -32,21 +33,42 @@ namespace Đồ_án
             dtThanhToan = dsThanhToan.Tables["thanhtoan"];
         }
 
+        private string ChuanHoaGhiChu(string ghiChu)
+        {
+            ghiChu = ghiChu.Trim();
+            ghiChu = ghiChu.ToLower();
+            ghiChu = string.Join(". ", ghiChu.Split('.').Select(s => s.Trim()).Select(s => char.ToUpper(s[0]) + s.Substring(1)));
+
+            return ghiChu;
+        }
+
         private void btnXacNhanThanhToan_Click(object sender, EventArgs e)
         {
+            
             if (string.IsNullOrEmpty(txtMSSV.Text) || string.IsNullOrEmpty(txtSoPhong.Text) || string.IsNullOrEmpty(txtSoTienThanhToan.Text))
             {
                 MessageBox.Show("Vui lòng điền đầy đủ thông tin!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+            string ghiChu = ChuanHoaGhiChu(txtGhiChu.Text);
+            txtGhiChu.Text = ghiChu;
+            string soTienText = txtSoTienThanhToan.Text;
+            soTienText = soTienText.Replace(",", "").Replace("₫", "").Trim();
+            decimal soTien;
+            if (!decimal.TryParse(soTienText, out soTien))
+            {
+                MessageBox.Show("Số tiền không hợp lệ, vui lòng nhập lại.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             DataRow newRow = dtThanhToan.NewRow();
 
             newRow["masv"] = txtMSSV.Text;
             newRow["sophong"] = txtSoPhong.Text;
             newRow["loai_thanh_toan"] = cbbLoaiThanhToan.SelectedItem.ToString();
             newRow["ngaylap"] = dtpNgayThanhToan.Value;
-            newRow["sotien"] = Convert.ToDecimal(txtSoTienThanhToan.Text);
-            newRow["ghichu"] = txtGhiChu.Text;
+            newRow["sotien"] = soTien;
+            newRow["ghichu"] = ghiChu;
 
             dtThanhToan.Rows.Add(newRow);
 
@@ -114,6 +136,20 @@ namespace Đồ_án
             catch (Exception ex)
             {
                 MessageBox.Show("Lỗi khi truy vấn dữ liệu: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void txtSoTienThanhToan_Leave(object sender, EventArgs e)
+        {
+            decimal soTien;
+            if (decimal.TryParse(txtSoTienThanhToan.Text, out soTien))
+            {
+                txtSoTienThanhToan.Text = soTien.ToString("C", new CultureInfo("vi-VN"));
+            }
+            else
+            {
+                MessageBox.Show("Số tiền không hợp lệ.");
+
             }
         }
     }

@@ -110,6 +110,7 @@
             this.txtTenTN.Name = "txtTenTN";
             this.txtTenTN.Size = new System.Drawing.Size(421, 22);
             this.txtTenTN.TabIndex = 49;
+            this.txtTenTN.Leave += new System.EventHandler(this.txtTenTN_Leave);
             // 
             // txtSDTTN
             // 

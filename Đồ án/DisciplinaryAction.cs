@@ -32,6 +32,15 @@ namespace Đồ_án
             cbbHinhThucXuLy.SelectedIndex = 0;
         }
 
+        private string ChuanHoaMoTa(string moTa)
+        {
+            moTa = moTa.Trim();
+            moTa = moTa.ToLower();
+            moTa = string.Join(". ", moTa.Split('.').Select(s => s.Trim()).Select(s => char.ToUpper(s[0]) + s.Substring(1)));
+
+            return moTa;
+        }
+
         private void btnGhiNhan_Click(object sender, EventArgs e)
         {
             if (txtSoPhong.Text =="")
@@ -52,9 +61,11 @@ namespace Đồ_án
                 cbbHinhThucXuLy.Focus();
                 return;
             }
+            string moTa = ChuanHoaMoTa(txtMoTaViPham.Text);
+
             DataTable dataTable = dsViPham.Tables["ViPham"];
             DataRow newRow = dataTable.NewRow();
-            newRow["ndvp"] = txtMoTaViPham.Text;
+            newRow["ndvp"] = moTa;
             newRow["sophong"] = txtSoPhong.Text;
             newRow["masv"] = txtMSSV.Text;
             newRow["htxuly"] = cbbHinhThucXuLy.Text;

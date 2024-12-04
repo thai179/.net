@@ -5,7 +5,9 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -60,62 +62,86 @@ namespace Đồ_án
             dtpNgaySinh.Value = DateTime.Now;
         }
 
-        private void btnThem_Click(object sender, EventArgs e)
+        private bool KiemTraTTConTrol()
         {
             if (string.IsNullOrEmpty(txtMaND.Text))
             {
                 MessageBox.Show("Vui lòng nhập mã người dùng.");
-                txtMaND.Focus(); 
-                return; 
+                txtMaND.Focus();
+                return false;
+            }
+
+            if (txtMaND.Text.Contains(" "))
+            {
+                MessageBox.Show("Mã người dùng không được chứa khoảng trắng.");
+                txtMaND.Focus();
+                return false;
             }
 
             if (string.IsNullOrEmpty(txtMatKhau.Text))
             {
                 MessageBox.Show("Vui lòng nhập mật khẩu.");
-                txtMatKhau.Focus(); 
-                return;
+                txtMatKhau.Focus();
+                return false;
+            }
+
+            if (txtMatKhau.Text.Contains(" "))
+            {
+                MessageBox.Show("Mật khẩu không được chứa khoảng trắng.");
+                txtMatKhau.Focus();
+                return false;
             }
 
             if (string.IsNullOrEmpty(txtHoTen.Text))
             {
                 MessageBox.Show("Vui lòng nhập họ tên.");
-                txtHoTen.Focus(); 
-                return;
+                txtHoTen.Focus();
+                return false;
             }
+
+            txtHoTen.Text = ChuanHoaTen(txtHoTen.Text);
 
             if (string.IsNullOrEmpty(txtSDT.Text))
             {
                 MessageBox.Show("Vui lòng nhập số điện thoại.");
-                txtSDT.Focus(); 
-                return;
+                txtSDT.Focus();
+                return false;
+            }
+
+            string sdtChuan = @"^(0[3|5|7|8|9])+([0-9]{8})$";
+            if (!Regex.IsMatch(txtSDT.Text.Trim(), sdtChuan))
+            {
+                MessageBox.Show("Số điện thoại không hợp lệ.");
+                txtSDT.Focus();
+                return false;
             }
 
             if (string.IsNullOrEmpty(cbbQuyenHan.Text))
             {
                 MessageBox.Show("Vui lòng chọn quyền hạn.");
-                cbbQuyenHan.Focus(); 
-                return;
+                cbbQuyenHan.Focus();
+                return false;
             }
 
             if (string.IsNullOrEmpty(cbbTinh.Text))
             {
                 MessageBox.Show("Vui lòng chọn tỉnh.");
-                cbbTinh.Focus(); 
-                return;
+                cbbTinh.Focus();
+                return false;
             }
 
             if (string.IsNullOrEmpty(cbbQuanHuyen.Text))
             {
                 MessageBox.Show("Vui lòng chọn quận/huyện.");
-                cbbQuanHuyen.Focus(); 
-                return;
+                cbbQuanHuyen.Focus();
+                return false;
             }
 
             if (string.IsNullOrEmpty(txtDiaChi.Text))
             {
                 MessageBox.Show("Vui lòng nhập địa chỉ.");
-                txtDiaChi.Focus(); 
-                return;
+                txtDiaChi.Focus();
+                return false;
             }
 
             DataRow[] existingRows = dtNguoiDung.Select("userid = '" + txtMaND.Text + "'");
@@ -123,12 +149,23 @@ namespace Đồ_án
             {
                 MessageBox.Show("Mã người dùng đã tồn tại. Vui lòng chọn mã khác.");
                 txtMaND.Focus();
-                return; 
+                return false;
             }
+
+            return true;
+        }
+
+        private void btnThem_Click(object sender, EventArgs e)
+        {
+            if (KiemTraTTConTrol() == false)
+                return;
+
+            string matKhauMaHoa = MaHoaMatKhau(txtMatKhau.Text);
+
             DataRow newRow = dtNguoiDung.NewRow();
 
             newRow["userid"] = txtMaND.Text;
-            newRow["matkhau"] = txtMatKhau.Text;
+            newRow["matkhau"] = matKhauMaHoa;
             newRow["hoten"] = txtHoTen.Text;
             newRow["ngaysinh"] = dtpNgaySinh.Value;
             newRow["sdt"] = txtSDT.Text;
@@ -148,6 +185,43 @@ namespace Đồ_án
 
             MessageBox.Show("Dữ liệu đã được lưu vào DataSet.");
         }
+
+        private string MaHoaMatKhau(string password)
+        {
+            // Tạo đối tượng MD5
+            using (MD5 md5 = MD5.Create())
+            {
+                // Chuyển mật khẩu thành byte array
+                byte[] inputBytes = Encoding.UTF8.GetBytes(password);
+
+                // Mã hóa byte array thành giá trị hash
+                byte[] hashBytes = md5.ComputeHash(inputBytes);
+
+                // Chuyển kết quả hash thành chuỗi hexadecimal
+                StringBuilder sb = new StringBuilder();
+                foreach (byte b in hashBytes)
+                {
+                    sb.Append(b.ToString("x2")); // chuyển đổi byte thành hex string
+                }
+                return sb.ToString();
+            }
+        }
+
+        private string ChuanHoaTen(string input)
+        {
+            // Loại bỏ khoảng trắng thừa ở đầu và cuối
+            input = input.Trim();
+            // Tạo mảng các phần tử đã được chuẩn hóa
+            string[] words = input.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+            for (int i = 0; i < words.Length; i++)
+            {
+                words[i] = char.ToUpper(words[i][0]) + words[i].Substring(1).ToLower();
+            }
+
+            // Nối lại các từ với nhau, cách nhau bởi khoảng trắng
+            return string.Join(" ", words);
+        }
+
 
         private void btnXoa_Click(object sender, EventArgs e)
         {
@@ -181,12 +255,15 @@ namespace Đồ_án
 
         private void btnSua_Click(object sender, EventArgs e)
         {
+            if(KiemTraTTConTrol() == false)
+                return;
+            string matKhauMaHoa = MaHoaMatKhau(txtMatKhau.Text);
             DataRow rowNguoiDung = dtNguoiDung.Rows.Find(txtMaND.Text); 
 
             if (rowNguoiDung != null) 
             {
 
-                rowNguoiDung["matkhau"] = txtMatKhau.Text;
+                rowNguoiDung["matkhau"] = matKhauMaHoa;
                 rowNguoiDung["hoten"] = txtHoTen.Text;
                 rowNguoiDung["ngaysinh"] = dtpNgaySinh.Value;
                 rowNguoiDung["sdt"] = txtSDT.Text;

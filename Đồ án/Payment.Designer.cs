@@ -155,6 +155,7 @@
             this.txtSoTienThanhToan.Name = "txtSoTienThanhToan";
             this.txtSoTienThanhToan.Size = new System.Drawing.Size(406, 22);
             this.txtSoTienThanhToan.TabIndex = 12;
+            this.txtSoTienThanhToan.Leave += new System.EventHandler(this.txtSoTienThanhToan_Leave);
             // 
             // dtpNgayThanhToan
             // 

@@ -29,8 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblQLKTX = new System.Windows.Forms.Label();
             this.pnlHienThi = new System.Windows.Forms.Panel();
+            this.ptbMenu = new System.Windows.Forms.PictureBox();
             this.btnDangXuat = new System.Windows.Forms.Button();
             this.btnQLViPham = new System.Windows.Forms.Button();
             this.btnQLSinhVien = new System.Windows.Forms.Button();
@@ -41,25 +42,26 @@
             this.btnThanhToan = new System.Windows.Forms.Button();
             this.btnQLPhong = new System.Windows.Forms.Button();
             this.btnQLThanNhan = new System.Windows.Forms.Button();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.flowLayoutPanel1.SuspendLayout();
-            this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.flpMenu = new System.Windows.Forms.FlowLayoutPanel();
+            this.pnlMenu = new System.Windows.Forms.Panel();
+            this.timeMenu = new System.Windows.Forms.Timer(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.ptbMenu)).BeginInit();
+            this.flpMenu.SuspendLayout();
+            this.pnlMenu.SuspendLayout();
             this.SuspendLayout();
             // 
-            // label1
+            // lblQLKTX
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label1.Location = new System.Drawing.Point(3, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(265, 138);
-            this.label1.TabIndex = 35;
-            this.label1.Text = "Quản lý ký túc xá";
+            this.lblQLKTX.BackColor = System.Drawing.Color.LightGray;
+            this.lblQLKTX.Font = new System.Drawing.Font("Microsoft Sans Serif", 34.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblQLKTX.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lblQLKTX.Location = new System.Drawing.Point(3, 1);
+            this.lblQLKTX.Name = "lblQLKTX";
+            this.lblQLKTX.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
+            this.lblQLKTX.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.lblQLKTX.Size = new System.Drawing.Size(315, 137);
+            this.lblQLKTX.TabIndex = 35;
+            this.lblQLKTX.Text = " Quản lý\r\nký túc xá";
             // 
             // pnlHienThi
             // 
@@ -69,9 +71,21 @@
             this.pnlHienThi.Size = new System.Drawing.Size(755, 525);
             this.pnlHienThi.TabIndex = 34;
             // 
+            // ptbMenu
+            // 
+            this.ptbMenu.Image = global::Đồ_án.Properties.Resources.List;
+            this.ptbMenu.InitialImage = null;
+            this.ptbMenu.Location = new System.Drawing.Point(319, 1);
+            this.ptbMenu.Name = "ptbMenu";
+            this.ptbMenu.Size = new System.Drawing.Size(30, 29);
+            this.ptbMenu.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.ptbMenu.TabIndex = 39;
+            this.ptbMenu.TabStop = false;
+            this.ptbMenu.Click += new System.EventHandler(this.ptbMenu_Click);
+            // 
             // btnDangXuat
             // 
-            this.btnDangXuat.Location = new System.Drawing.Point(3, 672);
+            this.btnDangXuat.Location = new System.Drawing.Point(3, 534);
             this.btnDangXuat.Name = "btnDangXuat";
             this.btnDangXuat.Size = new System.Drawing.Size(281, 54);
             this.btnDangXuat.TabIndex = 33;
@@ -81,7 +95,7 @@
             // 
             // btnQLViPham
             // 
-            this.btnQLViPham.Location = new System.Drawing.Point(3, 613);
+            this.btnQLViPham.Location = new System.Drawing.Point(3, 475);
             this.btnQLViPham.Name = "btnQLViPham";
             this.btnQLViPham.Size = new System.Drawing.Size(281, 53);
             this.btnQLViPham.TabIndex = 32;
@@ -91,7 +105,7 @@
             // 
             // btnQLSinhVien
             // 
-            this.btnQLSinhVien.Location = new System.Drawing.Point(3, 554);
+            this.btnQLSinhVien.Location = new System.Drawing.Point(3, 416);
             this.btnQLSinhVien.Name = "btnQLSinhVien";
             this.btnQLSinhVien.Size = new System.Drawing.Size(281, 53);
             this.btnQLSinhVien.TabIndex = 31;
@@ -101,7 +115,7 @@
             // 
             // btnQLNguoiDung
             // 
-            this.btnQLNguoiDung.Location = new System.Drawing.Point(3, 495);
+            this.btnQLNguoiDung.Location = new System.Drawing.Point(3, 357);
             this.btnQLNguoiDung.Name = "btnQLNguoiDung";
             this.btnQLNguoiDung.Size = new System.Drawing.Size(281, 53);
             this.btnQLNguoiDung.TabIndex = 30;
@@ -111,7 +125,7 @@
             // 
             // btnPhanHoi
             // 
-            this.btnPhanHoi.Location = new System.Drawing.Point(3, 436);
+            this.btnPhanHoi.Location = new System.Drawing.Point(3, 298);
             this.btnPhanHoi.Name = "btnPhanHoi";
             this.btnPhanHoi.Size = new System.Drawing.Size(281, 53);
             this.btnPhanHoi.TabIndex = 29;
@@ -121,7 +135,7 @@
             // 
             // btnThongKe
             // 
-            this.btnThongKe.Location = new System.Drawing.Point(3, 377);
+            this.btnThongKe.Location = new System.Drawing.Point(3, 239);
             this.btnThongKe.Name = "btnThongKe";
             this.btnThongKe.Size = new System.Drawing.Size(281, 53);
             this.btnThongKe.TabIndex = 28;
@@ -131,7 +145,7 @@
             // 
             // btnBaoTri
             // 
-            this.btnBaoTri.Location = new System.Drawing.Point(3, 318);
+            this.btnBaoTri.Location = new System.Drawing.Point(3, 180);
             this.btnBaoTri.Name = "btnBaoTri";
             this.btnBaoTri.Size = new System.Drawing.Size(281, 53);
             this.btnBaoTri.TabIndex = 27;
@@ -142,7 +156,7 @@
             // btnThanhToan
             // 
             this.btnThanhToan.BackColor = System.Drawing.Color.White;
-            this.btnThanhToan.Location = new System.Drawing.Point(3, 259);
+            this.btnThanhToan.Location = new System.Drawing.Point(3, 121);
             this.btnThanhToan.Name = "btnThanhToan";
             this.btnThanhToan.Size = new System.Drawing.Size(281, 53);
             this.btnThanhToan.TabIndex = 26;
@@ -153,7 +167,7 @@
             // btnQLPhong
             // 
             this.btnQLPhong.BackColor = System.Drawing.Color.White;
-            this.btnQLPhong.Location = new System.Drawing.Point(3, 200);
+            this.btnQLPhong.Location = new System.Drawing.Point(3, 62);
             this.btnQLPhong.Name = "btnQLPhong";
             this.btnQLPhong.Size = new System.Drawing.Size(281, 53);
             this.btnQLPhong.TabIndex = 25;
@@ -165,7 +179,7 @@
             // 
             this.btnQLThanNhan.BackColor = System.Drawing.Color.White;
             this.btnQLThanNhan.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnQLThanNhan.Location = new System.Drawing.Point(3, 141);
+            this.btnQLThanNhan.Location = new System.Drawing.Point(3, 3);
             this.btnQLThanNhan.Name = "btnQLThanNhan";
             this.btnQLThanNhan.Size = new System.Drawing.Size(281, 53);
             this.btnQLThanNhan.TabIndex = 24;
@@ -173,61 +187,49 @@
             this.btnQLThanNhan.UseVisualStyleBackColor = false;
             this.btnQLThanNhan.Click += new System.EventHandler(this.btnQLThanNhan_Click);
             // 
-            // flowLayoutPanel1
+            // flpMenu
             // 
-            this.flowLayoutPanel1.BackColor = System.Drawing.Color.LightGray;
-            this.flowLayoutPanel1.Controls.Add(this.label1);
-            this.flowLayoutPanel1.Controls.Add(this.btnQLThanNhan);
-            this.flowLayoutPanel1.Controls.Add(this.btnQLPhong);
-            this.flowLayoutPanel1.Controls.Add(this.btnThanhToan);
-            this.flowLayoutPanel1.Controls.Add(this.btnBaoTri);
-            this.flowLayoutPanel1.Controls.Add(this.btnThongKe);
-            this.flowLayoutPanel1.Controls.Add(this.btnPhanHoi);
-            this.flowLayoutPanel1.Controls.Add(this.btnQLNguoiDung);
-            this.flowLayoutPanel1.Controls.Add(this.btnQLSinhVien);
-            this.flowLayoutPanel1.Controls.Add(this.btnQLViPham);
-            this.flowLayoutPanel1.Controls.Add(this.btnDangXuat);
-            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(288, 732);
-            this.flowLayoutPanel1.TabIndex = 37;
+            this.flpMenu.AutoScroll = true;
+            this.flpMenu.AutoScrollMinSize = new System.Drawing.Size(0, 450);
+            this.flpMenu.BackColor = System.Drawing.Color.LightGray;
+            this.flpMenu.Controls.Add(this.btnQLThanNhan);
+            this.flpMenu.Controls.Add(this.btnQLPhong);
+            this.flpMenu.Controls.Add(this.btnThanhToan);
+            this.flpMenu.Controls.Add(this.btnBaoTri);
+            this.flpMenu.Controls.Add(this.btnThongKe);
+            this.flpMenu.Controls.Add(this.btnPhanHoi);
+            this.flpMenu.Controls.Add(this.btnQLNguoiDung);
+            this.flpMenu.Controls.Add(this.btnQLSinhVien);
+            this.flpMenu.Controls.Add(this.btnQLViPham);
+            this.flpMenu.Controls.Add(this.btnDangXuat);
+            this.flpMenu.Location = new System.Drawing.Point(3, 138);
+            this.flpMenu.Name = "flpMenu";
+            this.flpMenu.Size = new System.Drawing.Size(315, 400);
+            this.flpMenu.TabIndex = 37;
             // 
-            // panel1
+            // pnlMenu
             // 
-            this.panel1.AutoScroll = true;
-            this.panel1.AutoScrollMinSize = new System.Drawing.Size(0, 732);
-            this.panel1.Controls.Add(this.flowLayoutPanel1);
-            this.panel1.Location = new System.Drawing.Point(20, 43);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(314, 491);
-            this.panel1.TabIndex = 38;
+            this.pnlMenu.Controls.Add(this.flpMenu);
+            this.pnlMenu.Controls.Add(this.lblQLKTX);
+            this.pnlMenu.Dock = System.Windows.Forms.DockStyle.Left;
+            this.pnlMenu.Location = new System.Drawing.Point(0, 0);
+            this.pnlMenu.Name = "pnlMenu";
+            this.pnlMenu.Size = new System.Drawing.Size(318, 543);
+            this.pnlMenu.TabIndex = 38;
             // 
-            // pictureBox1
+            // timeMenu
             // 
-            this.pictureBox1.Image = global::Đồ_án.Properties.Resources.kính_lúp;
-            this.pictureBox1.InitialImage = null;
-            this.pictureBox1.Location = new System.Drawing.Point(19, 12);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(42, 29);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 39;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
-            // 
-            // timer1
-            // 
-            this.timer1.Interval = 10;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            this.timeMenu.Interval = 10;
+            this.timeMenu.Tick += new System.EventHandler(this.timeMenu_Tick);
             // 
             // frmDashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Honeydew;
-            this.ClientSize = new System.Drawing.Size(794, 547);
-            this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.panel1);
+            this.ClientSize = new System.Drawing.Size(797, 543);
+            this.Controls.Add(this.ptbMenu);
+            this.Controls.Add(this.pnlMenu);
             this.Controls.Add(this.pnlHienThi);
             this.Name = "frmDashboard";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -235,17 +237,16 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmDashboard_FormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmDashboard_FormClosed);
             this.Load += new System.EventHandler(this.Dashboard_Load);
-            this.flowLayoutPanel1.ResumeLayout(false);
-            this.flowLayoutPanel1.PerformLayout();
-            this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ptbMenu)).EndInit();
+            this.flpMenu.ResumeLayout(false);
+            this.pnlMenu.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblQLKTX;
         private System.Windows.Forms.Panel pnlHienThi;
         private System.Windows.Forms.Button btnBaoTri;
         private System.Windows.Forms.Button btnThongKe;
@@ -257,9 +258,9 @@
         private System.Windows.Forms.Button btnDangXuat;
         private System.Windows.Forms.Button btnQLViPham;
         private System.Windows.Forms.Button btnQLThanNhan;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.FlowLayoutPanel flpMenu;
+        private System.Windows.Forms.Panel pnlMenu;
+        private System.Windows.Forms.PictureBox ptbMenu;
+        private System.Windows.Forms.Timer timeMenu;
     }
 }

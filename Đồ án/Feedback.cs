@@ -60,6 +60,15 @@ namespace Đồ_án
             }
         }
 
+        private string ChuanHoaYKien(string yKien)
+        {
+            yKien = yKien.Trim();
+            yKien = yKien.ToLower();
+            yKien = string.Join(". ", yKien.Split('.').Select(s => s.Trim()).Select(s => char.ToUpper(s[0]) + s.Substring(1)));
+
+            return yKien;
+        }
+
         private void btnGuiPhanHoi_Click(object sender, EventArgs e)
         {
             if (txtMSSV.Text == "")
@@ -80,12 +89,14 @@ namespace Đồ_án
                 return;
             }
 
+            string yKien=ChuanHoaYKien(txtYKien.Text);
+
             DataTable dtPhanHoi = dsPhanHoi.Tables["PhanHoi"];
             DataRow newRow = dtPhanHoi.NewRow();
             newRow["masv"] = txtMSSV.Text;
             newRow["sosao"] = tmp;
             newRow["hoten"] = txtHoTen.Text;
-            newRow["ykien"] = txtYKien.Text;
+            newRow["ykien"] = yKien;
 
             dtPhanHoi.Rows.Add(newRow);
 

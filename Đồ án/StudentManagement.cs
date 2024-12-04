@@ -4,8 +4,10 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -45,8 +47,139 @@ namespace Đồ_án
 
         }
 
+        private bool KiemTraDuLieu()
+        {
+            // Kiểm tra các TextBox có rỗng không
+            if (string.IsNullOrEmpty(txtMSSV.Text))
+            {
+                MessageBox.Show("Mã sinh viên không được để trống.");
+                txtMSSV.Focus();
+                return false;
+            }
+            if (string.IsNullOrEmpty(txtName.Text))
+            {
+                MessageBox.Show("Họ tên không được để trống.");
+                txtName.Focus();
+                return false;
+            }
+            if (string.IsNullOrEmpty(txtCCCD.Text))
+            {
+                MessageBox.Show("Căn cước công dân không được để trống.");
+                txtCCCD.Focus();
+                return false;
+            }
+            if (txtCCCD.Text.Length != 12)
+            {
+                MessageBox.Show("Cân cước công dân không hợp lệ.");
+                txtCCCD.Focus();
+                return false;
+            }
+            if (string.IsNullOrEmpty(txtSDT.Text))
+            {
+                MessageBox.Show("Số điện thoại không được để trống.");
+                txtSDT.Focus();
+                return false;
+            }
+            string sdtChuan = @"^(0[3|5|7|8|9])+([0-9]{8})$";
+            if (!Regex.IsMatch(txtSDT.Text.Trim(), sdtChuan))
+            {
+                MessageBox.Show("Số điện thoại không hợp lệ.");
+                txtSDT.Focus();
+                return false;
+            }
+            if (string.IsNullOrEmpty(txtSoPhong.Text))
+            {
+                MessageBox.Show("Số phòng không được để trống.");
+                txtSoPhong.Focus();
+                return false;
+            }
+            if (string.IsNullOrEmpty(txtMaND.Text))
+            {
+                MessageBox.Show("Mã người dùng không được để trống.");
+                txtMaND.Focus();
+                return false;
+            }
+            if (string.IsNullOrEmpty(txtDiaChiChiTiet.Text))
+            {
+                MessageBox.Show("Địa chỉ chi tiết không được để trống.");
+                txtDiaChiChiTiet.Focus();
+                return false;
+            }
+
+            // Kiểm tra ComboBox có được chọn không
+            if (string.IsNullOrEmpty(cbbTinh.Text))
+            {
+                MessageBox.Show("Vui lòng chọn tỉnh.");
+                cbbTinh.Focus();
+                return false;
+            }
+            if (string.IsNullOrEmpty(cbbQuanHuyen.Text))
+            {
+                MessageBox.Show("Vui lòng chọn quận/huyện.");
+                cbbQuanHuyen.Focus();
+                return false;
+            }
+
+            // Kiểm tra DateTimePicker có giá trị hợp lệ không
+            if (dtpNgaySinh.Value == null)
+            {
+                MessageBox.Show("Vui lòng chọn ngày sinh.");
+                dtpNgaySinh.Focus();
+                return false;
+            }
+
+            // Kiểm tra RadioButton có được chọn không
+            if (!rdbNam.Checked && !rdbNu.Checked)
+            {
+                MessageBox.Show("Vui lòng chọn giới tính.");
+                return false;
+            }
+
+            // Kiểm tra mã sinh viên có trùng không
+            DataRow[] existingRows = dtSinhVien.Select("masv = '" + txtMSSV.Text.Trim() + "'");
+            if (existingRows.Length > 0)
+            {
+                MessageBox.Show("Mã sinh viên đã tồn tại. Vui lòng chọn mã khác.");
+                txtMSSV.Focus();
+                return false;
+            }
+
+            DataRow[] existingCCCDRows = dtSinhVien.Select("cccd = '" + txtCCCD.Text.Trim() + "'");
+            if (existingCCCDRows.Length > 0)
+            {
+                MessageBox.Show("CCCD đã tồn tại. Vui lòng kiểm tra lại.");
+                txtCCCD.Focus();
+                return false;
+            }
+
+            ChuanHoaDuLieu();
+
+            return true; 
+        }
+
+        private void ChuanHoaDuLieu()
+        {
+            txtMSSV.Text = txtMSSV.Text.Trim();
+            txtCCCD.Text = txtCCCD.Text.Trim();
+
+            string[] words = txtName.Text.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+            for (int i = 0; i < words.Length; i++)
+            {
+                words[i] = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(words[i].ToLower());
+            }
+            txtName.Text = string.Join(" ", words);
+
+
+            txtDiaChiChiTiet.Text = txtDiaChiChiTiet.Text.Trim();
+
+            cbbTinh.Text = cbbTinh.Text.Trim();
+            cbbQuanHuyen.Text = cbbQuanHuyen.Text.Trim();
+        }
+
         private void btnThem_Click(object sender, EventArgs e)
         {
+            if (!KiemTraDuLieu())
+                return;
             DataRow newSinhVienRow = dtSinhVien.NewRow();
 
             newSinhVienRow["masv"] = txtMSSV.Text;
@@ -111,6 +244,8 @@ namespace Đồ_án
 
         private void btnSua_Click(object sender, EventArgs e)
         {
+            if (!KiemTraDuLieu())
+                return;
             if (string.IsNullOrEmpty(txtMSSV.Text))
             {
                 MessageBox.Show("Vui lòng nhập mã sinh viên.");

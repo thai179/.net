@@ -179,6 +179,7 @@
             // 
             // dgvThanNhan
             // 
+            this.dgvThanNhan.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dgvThanNhan.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvThanNhan.Location = new System.Drawing.Point(81, 247);
             this.dgvThanNhan.Name = "dgvThanNhan";
@@ -201,7 +202,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(198)))), ((int)(((byte)(226)))), ((int)(((byte)(239)))));
             this.ClientSize = new System.Drawing.Size(755, 525);
             this.Controls.Add(this.btnRefresh);
             this.Controls.Add(this.dgvThanNhan);

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BLL;
+using DTO;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -14,46 +16,29 @@ namespace Đồ_án
 {
     public partial class frmThanhToan : Form
     {
-        DataSet dsThanhToan;
-        DataSet dsThanhToanGoc;
-        DataTable dtThanhToan;
+        private ThanhToanBLL bll;
         public frmThanhToan()
         {
             InitializeComponent();
             this.TopLevel = false;
-            dsThanhToan = new DataSet();
-            dsThanhToanGoc = new DataSet();
         }
 
         private void frmThanhToan_Load(object sender, EventArgs e)
         {
-            SqlDataAdapter adapter = new SqlDataAdapter("select * from thanhtoan",ConnectionManager.GetConnection());
-            adapter.Fill(dsThanhToanGoc, "thanhtoan");
-            dsThanhToan = dsThanhToanGoc.Copy();
-            dtThanhToan = dsThanhToan.Tables["thanhtoan"];
         }
 
-        private string ChuanHoaGhiChu(string ghiChu)
-        {
-            ghiChu = ghiChu.Trim();
-            ghiChu = ghiChu.ToLower();
-            ghiChu = string.Join(". ", ghiChu.Split('.').Select(s => s.Trim()).Select(s => char.ToUpper(s[0]) + s.Substring(1)));
-
-            return ghiChu;
-        }
 
         private void btnXacNhanThanhToan_Click(object sender, EventArgs e)
         {
-            
-            if (string.IsNullOrEmpty(txtMSSV.Text) || string.IsNullOrEmpty(txtSoPhong.Text) || string.IsNullOrEmpty(txtSoTienThanhToan.Text))
+
+            if (!bll.IsValidThanhToan(txtMSSV.Text, txtSoTienThanhToan.Text))
             {
-                MessageBox.Show("Vui lòng điền đầy đủ thông tin!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Vui lòng điền đầy đủ thông tin hợp lệ!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            string ghiChu = ChuanHoaGhiChu(txtGhiChu.Text);
+            string ghiChu = bll.ChuanHoaGhiChu(txtGhiChu.Text);
             txtGhiChu.Text = ghiChu;
-            string soTienText = txtSoTienThanhToan.Text;
-            soTienText = soTienText.Replace(",", "").Replace("₫", "").Trim();
+            string soTienText = txtSoTienThanhToan.Text.Replace(",", "").Replace("₫", "").Trim();
             decimal soTien;
             if (!decimal.TryParse(soTienText, out soTien))
             {
@@ -61,25 +46,14 @@ namespace Đồ_án
                 return;
             }
 
-            DataRow newRow = dtThanhToan.NewRow();
+            ThanhToanDTO thanhtoan = new ThanhToanDTO(txtMSSV.Text, txtSoPhong.Text, txtHoTen.Text,cbbLoaiThanhToan.Text,dtpNgayThanhToan.Value,soTien,txtGhiChu.Text);
 
-            newRow["masv"] = txtMSSV.Text;
-            newRow["sophong"] = txtSoPhong.Text;
-            newRow["loai_thanh_toan"] = cbbLoaiThanhToan.SelectedItem.ToString();
-            newRow["ngaylap"] = dtpNgayThanhToan.Value;
-            newRow["sotien"] = soTien;
-            newRow["ghichu"] = ghiChu;
-
-            dtThanhToan.Rows.Add(newRow);
-
-            // Tạo SqlDataAdapter và thực hiện cập nhật vào cơ sở dữ liệu
-            SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM thanhtoan", ConnectionManager.GetConnection());
-            SqlCommandBuilder commandBuilder = new SqlCommandBuilder(adapter);
+           
 
             try
             {
                 // Cập nhật dữ liệu vào cơ sở dữ liệu
-                adapter.Update(dtThanhToan);
+                bll.SaveThanhToan(thanhtoan);
                 MessageBox.Show("Thanh toán thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
@@ -107,35 +81,16 @@ namespace Đồ_án
                 MessageBox.Show("Vui lòng nhập Mã số sinh viên!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            string query = "select * from sinhvien where masv = @masv";
-            try
-            {
-                using (SqlConnection conn = ConnectionManager.GetConnection())
-                {
-                    conn.Open();
-                    SqlCommand cmd = new SqlCommand(query, conn);
-                    cmd.Parameters.AddWithValue("@masv", txtMSSV.Text);
-                    SqlDataReader reader = cmd.ExecuteReader();
-                    if (reader.HasRows)
-                    {
-                        // Đọc dữ liệu
-                        reader.Read();
 
-                        // Gán giá trị cho các TextBox tương ứng
-                        txtHoTen.Text = reader["hoten"].ToString();
-                        txtSoPhong.Text = reader["sophong"].ToString();
-                        
-                    }
-                    else
-                    {
-                        MessageBox.Show("Không tìm thấy sinh viên với MSSV: " + txtMSSV.Text, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-                    reader.Close();
-                }
-            }
-            catch (Exception ex)
+            SinhVienDTO sinhVien = bll.GetSinhVienByMSSV(txtMSSV.Text);
+            if (sinhVien != null)
             {
-                MessageBox.Show("Lỗi khi truy vấn dữ liệu: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtHoTen.Text = sinhVien.HoTen;
+                txtSoPhong.Text = sinhVien.SoPhong;
+            }
+            else
+            {
+                MessageBox.Show("Không tìm thấy sinh viên với MSSV: " + txtMSSV.Text, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 

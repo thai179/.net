@@ -44,6 +44,7 @@
             // 
             // dgvHienThi
             // 
+            this.dgvHienThi.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dgvHienThi.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvHienThi.Location = new System.Drawing.Point(78, 164);
             this.dgvHienThi.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -159,6 +160,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(198)))), ((int)(((byte)(226)))), ((int)(((byte)(239)))));
             this.ClientSize = new System.Drawing.Size(755, 525);
             this.Controls.Add(this.btnLuu);
             this.Controls.Add(this.btnHoanTac);

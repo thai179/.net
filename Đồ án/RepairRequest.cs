@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BLL;
+using DTO;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,6 +15,7 @@ namespace Đồ_án
 {
     public partial class frmBaoTri : Form
     {
+        private YeuCauBaoTriBLL bll = new YeuCauBaoTriBLL();
         public frmBaoTri()
         {
             InitializeComponent();
@@ -21,42 +24,29 @@ namespace Đồ_án
 
         private void btnGuiYeuCau_Click(object sender, EventArgs e)
         {
-            if (txtMoTaVanDe.Text == "")
+           
+            YeuCauBaoTriDTO yeuCau = new YeuCauBaoTriDTO
             {
-                MessageBox.Show("Ban chua mo ta van de ban gap", "thong bao");
-                txtMoTaVanDe.Focus();
+                SoPhong = txtSoPhong.Text,
+                MoTaVanDe = txtMoTaVanDe.Text,
+                DoUuTien = cbbDoUuTien.Text
+            };
+            string tmp = bll.KiemTraThongTin(yeuCau);
+            if (tmp != null)
+            {
+                MessageBox.Show(tmp, "Thông báo");
                 return;
             }
-            if (txtSoPhong.Text == "")
-            {
-                MessageBox.Show("ban chua nhap so phong", "thong bao");
-                txtSoPhong.Focus();
-                return;
-            }
-            if (cbbDoUuTien.Text == "")
-            {
-                MessageBox.Show("Ban chua chon do uu tien");
-                cbbDoUuTien.Focus();
-                return;
-            }
-            string query = "INSERT INTO yeucaubaotri (sophong, ndyc, douutien) VALUES (@sophong, @ndyc, @douutien)";
 
-            using (SqlConnection conn = ConnectionManager.GetConnection())
+            try
             {
-                SqlCommand cmd = new SqlCommand(query, conn);
-                cmd.Parameters.AddWithValue("@sophong", txtSoPhong.Text);
-                cmd.Parameters.AddWithValue("@ndyc",txtMoTaVanDe.Text);
-                cmd.Parameters.AddWithValue("@douutien",cbbDoUuTien.Text);
-                try
-                {
-                    conn.Open();
-                    cmd.ExecuteNonQuery();
-                    MessageBox.Show("Đã gửi yêu cầu thành công");
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Đã có lỗi xảy ra " + ex.Message);
-                }
+                // Gọi BLL để gửi yêu cầu bảo trì
+                bll.GuiYeuCau(yeuCau);
+                MessageBox.Show("Đã gửi yêu cầu thành công");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Đã có lỗi xảy ra: " + ex.Message);
             }
         }
 

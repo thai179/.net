@@ -117,6 +117,7 @@
             // 
             // txtMaND
             // 
+            this.txtMaND.BackColor = System.Drawing.Color.Honeydew;
             this.txtMaND.Location = new System.Drawing.Point(224, 74);
             this.txtMaND.Name = "txtMaND";
             this.txtMaND.Size = new System.Drawing.Size(408, 22);
@@ -124,6 +125,7 @@
             // 
             // txtHoTen
             // 
+            this.txtHoTen.BackColor = System.Drawing.Color.Honeydew;
             this.txtHoTen.Location = new System.Drawing.Point(225, 156);
             this.txtHoTen.Name = "txtHoTen";
             this.txtHoTen.Size = new System.Drawing.Size(436, 22);
@@ -192,46 +194,51 @@
             // 
             // btnClear
             // 
+            this.btnClear.BackColor = System.Drawing.Color.Honeydew;
             this.btnClear.Location = new System.Drawing.Point(468, 467);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(123, 48);
             this.btnClear.TabIndex = 76;
             this.btnClear.Text = "Clear";
-            this.btnClear.UseVisualStyleBackColor = true;
+            this.btnClear.UseVisualStyleBackColor = false;
             this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
             // btnSua
             // 
+            this.btnSua.BackColor = System.Drawing.Color.Honeydew;
             this.btnSua.Location = new System.Drawing.Point(468, 413);
             this.btnSua.Name = "btnSua";
             this.btnSua.Size = new System.Drawing.Size(123, 48);
             this.btnSua.TabIndex = 75;
             this.btnSua.Text = "Sửa";
-            this.btnSua.UseVisualStyleBackColor = true;
+            this.btnSua.UseVisualStyleBackColor = false;
             this.btnSua.Click += new System.EventHandler(this.btnSua_Click);
             // 
             // btnXoa
             // 
+            this.btnXoa.BackColor = System.Drawing.Color.Honeydew;
             this.btnXoa.Location = new System.Drawing.Point(316, 413);
             this.btnXoa.Name = "btnXoa";
             this.btnXoa.Size = new System.Drawing.Size(123, 48);
             this.btnXoa.TabIndex = 74;
             this.btnXoa.Text = "Xóa";
-            this.btnXoa.UseVisualStyleBackColor = true;
+            this.btnXoa.UseVisualStyleBackColor = false;
             this.btnXoa.Click += new System.EventHandler(this.btnXoa_Click);
             // 
             // btnThem
             // 
+            this.btnThem.BackColor = System.Drawing.Color.Honeydew;
             this.btnThem.Location = new System.Drawing.Point(164, 413);
             this.btnThem.Name = "btnThem";
             this.btnThem.Size = new System.Drawing.Size(123, 48);
             this.btnThem.TabIndex = 73;
             this.btnThem.Text = "Thêm";
-            this.btnThem.UseVisualStyleBackColor = true;
+            this.btnThem.UseVisualStyleBackColor = false;
             this.btnThem.Click += new System.EventHandler(this.btnThem_Click);
             // 
             // txtMatKhau
             // 
+            this.txtMatKhau.BackColor = System.Drawing.Color.Honeydew;
             this.txtMatKhau.Location = new System.Drawing.Point(224, 114);
             this.txtMatKhau.Name = "txtMatKhau";
             this.txtMatKhau.Size = new System.Drawing.Size(436, 22);
@@ -260,28 +267,31 @@
             // 
             // btnHoanTac
             // 
+            this.btnHoanTac.BackColor = System.Drawing.Color.Honeydew;
             this.btnHoanTac.Location = new System.Drawing.Point(164, 467);
             this.btnHoanTac.Name = "btnHoanTac";
             this.btnHoanTac.Size = new System.Drawing.Size(123, 48);
             this.btnHoanTac.TabIndex = 80;
             this.btnHoanTac.Text = "Hoàn tác";
-            this.btnHoanTac.UseVisualStyleBackColor = true;
+            this.btnHoanTac.UseVisualStyleBackColor = false;
             this.btnHoanTac.Click += new System.EventHandler(this.btnHoanTac_Click);
             // 
             // btnLuu
             // 
+            this.btnLuu.BackColor = System.Drawing.Color.Honeydew;
             this.btnLuu.Location = new System.Drawing.Point(316, 467);
             this.btnLuu.Name = "btnLuu";
             this.btnLuu.Size = new System.Drawing.Size(123, 48);
             this.btnLuu.TabIndex = 81;
             this.btnLuu.Text = "Lưu";
-            this.btnLuu.UseVisualStyleBackColor = true;
+            this.btnLuu.UseVisualStyleBackColor = false;
             this.btnLuu.Click += new System.EventHandler(this.btnLuu_Click);
             // 
             // frmQLNguoiDung
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(198)))), ((int)(((byte)(226)))), ((int)(((byte)(239)))));
             this.ClientSize = new System.Drawing.Size(755, 525);
             this.Controls.Add(this.btnLuu);
             this.Controls.Add(this.btnHoanTac);

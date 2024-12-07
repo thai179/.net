@@ -1,0 +1,9 @@
+E:\.Net\Doan\DAL\bin\Debug\DAL.dll
+E:\.Net\Doan\DAL\bin\Debug\DAL.pdb
+E:\.Net\Doan\DAL\bin\Debug\DTO.dll
+E:\.Net\Doan\DAL\bin\Debug\DTO.pdb
+E:\.Net\Doan\DAL\obj\Debug\DAL.csproj.AssemblyReference.cache
+E:\.Net\Doan\DAL\obj\Debug\DAL.csproj.CoreCompileInputs.cache
+E:\.Net\Doan\DAL\obj\Debug\DAL.csproj.Up2Date
+E:\.Net\Doan\DAL\obj\Debug\DAL.dll
+E:\.Net\Doan\DAL\obj\Debug\DAL.pdb

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BLL;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,11 +14,10 @@ namespace Đồ_án
 {
     public partial class frmThemPhong : Form
     {
-        private DataSet dsPhong;
-        public frmThemPhong(DataSet dsPhong)
+        private PhongBLL phongBLL = new PhongBLL();
+        public frmThemPhong()
         {
             InitializeComponent();
-            this.dsPhong = dsPhong;
         }
 
         private void btnClear_Click(object sender, EventArgs e)
@@ -39,38 +39,34 @@ namespace Đồ_án
 
         private void btnThem_Click(object sender, EventArgs e)
         {
-            string sophong=txtSoPhong.Text;
-            string tinhtrang=cbbTinhTrang.Text;
-            string loaiphong=cbbLoaiPhong.Text;
-            int songuoi;
 
-            if(!int.TryParse(txtSoNguoi.Text, out songuoi))
+            string soPhong = txtSoPhong.Text;
+            string tinhTrang = cbbTinhTrang.Text;
+            string loaiPhong = cbbLoaiPhong.Text;
+            int soNguoi;
+
+            if (!int.TryParse(txtSoNguoi.Text, out soNguoi))
             {
                 MessageBox.Show("Số lượng phải là sô nguyên dương", "Error");
                 return;
             }
-            if (songuoi<1 || songuoi>10)
+            if (soNguoi < 1 || soNguoi > 10)
             {
                 MessageBox.Show("Số lượng tối đa không thể bé hơn 0 hoặc lớn hơn 10.");
                 return;
             }
 
-            DataTable dataTable = dsPhong.Tables["phong"];
-            DataRow[] row = dataTable.Select($"sophong = '{sophong}'");
-            if (row.Length > 0 )
-            {
-                MessageBox.Show("Số phòng đã tồn tại.", "Lỗi");
-                txtSoPhong.Focus();
-                return;
-            }
-            DataRow newrow = dataTable.NewRow();
-            newrow["sophong"] = sophong;
-            newrow["sluongtoida"]= songuoi;
-            newrow["loaiphong"] = loaiphong;
-            newrow["tinhtrangphong"] = tinhtrang;
+            string errorMessage;
+            bool isAdded = phongBLL.AddPhong(soPhong, soNguoi, loaiPhong, tinhTrang, out errorMessage);
 
-            dataTable.Rows.Add(newrow);
-            MessageBox.Show("Phòng đã được thêm vào DataSet thành công.", "Thông báo");
+            if (isAdded)
+            {
+                MessageBox.Show("Thêm phòng thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show(errorMessage, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
     }

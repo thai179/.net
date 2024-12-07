@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BLL;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,11 +14,10 @@ namespace Đồ_án
 {
     public partial class frmSuaPhong : Form
     {
-        private DataSet dsPhong;
-        public frmSuaPhong(DataSet ds)
+        private PhongBLL phongBLL = new PhongBLL();
+        public frmSuaPhong()
         {
             InitializeComponent();
-            this.dsPhong = ds;
         }
 
         public string SoPhong
@@ -65,25 +65,33 @@ namespace Đồ_án
         {
             if (txtSoPhong.Text == "")
             {
-                MessageBox.Show("ban chua nhap so phong can tim", "thong bao");
-                txtSoPhong.Focus();
+                MessageBox.Show("Bạn chưa nhập số phòng cần tìm", "Thông báo");
+                txtSoPhong.Focus();  // Đưa con trỏ vào ô nhập số phòng
             }
             else
             {
-                DataTable dataTable = dsPhong.Tables["phong"];
-                DataRow[] rows = dataTable.Select($"sophong = '{txtSoPhong.Text}'");
-
-                if (rows.Length > 0)
+                try
                 {
-                    DataRow row = rows[0];  // Chọn dòng đầu tiên nếu tìm thấy
-                    txtSoNguoi.Text = row["sluongtoida"].ToString();
-                    cbbLoaiPhong.Text = row["loaiphong"].ToString();
-                    cbbTinhTrang.Text = row["tinhtrangphong"].ToString();
-                }
-                else
+                    // Gọi đến lớp BLL để tìm phòng theo số phòng
+                    DataRow row = phongBLL.FindPhongBySoPhong(txtSoPhong.Text);
+
+                    // Nếu tìm thấy phòng, cập nhật thông tin lên UI
+                    if (row != null)
                     {
-                        MessageBox.Show("Không tìm thấy thông tin phòng", "Thông báo");
+                        txtSoNguoi.Text = row["sluongtoida"].ToString();  // Hiển thị số người tối đa
+                        cbbLoaiPhong.Text = row["loaiphong"].ToString();  // Hiển thị loại phòng
+                        cbbTinhTrang.Text = row["tinhtrangphong"].ToString();  // Hiển thị tình trạng phòng
                     }
+                    else
+                    {
+                        MessageBox.Show("Không tìm thấy phòng với số phòng đã nhập", "Thông báo");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    // Xử lý lỗi nếu có ngoại lệ khi tìm phòng
+                    MessageBox.Show($"Đã xảy ra lỗi: {ex.Message}", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 
@@ -98,20 +106,22 @@ namespace Đồ_án
                 return;
             }
 
-            DataTable dataTable = dsPhong.Tables["phong"];
-            DataRow[] rows = dataTable.Select($"sophong = '{txtSoPhong.Text}'");
-            if (rows.Length > 0)
+            // Kiểm tra xem số người có phải là số hợp lệ không
+            if (!int.TryParse(txtSoNguoi.Text, out int soNguoi))
             {
-                DataRow row = rows[0];  // Chọn dòng đầu tiên nếu tìm thấy
-                row["sluongtoida"] = txtSoNguoi.Text;
-                row["loaiphong"] = cbbLoaiPhong.Text;
-                row["tinhtrangphong"] = cbbTinhTrang.Text;
+                MessageBox.Show("Số người phải là một số hợp lệ.", "Thông báo");
+                return;
+            }
 
+            bool isUpdated = phongBLL.UpdatePhong(txtSoPhong.Text, soNguoi, cbbLoaiPhong.Text, cbbTinhTrang.Text);
+
+            if (isUpdated)
+            {
                 MessageBox.Show("Cập nhật thông tin phòng trong DataSet thành công.", "Thông báo");
             }
             else
             {
-                MessageBox.Show("Không tìm thấy thông tin phòng", "Thông báo");
+                MessageBox.Show("Không tìm thấy phòng hoặc cập nhật không thành công.", "Thông báo");
             }
         }
 

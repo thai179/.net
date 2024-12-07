@@ -1,0 +1,11 @@
+E:\.Net\Doan\BLL\bin\Debug\BLL.dll
+E:\.Net\Doan\BLL\bin\Debug\BLL.pdb
+E:\.Net\Doan\BLL\bin\Debug\DAL.dll
+E:\.Net\Doan\BLL\bin\Debug\DTO.dll
+E:\.Net\Doan\BLL\bin\Debug\DAL.pdb
+E:\.Net\Doan\BLL\bin\Debug\DTO.pdb
+E:\.Net\Doan\BLL\obj\Debug\BLL.csproj.AssemblyReference.cache
+E:\.Net\Doan\BLL\obj\Debug\BLL.csproj.CoreCompileInputs.cache
+E:\.Net\Doan\BLL\obj\Debug\BLL.csproj.Up2Date
+E:\.Net\Doan\BLL\obj\Debug\BLL.dll
+E:\.Net\Doan\BLL\obj\Debug\BLL.pdb

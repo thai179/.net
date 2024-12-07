@@ -15,7 +15,6 @@ namespace Đồ_án
     {
         private bool logoutFlag=false;
 
-        private string username;
         private frmQLTTLienLac qlThanNhan;
         private frmQLPhong qlPhong;
         private frmThanhToan thanhToan;
@@ -25,11 +24,9 @@ namespace Đồ_án
         private frmQLNguoiDung qlNguoiDung;
         private frmQLSV qlSV;
         private frmViPham viPham;
-        private DataSet dsNguoiDung;
-        public frmDashboard(string username)
+        public frmDashboard()
         {
             InitializeComponent();
-            this.username = username;
         }
 
         private void btnDangXuat_Click(object sender, EventArgs e)
@@ -44,35 +41,6 @@ namespace Đồ_án
 
         private void Dashboard_Load(object sender, EventArgs e)
         {
-            dsNguoiDung = new DataSet();
-            string chucvu = "";
-            using (SqlConnection connection = ConnectionManager.GetConnection())
-            {
-                connection.Open();
-                string query = "SELECT chucvu FROM nguoidung WHERE userid = @Username";
-
-                SqlDataAdapter adapter = new SqlDataAdapter(query, connection);
-                adapter.SelectCommand.Parameters.AddWithValue("@Username", username);
-
-                adapter.Fill(dsNguoiDung, "nguoidung");
-
-                if (dsNguoiDung.Tables["nguoidung"].Rows.Count > 0)
-                {
-                    chucvu = dsNguoiDung.Tables["nguoidung"].Rows[0]["chucvu"].ToString();
-                }
-                if (chucvu == "Sinh Viên")
-                {
-                    btnQLNguoiDung.Enabled = false;
-                    btnQLPhong.Enabled = false;
-                    btnQLViPham.Enabled = false;
-                    btnQLSinhVien.Enabled = false;
-                }
-                else if (chucvu == "Nhan Viên")
-                {
-                    btnQLNguoiDung.Enabled=false;
-                    btnPhanHoi.Enabled = false;
-                }
-            }
             qlThanNhan = new frmQLTTLienLac();
             qlPhong = new frmQLPhong();
             thanhToan = new frmThanhToan();

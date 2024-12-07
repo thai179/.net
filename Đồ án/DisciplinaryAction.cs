@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BLL;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,14 +14,15 @@ namespace Đồ_án
 {
     public partial class frmViPham : Form
     {
-        private DataSet dsViPham;
-        private DataSet dsViPhamGoc;
+        private ViPhamBLL viPhamBLL;
+
         public frmViPham()
         {
             InitializeComponent();
             this.TopLevel = false;
-            dsViPham = new DataSet();
-            dsViPhamGoc = new DataSet();
+            
+            viPhamBLL = new ViPhamBLL();
+            viPhamBLL.LoadViPhamDataSet();
         }
 
         private void btnClear_Click(object sender, EventArgs e)
@@ -29,81 +31,66 @@ namespace Đồ_án
             txtMoTaViPham.Text = "";
             txtMSSV.Text = "";
             txtSoPhong.Text = "";
-            cbbHinhThucXuLy.SelectedIndex = 0;
+            cbbHinhThucXuLy.SelectedIndex = -1;
         }
 
-        private string ChuanHoaMoTa(string moTa)
-        {
-            moTa = moTa.Trim();
-            moTa = moTa.ToLower();
-            moTa = string.Join(". ", moTa.Split('.').Select(s => s.Trim()).Select(s => char.ToUpper(s[0]) + s.Substring(1)));
-
-            return moTa;
-        }
 
         private void btnGhiNhan_Click(object sender, EventArgs e)
         {
-            if (txtSoPhong.Text =="")
+            if (txtSoPhong.Text == "")
             {
-                MessageBox.Show("ban chua nhap so phong", "thong bao");
+                MessageBox.Show("Bạn chưa nhập số phòng", "Thông báo");
                 txtSoPhong.Focus();
                 return;
             }
-            if (txtMoTaViPham.Text =="")
+            if (txtMoTaViPham.Text == "")
             {
-                MessageBox.Show("ban chua mo ta vi pham cua sinh vien");
+                MessageBox.Show("Bạn chưa mô tả vi phạm của sinh viên");
                 txtMoTaViPham.Focus();
                 return;
             }
-            if (cbbHinhThucXuLy.Text =="")
+            if (cbbHinhThucXuLy.Text == "")
             {
-                MessageBox.Show("ban chua chon hinh thuc su ly");
+                MessageBox.Show("Bạn chưa chọn hình thức xử lý");
                 cbbHinhThucXuLy.Focus();
                 return;
             }
-            string moTa = ChuanHoaMoTa(txtMoTaViPham.Text);
 
-            DataTable dataTable = dsViPham.Tables["ViPham"];
-            DataRow newRow = dataTable.NewRow();
-            newRow["ndvp"] = moTa;
-            newRow["sophong"] = txtSoPhong.Text;
-            newRow["masv"] = txtMSSV.Text;
-            newRow["htxuly"] = cbbHinhThucXuLy.Text;
-            dataTable.Rows.Add(newRow);
+            string moTa = viPhamBLL.ChuanHoaMoTa(txtMoTaViPham.Text);
+            string mssv = txtMSSV.Text;
+            string hoTen = txtHoTen.Text;
+            string soPhong = txtSoPhong.Text;
+            string hinhThucXuLy = cbbHinhThucXuLy.Text;
+
+            viPhamBLL.AddViPhamToDataSet(mssv, hoTen, soPhong, moTa, hinhThucXuLy);
             MessageBox.Show("Vi phạm đã được ghi nhận vào DataSet");
         }
 
         private void txtMSSV_Leave(object sender, EventArgs e)
         {
-            if(!string.IsNullOrEmpty(txtMSSV.Text))
+            if (!string.IsNullOrEmpty(txtMSSV.Text))
             {
                 string mssv = txtMSSV.Text;
+                DataTable dt = viPhamBLL.GetSinhVienByMSSV(mssv);
 
-                string query = "select hoten, sophong from sinhvien where masv = @mssv";
-                using(SqlConnection conn = ConnectionManager.GetConnection())
+                if (dt.Rows.Count > 0)
                 {
-                    SqlCommand cmd = new SqlCommand(query,conn);
-                    cmd.Parameters.AddWithValue("@mssv",mssv);
-                    conn.Open();
-                    SqlDataReader reader = cmd.ExecuteReader();
-                    if (reader.Read())
-                    {
-                        txtHoTen.Text = reader["hoten"].ToString();
-                        txtSoPhong.Text = reader["SoPhong"].ToString();
-                    }
-                    else
-                        MessageBox.Show("Ma so sinh vien khong ton tai", "thong bao");
-                    reader.Close();
+                    txtHoTen.Text = dt.Rows[0]["hoten"].ToString();
+                    txtSoPhong.Text = dt.Rows[0]["sophong"].ToString();
+                }
+                else
+                {
+                    MessageBox.Show("Mã số sinh viên không tồn tại", "Thông báo");
                 }
             }
         }
 
         private void btnHoanTac_Click(object sender, EventArgs e)
         {
-            DialogResult result = MessageBox.Show("Bận có muốn hoàn tác các thay đổi hay không","Thông báo",MessageBoxButtons.YesNo);
+            DialogResult result = MessageBox.Show("Bạn có muốn hoàn tác các thay đổi hay không", "Thông báo", MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes)
             {
-                dsViPham = dsViPhamGoc.Copy();
+                viPhamBLL.UndoChanges();
                 MessageBox.Show("Đã hoàn tác các thay đổi.");
             }
             
@@ -111,25 +98,9 @@ namespace Đồ_án
 
         private void btnLuu_Click(object sender, EventArgs e)
         {
-            if (dsViPham.GetChanges() == null)
-            {
-                MessageBox.Show("Không có thay đổi để lưu.");
-                return;
-            }
-
             try
             {
-                SqlConnection conn = ConnectionManager.GetConnection();
-                SqlDataAdapter dataAdapter = new SqlDataAdapter("SELECT * FROM thongtinvipham", conn);
-                SqlCommandBuilder commandBuilder = new SqlCommandBuilder(dataAdapter);
-                if (commandBuilder.GetInsertCommand() == null || commandBuilder.GetUpdateCommand() == null || commandBuilder.GetDeleteCommand() == null)
-                {
-                    MessageBox.Show("Không thể tự động tạo các câu lệnh SQL.");
-                    return;
-                }
-                dataAdapter.Update(dsViPham, "ViPham");
-                dsViPham.AcceptChanges();
-
+                viPhamBLL.SaveChanges();
                 MessageBox.Show("Dữ liệu đã được lưu thành công.");
             }
             catch (Exception ex)
@@ -138,12 +109,6 @@ namespace Đồ_án
             }
         }
 
-        private void frmViPham_Load(object sender, EventArgs e)
-        {
-            string query = "SELECT * FROM thongtinvipham";
-            SqlDataAdapter adapter = new SqlDataAdapter(query, ConnectionManager.GetConnection());
-            adapter.Fill(dsViPhamGoc, "ViPham");
-            dsViPham = dsViPhamGoc.Copy();
-        }
+
     }
 }

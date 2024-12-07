@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BLL;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -14,44 +15,12 @@ namespace Đồ_án
 {
     public partial class frmLogin : Form
     {
+        private readonly UserBLL _userBLL;
         public frmLogin()
         {
             InitializeComponent();
+            _userBLL = new UserBLL();
         }
-
-        private bool AuthenticateUser(string username, string password)
-        {
-            // Sử dụng ConnectionManager để lấy kết nối
-            using (SqlConnection connection = ConnectionManager.GetConnection())
-            {
-                // Câu lệnh SQL để kiểm tra tài khoản và mật khẩu
-                string query = "SELECT COUNT(*) FROM nguoidung WHERE userid = @Username AND matkhau = @Password";
-
-                try
-                {
-                    // Thực thi câu lệnh SQL
-                    using (SqlCommand command = new SqlCommand(query, connection))
-                    {
-                        // Thêm các tham số để tránh SQL Injection
-                        command.Parameters.AddWithValue("@Username", username);
-                        command.Parameters.AddWithValue("@Password", password);
-
-                        // Mở kết nối và kiểm tra kết quả
-                        connection.Open();
-                        int result = (int)command.ExecuteScalar();
-
-                        // Nếu kết quả > 0, đăng nhập thành công
-                        return result > 0;
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Lỗi kết nối cơ sở dữ liệu: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return false;
-                }
-            }
-        }
-
         private string GetMD5Hash(string input)
         {
             using (MD5 md5 = MD5.Create())
@@ -77,9 +46,23 @@ namespace Đồ_án
 
             string hashedPassword = GetMD5Hash(password);
 
-            if (AuthenticateUser(username, hashedPassword))
+            if (_userBLL.AuthenticateUser(username, hashedPassword) == "Sinh viên")
             {
-                frmDashboard frmDashboard = new frmDashboard(username);
+                frmDashboardSV frmDashboardSV = new frmDashboardSV();
+                this.Hide();
+                frmDashboardSV.ShowDialog();
+                this.Show();
+            }
+            else if (_userBLL.AuthenticateUser(username, hashedPassword) == "Nhân viên")
+            {
+                frmDashboardNV frmDashboardNV = new frmDashboardNV();
+                this.Hide();
+                frmDashboardNV.ShowDialog();
+                this.Show();
+            }
+            else if (_userBLL.AuthenticateUser(username, hashedPassword) == "ADMIN")
+            {
+                frmDashboard frmDashboard = new frmDashboard();
                 this.Hide();
                 frmDashboard.ShowDialog();
                 this.Show();
@@ -99,9 +82,5 @@ namespace Đồ_án
             }
         }
 
-        private void frmLogin_Load(object sender, EventArgs e)
-        {
-
-        }
     }
 }

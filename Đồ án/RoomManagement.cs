@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BLL;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -14,8 +15,7 @@ namespace Đồ_án
     public partial class frmQLPhong : Form
     {
 
-        private DataSet dsPhong;
-        private DataSet dsPhongGoc;
+        private PhongBLL phongBLL = new PhongBLL();
         public frmQLPhong()
         {
             InitializeComponent();
@@ -24,14 +24,14 @@ namespace Đồ_án
 
         private void btnThem_Click(object sender, EventArgs e)
         {
-            frmThemPhong themPhong = new frmThemPhong(dsPhong);
+            frmThemPhong themPhong = new frmThemPhong();
             themPhong.ShowDialog();
         }
 
         private void btnSua_Click(object sender, EventArgs e)
         {
             // Tạo form sửa phòng
-            frmSuaPhong suaPhong = new frmSuaPhong(dsPhong);
+            frmSuaPhong suaPhong = new frmSuaPhong();
 
             // Kiểm tra nếu có dòng nào được chọn trong DataGridView
             if (dgvHienThi.SelectedRows.Count > 0)
@@ -53,30 +53,11 @@ namespace Đồ_án
 
         private void frmQLPhong_Load(object sender, EventArgs e)
         {
-            dsPhong = new DataSet();
-            dsPhongGoc = new DataSet();
-
-            string query = "SELECT * FROM phong";
-
-            using (SqlConnection conn = ConnectionManager.GetConnection())
-            {
-                using (SqlDataAdapter dataAdapter = new SqlDataAdapter(query, conn))
-                {
-                    dataAdapter.Fill(dsPhongGoc, "phong");
-                    dsPhong = dsPhongGoc.Copy();
-                }
-
-                DataTable dataTable = dsPhong.Tables["phong"];
-                dgvHienThi.DataSource = dataTable;
-                dgvHienThi.AutoGenerateColumns = true;
-
-                // Đổi tên cột
-                dgvHienThi.Columns["sophong"].HeaderText = "Số phòng";
-                dgvHienThi.Columns["sluongtoida"].HeaderText = "Số lượng tối đa";
-                //dgvHienThi.Columns["sluongsv"].HeaderText = "Số lượng sinh viên";
-                dgvHienThi.Columns["loaiphong"].HeaderText = "Loại phòng";
-                dgvHienThi.Columns["tinhtrangphong"].HeaderText = "Tình Trạng";
-            }
+            dgvHienThi.DataSource = phongBLL.GetPhongData();
+            dgvHienThi.Columns["sophong"].HeaderText = "Số phòng";
+            dgvHienThi.Columns["sluongtoida"].HeaderText = "Số lượng tối đa";
+            dgvHienThi.Columns["loaiphong"].HeaderText = "Loại phòng";
+            dgvHienThi.Columns["tinhtrangphong"].HeaderText = "Tình Trạng";
         }
 
         private void btnXoa_Click(object sender, EventArgs e)
@@ -85,24 +66,9 @@ namespace Đồ_án
             {
                 DataGridViewRow selectedRow = dgvHienThi.SelectedRows[0];
                 string soPhong = selectedRow.Cells["sophong"].Value.ToString();
-                DialogResult dialogResult = MessageBox.Show($"Bạn có chắc chắn muốn xóa phòng {soPhong}?","Xác nhận xóa",MessageBoxButtons.YesNo,MessageBoxIcon.Warning);
 
-                if (dialogResult == DialogResult.Yes)
-                {
-                    DataTable dataTable = dsPhong.Tables["phong"];
-                    DataRow rowToDelete = dataTable.AsEnumerable().FirstOrDefault(r => r["sophong"].ToString() == soPhong);
-
-                    if (rowToDelete != null)
-                    {
-                        rowToDelete.Delete();
-                        dgvHienThi.DataSource = dataTable;
-                        MessageBox.Show($"Phòng {soPhong}đã được xóa thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-                }
-            }
-            else
-            {
-                MessageBox.Show("Vui lòng chọn một phòng để xóa.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                phongBLL.DeletePhong(soPhong);
+                MessageBox.Show($"Phòng {soPhong} đã được xóa thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -111,32 +77,22 @@ namespace Đồ_án
             DialogResult result = MessageBox.Show("Bạn có chắc muốn hoàn tác không?","Thông báo",MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes)
             {
-                dsPhong = dsPhongGoc.Copy();
-                dgvHienThi.DataSource = dsPhong.Tables["phong"];
+                phongBLL.Undo();
+                dgvHienThi.DataSource = phongBLL.GetCurrentDataSet();
                 MessageBox.Show("Hoàn tác thành công!", "Thông báo");
             }
         }
 
         private void btnLuu_Click(object sender, EventArgs e)
         {
-            string query = "SELECT * FROM phong";
-            using(SqlConnection conn = ConnectionManager.GetConnection())
+            if (phongBLL.SaveChanges())
             {
-                SqlDataAdapter dataAdapter = new SqlDataAdapter(query, conn);
-                SqlCommandBuilder commandBuilder = new SqlCommandBuilder(dataAdapter);
-                try
-                {
-                    dataAdapter.Update(dsPhong, "phong");
-                    dsPhong.AcceptChanges();
-
-                    MessageBox.Show("Dữ liệu đã được lưu thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show($"Có lỗi xảy ra khi lưu dữ liệu: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                MessageBox.Show("Dữ liệu đã được lưu thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            dsPhongGoc = dsPhong.Copy();
+            else
+            {
+                MessageBox.Show("Có lỗi xảy ra khi lưu dữ liệu.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

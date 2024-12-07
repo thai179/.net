@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BLL;
+using DTO;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -14,93 +16,55 @@ namespace Đồ_án
 {
     public partial class frmPhanHoi : Form
     {
-        private DataSet dsPhanHoi;
-        private DataSet dsPhanHoiGoc;
+        private PhanHoiBLL bll= new PhanHoiBLL();
         int tmp = 0;
         public frmPhanHoi()
         {
             InitializeComponent();
             this.TopLevel = false;
-            dsPhanHoi = new DataSet();
-            dsPhanHoiGoc = new DataSet();
+            bll.LoadPhanHoi();
         }
 
         private void frmPhanHoi_Load(object sender, EventArgs e)
         {
-            string query = "SELECT * FROM phanhoivadanhgia";
-            SqlDataAdapter adapter = new SqlDataAdapter(query, ConnectionManager.GetConnection());
-            adapter.Fill(dsPhanHoiGoc, "PhanHoi");
-            dsPhanHoi = dsPhanHoiGoc.Copy();
+            
         }
 
         private void txtMSSV_Leave(object sender, EventArgs e)
         {
-            string query = "select hoten, sdt from sinhvien where masv = @mssv";
-            using (SqlConnection conn = ConnectionManager.GetConnection())
+            if (string.IsNullOrEmpty(txtMSSV.Text))
             {
-                SqlCommand cmd = new SqlCommand(query, conn);
-                cmd.Parameters.AddWithValue("@mssv", txtMSSV.Text);
-                conn.Open();
-                using (SqlDataReader reader = cmd.ExecuteReader())
-                {
-                    if (reader.Read())
-                    {
-                        string hoten = reader["hoten"].ToString();
-                        string sdt = reader["sdt"].ToString();
-
-                        // Xử lý dữ liệu ở đây
-                        txtHoTen.Text = hoten;
-                        txtSDT.Text = sdt;
-                    }
-                    else
-                    {
-                        MessageBox.Show("Sinh viên không tồn tại.");
-                    }
-                }
+                MessageBox.Show("Mã số sinh viên không được để trống!");
+                return;
             }
-        }
 
-        private string ChuanHoaYKien(string yKien)
-        {
-            yKien = yKien.Trim();
-            yKien = yKien.ToLower();
-            yKien = string.Join(". ", yKien.Split('.').Select(s => s.Trim()).Select(s => char.ToUpper(s[0]) + s.Substring(1)));
+            // Gọi BLL để lấy thông tin sinh viên
+            var thongTinSinhVien = bll.GetThongTinSinhVien(txtMSSV.Text);
 
-            return yKien;
+            if (string.IsNullOrEmpty(thongTinSinhVien.HoTen))
+            {
+                MessageBox.Show("Sinh viên không tồn tại.");
+                return;
+            }
+
+            // Cập nhật thông tin vào các trường khác trên UI
+            txtHoTen.Text = thongTinSinhVien.HoTen;
+            txtSDT.Text = thongTinSinhVien.SDT;
+
         }
 
         private void btnGuiPhanHoi_Click(object sender, EventArgs e)
         {
-            if (txtMSSV.Text == "")
+            PhanHoiDTO phanhoi = new PhanHoiDTO(txtMSSV.Text, txtHoTen.Text,txtYKien.Text,tmp);
+            if(bll.KiemTraDuLieu(phanhoi) != null)
             {
-                MessageBox.Show("Bạn chưa nhập mã sô sinh viên");
-                txtMSSV.Focus();
-                return;
-            }
-            if (txtYKien.Text == "")
-            {
-                MessageBox.Show("Bạn chưa nhập ý kiến của bạn");
-                txtYKien.Focus();
-                return;
-            }
-            if (tmp == 0)
-            {
-                MessageBox.Show("Bạn chưa đánh giá sao");
+                MessageBox.Show(bll.KiemTraDuLieu(phanhoi));
                 return;
             }
 
-            string yKien=ChuanHoaYKien(txtYKien.Text);
+            bll.AddPhanHoi(phanhoi);
 
-            DataTable dtPhanHoi = dsPhanHoi.Tables["PhanHoi"];
-            DataRow newRow = dtPhanHoi.NewRow();
-            newRow["masv"] = txtMSSV.Text;
-            newRow["sosao"] = tmp;
-            newRow["hoten"] = txtHoTen.Text;
-            newRow["ykien"] = yKien;
-
-            dtPhanHoi.Rows.Add(newRow);
-
-            MessageBox.Show("Đánh giả đã gửi thành công");
+            MessageBox.Show("Đánh giá đã gửi thành công");
 
         }
 
@@ -108,10 +72,7 @@ namespace Đồ_án
         {
             try
             {
-                SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM phanhoivadanhgia", ConnectionManager.GetConnection());
-                SqlCommandBuilder commandBuilder = new SqlCommandBuilder(adapter);
-                adapter.Update(dsPhanHoi, "PhanHoi");
-
+                bll.SavePhanHoi();
                 MessageBox.Show("Dữ liệu đã được lưu thành công.");
             }
             catch (Exception ex)
@@ -123,10 +84,10 @@ namespace Đồ_án
 
         private void frmHuy_Click(object sender, EventArgs e)
         {
-            DialogResult result = MessageBox.Show("Bận có muốn hoàn tác các thay đổi hay không", "Thông báo", MessageBoxButtons.YesNo);
+            DialogResult result = MessageBox.Show("Bạn có muốn hoàn tác các thay đổi?", "Thông báo", MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes)
             {
-                dsPhanHoi = dsPhanHoiGoc.Copy();
+                bll.UndoChanges(); // Hoàn tác các thay đổi
                 MessageBox.Show("Đã hoàn tác các thay đổi.");
             }
         }

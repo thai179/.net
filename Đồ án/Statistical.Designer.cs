@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.lblThongKe = new System.Windows.Forms.Label();
             this.lblBieuDoThongKe = new System.Windows.Forms.Label();
             this.lblThongKeChiTiet = new System.Windows.Forms.Label();
@@ -125,32 +125,32 @@
             // 
             // chartThongKeDoanhThu
             // 
-            chartArea3.Name = "ChartArea1";
-            this.chartThongKeDoanhThu.ChartAreas.Add(chartArea3);
-            legend3.Name = "Legend1";
-            this.chartThongKeDoanhThu.Legends.Add(legend3);
+            chartArea1.Name = "ChartArea1";
+            this.chartThongKeDoanhThu.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chartThongKeDoanhThu.Legends.Add(legend1);
             this.chartThongKeDoanhThu.Location = new System.Drawing.Point(65, 149);
             this.chartThongKeDoanhThu.Name = "chartThongKeDoanhThu";
-            series3.ChartArea = "ChartArea1";
-            series3.Legend = "Legend1";
-            series3.Name = "Thanh Toán";
-            this.chartThongKeDoanhThu.Series.Add(series3);
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Thanh Toán";
+            this.chartThongKeDoanhThu.Series.Add(series1);
             this.chartThongKeDoanhThu.Size = new System.Drawing.Size(304, 129);
             this.chartThongKeDoanhThu.TabIndex = 8;
             this.chartThongKeDoanhThu.Text = "Biểu đồ thống kê doanh thu";
             // 
             // chartThongKeSinhVien
             // 
-            chartArea4.Name = "ChartArea1";
-            this.chartThongKeSinhVien.ChartAreas.Add(chartArea4);
-            legend4.Name = "Legend1";
-            this.chartThongKeSinhVien.Legends.Add(legend4);
+            chartArea2.Name = "ChartArea1";
+            this.chartThongKeSinhVien.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.chartThongKeSinhVien.Legends.Add(legend2);
             this.chartThongKeSinhVien.Location = new System.Drawing.Point(386, 149);
             this.chartThongKeSinhVien.Name = "chartThongKeSinhVien";
-            series4.ChartArea = "ChartArea1";
-            series4.Legend = "Legend1";
-            series4.Name = "Sinh Viên";
-            this.chartThongKeSinhVien.Series.Add(series4);
+            series2.ChartArea = "ChartArea1";
+            series2.Legend = "Legend1";
+            series2.Name = "Sinh Viên";
+            this.chartThongKeSinhVien.Series.Add(series2);
             this.chartThongKeSinhVien.Size = new System.Drawing.Size(304, 129);
             this.chartThongKeSinhVien.TabIndex = 9;
             this.chartThongKeSinhVien.Text = "Biểu đồ thống kê sinh viên";
@@ -193,6 +193,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(198)))), ((int)(((byte)(226)))), ((int)(((byte)(239)))));
             this.ClientSize = new System.Drawing.Size(755, 525);
             this.Controls.Add(this.btnThongKe);
             this.Controls.Add(this.dtpKetThuc);

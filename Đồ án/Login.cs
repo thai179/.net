@@ -19,13 +19,13 @@ namespace Đồ_án
             InitializeComponent();
         }
 
-        private bool AuthenticateUser(string username, string password)
+        private string AuthenticateUser(string username, string password)
         {
             // Sử dụng ConnectionManager để lấy kết nối
             using (SqlConnection connection = ConnectionManager.GetConnection())
             {
                 // Câu lệnh SQL để kiểm tra tài khoản và mật khẩu
-                string query = "SELECT COUNT(*) FROM nguoidung WHERE userid = @Username AND matkhau = @Password";
+                string query = "SELECT chucvu FROM nguoidung WHERE userid = @Username AND matkhau = @Password";
 
                 try
                 {
@@ -38,16 +38,15 @@ namespace Đồ_án
 
                         // Mở kết nối và kiểm tra kết quả
                         connection.Open();
-                        int result = (int)command.ExecuteScalar();
+                        string result = command.ExecuteScalar().ToString();
 
-                        // Nếu kết quả > 0, đăng nhập thành công
-                        return result > 0;
+                        return result;
                     }
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show("Lỗi kết nối cơ sở dữ liệu: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return false;
+                    return null;
                 }
             }
         }
@@ -77,9 +76,23 @@ namespace Đồ_án
 
             string hashedPassword = GetMD5Hash(password);
 
-            if (AuthenticateUser(username, hashedPassword))
+            if (AuthenticateUser(username, hashedPassword)=="ADMIN")
             {
-                frmDashboard frmDashboard = new frmDashboard(username);
+                frmDashboard frmDashboard = new frmDashboard();
+                this.Hide();
+                frmDashboard.ShowDialog();
+                this.Show();
+            }
+            else if (AuthenticateUser(username, hashedPassword) == "Sinh viên")
+            {
+                frmDashboardSV frmDashboard = new frmDashboardSV();
+                this.Hide();
+                frmDashboard.ShowDialog();
+                this.Show();
+            }
+            else if (AuthenticateUser(username, hashedPassword) == "Nhân viên")
+            {
+                frmDashboardNV frmDashboard = new frmDashboardNV();
                 this.Hide();
                 frmDashboard.ShowDialog();
                 this.Show();

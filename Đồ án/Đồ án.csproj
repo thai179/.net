@@ -60,6 +60,18 @@
     <Compile Include="Dashboard.Designer.cs">
       <DependentUpon>Dashboard.cs</DependentUpon>
     </Compile>
+    <Compile Include="DashboardNV.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DashboardNV.Designer.cs">
+      <DependentUpon>DashboardNV.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DashboardSV.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DashboardSV.Designer.cs">
+      <DependentUpon>DashboardSV.cs</DependentUpon>
+    </Compile>
     <Compile Include="DisciplinaryAction.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -134,6 +146,12 @@
     <EmbeddedResource Include="Dashboard.resx">
       <DependentUpon>Dashboard.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="DashboardNV.resx">
+      <DependentUpon>DashboardNV.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DashboardSV.resx">
+      <DependentUpon>DashboardSV.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DisciplinaryAction.resx">
       <DependentUpon>DisciplinaryAction.cs</DependentUpon>
     </EmbeddedResource>
@@ -195,6 +213,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\List.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\programmer.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

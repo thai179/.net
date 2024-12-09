@@ -73,7 +73,7 @@ namespace Đồ_án
                 // Đổi tên cột
                 dgvHienThi.Columns["sophong"].HeaderText = "Số phòng";
                 dgvHienThi.Columns["sluongtoida"].HeaderText = "Số lượng tối đa";
-                //dgvHienThi.Columns["sluongsv"].HeaderText = "Số lượng sinh viên";
+                dgvHienThi.Columns["sluongsv"].HeaderText = "Số lượng sinh viên";
                 dgvHienThi.Columns["loaiphong"].HeaderText = "Loại phòng";
                 dgvHienThi.Columns["tinhtrangphong"].HeaderText = "Tình Trạng";
             }
@@ -84,9 +84,14 @@ namespace Đồ_án
             if (dgvHienThi.SelectedRows.Count > 0)
             {
                 DataGridViewRow selectedRow = dgvHienThi.SelectedRows[0];
+                if ((int)selectedRow.Cells["sluongsv"].Value != 0 && selectedRow.Cells["sluongsv"].Value != null)
+                {
+                    MessageBox.Show("Bạn phải xóa hoặc chuyển tất cả sinh viên đi trước khi xóa phòng","Thông báo");
+                    return;
+                }
                 string soPhong = selectedRow.Cells["sophong"].Value.ToString();
                 DialogResult dialogResult = MessageBox.Show($"Bạn có chắc chắn muốn xóa phòng {soPhong}?","Xác nhận xóa",MessageBoxButtons.YesNo,MessageBoxIcon.Warning);
-
+                
                 if (dialogResult == DialogResult.Yes)
                 {
                     DataTable dataTable = dsPhong.Tables["phong"];

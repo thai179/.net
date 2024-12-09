@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -11,59 +10,24 @@ using System.Windows.Forms;
 
 namespace Đồ_án
 {
-    public partial class frmDashboard : Form
+    public partial class frmDashboardSV : Form
     {
-        private bool logoutFlag=false;
+        private bool logoutFlag = false;
 
         private frmQLTTLienLac qlThanNhan;
-        private frmQLPhong qlPhong;
         private frmThanhToan thanhToan;
         private frmBaoTri baoTri;
         private frmThongKe thongKe;
         private frmPhanHoi phanHoi;
-        private frmQLNguoiDung qlNguoiDung;
-        private frmQLSV qlSV;
-        private frmViPham viPham;
-        private DataSet dsNguoiDung;
-        public frmDashboard()
+        public frmDashboardSV()
         {
             InitializeComponent();
-        }
-
-        private void btnDangXuat_Click(object sender, EventArgs e)
-        {
-            this.logoutFlag = true;
-            DialogResult result = MessageBox.Show("Bạn có muốn đăng xuất không", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (result == DialogResult.Yes)
-            {
-                this.Close();
-            }
-        }
-
-        private void Dashboard_Load(object sender, EventArgs e)
-        {
-            
-            qlThanNhan = new frmQLTTLienLac();
-            qlPhong = new frmQLPhong();
-            thanhToan = new frmThanhToan();
-            baoTri = new frmBaoTri();
-            thongKe = new frmThongKe();
-            phanHoi = new frmPhanHoi();
-            qlNguoiDung = new frmQLNguoiDung();
-            qlSV = new frmQLSV();
-            viPham = new frmViPham();
         }
 
         private void btnQLThanNhan_Click(object sender, EventArgs e)
         {
             timeMenu.Start();
             SwitchToForm(qlThanNhan);
-        }
-
-        private void btnQLPhong_Click(object sender, EventArgs e)
-        {
-            timeMenu.Start();
-            SwitchToForm(qlPhong);
         }
 
         private void btnThanhToan_Click(object sender, EventArgs e)
@@ -90,24 +54,31 @@ namespace Đồ_án
             SwitchToForm(phanHoi);
         }
 
-        private void btnQLNguoiDung_Click(object sender, EventArgs e)
+        private void btnDangXuat_Click(object sender, EventArgs e)
         {
-            timeMenu.Start();
-            SwitchToForm(qlNguoiDung);
+            this.logoutFlag = true;
+            DialogResult result = MessageBox.Show("Bạn có muốn đăng xuất không", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                this.Close();
+            }
         }
 
-        private void btnQLSinhVien_Click(object sender, EventArgs e)
+        private void frmDashboardSV_FormClosed(object sender, FormClosedEventArgs e)
         {
-            timeMenu.Start();
-            SwitchToForm(qlSV);
+            if (logoutFlag)
+                return;
+            Application.Exit();
         }
 
-        private void btnQLViPham_Click(object sender, EventArgs e)
+        private void frmDashboardSV_FormClosing(object sender, FormClosingEventArgs e)
         {
-            timeMenu.Start();
-            SwitchToForm(viPham);
+            if (logoutFlag)
+                return;
+            DialogResult result = MessageBox.Show("Bạn có chắc là muốn thoát chương trình không?", "Thông Báo", MessageBoxButtons.YesNo);
+            if (result == DialogResult.No)
+                e.Cancel = true;
         }
-
         private void SwitchToForm(Form targetForm)
         {
             foreach (Control ctrl in pnlHienThi.Controls)
@@ -119,28 +90,11 @@ namespace Đồ_án
             targetForm.Show();  // Hiển thị form mới
         }
 
-        private void frmDashboard_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            if (logoutFlag)
-                return;
-            DialogResult result = MessageBox.Show("Bạn có chắc là muốn thoát chương trình không?", "Thông Báo", MessageBoxButtons.YesNo);
-            if (result == DialogResult.No)
-                e.Cancel = true;
-        }
-
-        private void frmDashboard_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            if (logoutFlag)
-                return ;
-            Application.Exit();
-        }
-
-        bool isCollapsed=false;
         private void ptbMenu_Click(object sender, EventArgs e)
         {
             timeMenu.Start();
         }
-
+        bool isCollapsed = false;
         private void timeMenu_Tick(object sender, EventArgs e)
         {
             if (isCollapsed)
@@ -167,6 +121,15 @@ namespace Đồ_án
                     isCollapsed = true;
                 }
             }
+        }
+
+        private void frmDashboardSV_Load(object sender, EventArgs e)
+        {
+            qlThanNhan = new frmQLTTLienLac();
+            thanhToan = new frmThanhToan();
+            baoTri = new frmBaoTri();
+            thongKe = new frmThongKe();
+            phanHoi = new frmPhanHoi();
         }
     }
 }

@@ -152,7 +152,7 @@
             this.cbbTinhTrang.FormattingEnabled = true;
             this.cbbTinhTrang.Items.AddRange(new object[] {
             "Còn trống",
-            "Đủ người"});
+            "Đang bảo trì"});
             this.cbbTinhTrang.Location = new System.Drawing.Point(208, 198);
             this.cbbTinhTrang.Name = "cbbTinhTrang";
             this.cbbTinhTrang.Size = new System.Drawing.Size(146, 24);

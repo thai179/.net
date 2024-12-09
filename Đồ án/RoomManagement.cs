@@ -56,17 +56,46 @@ namespace Đồ_án
             dsPhong = new DataSet();
             dsPhongGoc = new DataSet();
 
-            string query = "SELECT * FROM phong";
+            string queryPhong = "SELECT * FROM phong";
+            string queryUpdateSoluongSv = @"UPDATE phong SET sluongsv = (SELECT COUNT(*) FROM sinhvien WHERE sinhvien.sophong = phong.sophong)";
+
+            string queryUpdateTinhTrangPhong = @"
+        UPDATE phong
+        SET tinhtrangphong = 
+            CASE 
+                WHEN sluongsv >= sluongtoida THEN 'Đầy'
+                ELSE 'Còn trống'
+            END
+        WHERE tinhtrangphong != 'Đang bảo trì'
+    ";
 
             using (SqlConnection conn = ConnectionManager.GetConnection())
             {
-                using (SqlDataAdapter dataAdapter = new SqlDataAdapter(query, conn))
+                conn.Open();
+
+                // Cập nhật số lượng sinh viên cho mỗi phòng
+                using (SqlCommand cmdUpdateSv = new SqlCommand(queryUpdateSoluongSv, conn))
+                {
+                    cmdUpdateSv.ExecuteNonQuery();
+                }
+
+                // Cập nhật tình trạng phòng
+                using (SqlCommand cmdUpdateTinhTrang = new SqlCommand(queryUpdateTinhTrangPhong, conn))
+                {
+                    cmdUpdateTinhTrang.ExecuteNonQuery();
+                }
+
+                // Lấy dữ liệu từ bảng phong
+                using (SqlDataAdapter dataAdapter = new SqlDataAdapter(queryPhong, conn))
                 {
                     dataAdapter.Fill(dsPhongGoc, "phong");
                     dsPhong = dsPhongGoc.Copy();
                 }
 
+                // Lấy bảng phong từ dataset
                 DataTable dataTable = dsPhong.Tables["phong"];
+
+                // Hiển thị dữ liệu lên DataGridView
                 dgvHienThi.DataSource = dataTable;
                 dgvHienThi.AutoGenerateColumns = true;
 

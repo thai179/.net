@@ -136,6 +136,14 @@ namespace Đồ_án
             }
 
             // Kiểm tra mã sinh viên có trùng không
+            
+
+            ChuanHoaDuLieu();
+
+            return true; 
+        }
+        public bool KiemtraTrungLap()
+        {
             DataRow[] existingRows = dtSinhVien.Select("masv = '" + txtMSSV.Text.Trim() + "'");
             if (existingRows.Length > 0)
             {
@@ -151,10 +159,7 @@ namespace Đồ_án
                 txtCCCD.Focus();
                 return false;
             }
-
-            ChuanHoaDuLieu();
-
-            return true; 
+            return true;
         }
 
         private void ChuanHoaDuLieu()
@@ -178,7 +183,7 @@ namespace Đồ_án
 
         private void btnThem_Click(object sender, EventArgs e)
         {
-            if (!KiemTraDuLieu())
+            if (!KiemTraDuLieu() && !KiemtraTrungLap())
                 return;
             DataRow newSinhVienRow = dtSinhVien.NewRow();
 
@@ -427,6 +432,25 @@ namespace Đồ_án
                                     cmd.ExecuteNonQuery();
                                     dataChanged = true;  // Có thay đổi
                                 }
+                                string updateSoluongSinhVienSql = "UPDATE phong SET sluongsv = " +
+                                      "(SELECT COUNT(*) FROM sinhvien WHERE sophong = @sophong) " +
+                                      "WHERE sophong = @sophong";
+
+                                using (SqlCommand cmdUpdateSoluongSinhVien = new SqlCommand(updateSoluongSinhVienSql, conn, transaction))
+                                {
+                                    cmdUpdateSoluongSinhVien.Parameters.AddWithValue("@sophong", row["sophong"]);
+                                    cmdUpdateSoluongSinhVien.ExecuteNonQuery();
+                                }
+                                string updateTinhTrangPhongSql = "UPDATE phong SET tinhtrangphong = " +
+                                                                 "CASE WHEN sluongsv + 1 >= (SELECT sluongtoida FROM phong WHERE sophong = @sophong) THEN 'Đủ người' " +
+                                                                 "ELSE 'Còn trống' END " +
+                                                                 "WHERE sophong = @sophong";
+
+                                using (SqlCommand cmdUpdateTinhTrangPhong = new SqlCommand(updateTinhTrangPhongSql, conn, transaction))
+                                {
+                                    cmdUpdateTinhTrangPhong.Parameters.AddWithValue("@sophong", row["sophong"]);
+                                    cmdUpdateTinhTrangPhong.ExecuteNonQuery();
+                                }
                             }
                             else if (row.RowState == DataRowState.Added)
                             {
@@ -448,6 +472,26 @@ namespace Đồ_án
                                     cmd.ExecuteNonQuery();
                                     dataChanged = true;  // Có thay đổi
                                 }
+                                string updatePhongSoluongSql = "UPDATE phong SET sluongsv = sluongsv + 1 " +
+                                   "WHERE sophong = @sophong";
+
+                                using (SqlCommand cmdUpdatePhongSoluong = new SqlCommand(updatePhongSoluongSql, conn, transaction))
+                                {
+                                    cmdUpdatePhongSoluong.Parameters.AddWithValue("@sophong", row["sophong"]);
+                                    cmdUpdatePhongSoluong.ExecuteNonQuery();
+                                }
+
+                                // Cập nhật tình trạng phòng nếu số lượng sinh viên đạt tối đa
+                                string updateTinhTrangPhongSql = "UPDATE phong SET tinhtrangphong = " +
+                                                                 "CASE WHEN sluongsv + 1 >= (SELECT sluongtoida FROM phong WHERE sophong = @sophong) THEN 'Đủ người' " +
+                                                                 "ELSE 'Còn trống' END " +
+                                                                 "WHERE sophong = @sophong";
+
+                                using (SqlCommand cmdUpdateTinhTrangPhong = new SqlCommand(updateTinhTrangPhongSql, conn, transaction))
+                                {
+                                    cmdUpdateTinhTrangPhong.Parameters.AddWithValue("@sophong", row["sophong"]);
+                                    cmdUpdateTinhTrangPhong.ExecuteNonQuery();
+                                }
                             }
                             else if (row.RowState == DataRowState.Deleted)
                             {
@@ -461,6 +505,40 @@ namespace Đồ_án
 
                                     cmd.ExecuteNonQuery();
                                     dataChanged = true;  // Có thay đổi
+
+                                    // Cập nhật số lượng sinh viên trong phòng khi sinh viên bị xóa
+                                    string updatePhongSql = "UPDATE phong SET sluongsv = sluongsv - 1 " +
+                                                            "WHERE sophong = (SELECT sophong FROM sinhvien WHERE masv = @masv)";
+                                    using (SqlCommand cmdUpdatePhong = new SqlCommand(updatePhongSql, conn, transaction))
+                                    {
+                                        cmdUpdatePhong.Parameters.AddWithValue("@masv", row["masv", DataRowVersion.Original]);
+                                        cmdUpdatePhong.ExecuteNonQuery();
+                                    }
+
+                                    // Cập nhật tình trạng phòng nếu số lượng sinh viên = 0
+                                    string updatePhongTinhTrangSql = "UPDATE phong SET tinhtrangphong = 'Trống' " +
+                                                                    "WHERE sluongsv = 0 AND sophong = (SELECT sophong FROM sinhvien WHERE masv = @masv)";
+                                    using (SqlCommand cmdUpdateTinhTrang = new SqlCommand(updatePhongTinhTrangSql, conn, transaction))
+                                    {
+                                        cmdUpdateTinhTrang.Parameters.AddWithValue("@masv", row["masv", DataRowVersion.Original]);
+                                        cmdUpdateTinhTrang.ExecuteNonQuery();
+                                    }
+
+                                    // Xóa tài khoản người dùng
+                                    string deleteUserSql = "DELETE FROM nguoidung WHERE userid = (SELECT userid FROM sinhvien WHERE masv = @masv)";
+                                    using (SqlCommand cmdDeleteUser = new SqlCommand(deleteUserSql, conn, transaction))
+                                    {
+                                        cmdDeleteUser.Parameters.AddWithValue("@masv", row["masv", DataRowVersion.Original]);
+                                        cmdDeleteUser.ExecuteNonQuery();
+                                    }
+
+                                    // Xóa thông tin thân nhân của sinh viên
+                                    string deleteThanNhanSql = "DELETE FROM thannhan WHERE masv = @masv";
+                                    using (SqlCommand cmdDeleteThanNhan = new SqlCommand(deleteThanNhanSql, conn, transaction))
+                                    {
+                                        cmdDeleteThanNhan.Parameters.AddWithValue("@masv", row["masv", DataRowVersion.Original]);
+                                        cmdDeleteThanNhan.ExecuteNonQuery();
+                                    }
                                 }
                             }
                         }

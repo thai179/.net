@@ -24,7 +24,6 @@ namespace Đồ_án
         private frmQLNguoiDung qlNguoiDung;
         private frmQLSV qlSV;
         private frmViPham viPham;
-        private DataSet dsNguoiDung;
         public frmDashboard()
         {
             InitializeComponent();

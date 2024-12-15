@@ -15,22 +15,19 @@ namespace Đồ_án
     public partial class frmPhanHoi : Form
     {
         private DataSet dsPhanHoi;
-        private DataSet dsPhanHoiGoc;
         int tmp = 0;
         public frmPhanHoi()
         {
             InitializeComponent();
             this.TopLevel = false;
             dsPhanHoi = new DataSet();
-            dsPhanHoiGoc = new DataSet();
         }
 
         private void frmPhanHoi_Load(object sender, EventArgs e)
         {
             string query = "SELECT * FROM phanhoivadanhgia";
             SqlDataAdapter adapter = new SqlDataAdapter(query, ConnectionManager.GetConnection());
-            adapter.Fill(dsPhanHoiGoc, "PhanHoi");
-            dsPhanHoi = dsPhanHoiGoc.Copy();
+            adapter.Fill(dsPhanHoi, "PhanHoi");
         }
 
         private void txtMSSV_Leave(object sender, EventArgs e)
@@ -126,7 +123,7 @@ namespace Đồ_án
             DialogResult result = MessageBox.Show("Bận có muốn hoàn tác các thay đổi hay không", "Thông báo", MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes)
             {
-                dsPhanHoi = dsPhanHoiGoc.Copy();
+                dsPhanHoi.RejectChanges();
                 MessageBox.Show("Đã hoàn tác các thay đổi.");
             }
         }

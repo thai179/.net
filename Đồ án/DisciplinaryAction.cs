@@ -14,13 +14,11 @@ namespace Đồ_án
     public partial class frmViPham : Form
     {
         private DataSet dsViPham;
-        private DataSet dsViPhamGoc;
         public frmViPham()
         {
             InitializeComponent();
             this.TopLevel = false;
             dsViPham = new DataSet();
-            dsViPhamGoc = new DataSet();
         }
 
         private void btnClear_Click(object sender, EventArgs e)
@@ -45,19 +43,19 @@ namespace Đồ_án
         {
             if (txtSoPhong.Text =="")
             {
-                MessageBox.Show("ban chua nhap so phong", "thong bao");
+                MessageBox.Show("Bạn chưa nhập số phòng", "thông báo");
                 txtSoPhong.Focus();
                 return;
             }
             if (txtMoTaViPham.Text =="")
             {
-                MessageBox.Show("ban chua mo ta vi pham cua sinh vien");
+                MessageBox.Show("Bạn chưa mô tả vi phạm của sinh viên");
                 txtMoTaViPham.Focus();
                 return;
             }
             if (cbbHinhThucXuLy.Text =="")
             {
-                MessageBox.Show("ban chua chon hinh thuc su ly");
+                MessageBox.Show("Bạn chưa chọn hình thức sử lý");
                 cbbHinhThucXuLy.Focus();
                 return;
             }
@@ -92,7 +90,7 @@ namespace Đồ_án
                         txtSoPhong.Text = reader["SoPhong"].ToString();
                     }
                     else
-                        MessageBox.Show("Ma so sinh vien khong ton tai", "thong bao");
+                        MessageBox.Show("Mã số sinh vien không tồn tại", "Thông báo");
                     reader.Close();
                 }
             }
@@ -103,7 +101,7 @@ namespace Đồ_án
             DialogResult result = MessageBox.Show("Bận có muốn hoàn tác các thay đổi hay không","Thông báo",MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes)
             {
-                dsViPham = dsViPhamGoc.Copy();
+                dsViPham.RejectChanges();
                 MessageBox.Show("Đã hoàn tác các thay đổi.");
             }
             
@@ -142,8 +140,8 @@ namespace Đồ_án
         {
             string query = "SELECT * FROM thongtinvipham";
             SqlDataAdapter adapter = new SqlDataAdapter(query, ConnectionManager.GetConnection());
-            adapter.Fill(dsViPhamGoc, "ViPham");
-            dsViPham = dsViPhamGoc.Copy();
+            adapter.Fill(dsViPham, "ViPham");
+
         }
     }
 }

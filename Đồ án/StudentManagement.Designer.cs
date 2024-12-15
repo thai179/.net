@@ -193,6 +193,7 @@
             this.cbbTinh.Name = "cbbTinh";
             this.cbbTinh.Size = new System.Drawing.Size(249, 24);
             this.cbbTinh.TabIndex = 61;
+            this.cbbTinh.SelectedIndexChanged += new System.EventHandler(this.cbbTinh_SelectedIndexChanged);
             // 
             // rdbNu
             // 

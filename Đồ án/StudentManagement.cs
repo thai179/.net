@@ -6,6 +6,7 @@ using System.Data.SqlClient;
 using System.Drawing;
 using System.Globalization;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -16,24 +17,34 @@ namespace Đồ_án
     public partial class frmQLSV : Form
     {
         private DataSet dsSinhVien;
-        private DataSet dsSinhVienGoc;
         private DataTable dtSinhVien;
         private DataTable dtDiaChi;
+        SqlDataAdapter adapterSinhVien;
+        SqlDataAdapter adapterDiaChi;
+        SqlDataAdapter adapterNguoiDung;
+        SqlDataAdapter adapterPhong;
+        SqlCommandBuilder builderSinhVien;
+        SqlCommandBuilder builderDiaChi;
+        SqlCommandBuilder builderNguoiDung;
+        SqlCommandBuilder builderPhong;
         public frmQLSV()
         {
             InitializeComponent();
             this.TopLevel = false;
             dsSinhVien = new DataSet();
-            dsSinhVienGoc = new DataSet();
+            cbbTinh.SelectedIndexChanged += cbbTinh_SelectedIndexChanged;
+            LoadTinh();
         }
 
         private void frmQLSV_Load(object sender, EventArgs e)
         {
-            SqlDataAdapter adapterSinhVien = new SqlDataAdapter("SELECT * FROM sinhvien", ConnectionManager.GetConnection());
-            SqlDataAdapter adapterDiaChi = new SqlDataAdapter("SELECT * FROM diachisv", ConnectionManager.GetConnection());
-            adapterSinhVien.Fill(dsSinhVienGoc, "sinhvien");
-            adapterDiaChi.Fill(dsSinhVienGoc, "diachisv");
-            dsSinhVien = dsSinhVienGoc.Copy();
+            adapterSinhVien = new SqlDataAdapter("SELECT * FROM sinhvien", ConnectionManager.GetConnection());
+            adapterDiaChi = new SqlDataAdapter("SELECT * FROM diachisv", ConnectionManager.GetConnection());
+            adapterNguoiDung = new SqlDataAdapter("SELECT * FROM nguoidung", ConnectionManager.GetConnection());
+            adapterPhong = new SqlDataAdapter("SELECT * FROM phong", ConnectionManager.GetConnection());
+            adapterSinhVien.Fill(dsSinhVien, "sinhvien");
+            adapterDiaChi.Fill(dsSinhVien, "diachisv");
+            adapterPhong.Fill(dsSinhVien, "phong");
 
             dtSinhVien = dsSinhVien.Tables["sinhvien"];
             dtDiaChi = dsSinhVien.Tables["diachisv"];
@@ -44,7 +55,12 @@ namespace Đồ_án
             // Thiết lập mối quan hệ giữa các bảng
             DataRelation relation = new DataRelation("NguoiDung_DiaChi", dtSinhVien.Columns["masv"], dtDiaChi.Columns["masv"]);
             dsSinhVien.Relations.Add(relation);
-
+            builderNguoiDung = new SqlCommandBuilder(adapterNguoiDung);
+            builderDiaChi = new SqlCommandBuilder(adapterDiaChi);
+            builderPhong = new SqlCommandBuilder(adapterPhong);
+            builderSinhVien = new SqlCommandBuilder(adapterSinhVien);
+            adapterDiaChi.DeleteCommand = new SqlCommand("delete from diachisv where masv = @masv", ConnectionManager.GetConnection());
+            adapterDiaChi.DeleteCommand.Parameters.Add("@masv", SqlDbType.VarChar, 50, "masv");
         }
 
         private bool KiemTraDuLieu()
@@ -136,11 +152,11 @@ namespace Đồ_án
             }
 
             // Kiểm tra mã sinh viên có trùng không
-            
+
 
             ChuanHoaDuLieu();
 
-            return true; 
+            return true;
         }
         public bool KiemtraTrungLap()
         {
@@ -183,14 +199,22 @@ namespace Đồ_án
 
         private void btnThem_Click(object sender, EventArgs e)
         {
-            if (!KiemTraDuLieu() && !KiemtraTrungLap())
+            if (dsSinhVien.Tables[0].Select($"masv ='{txtMSSV.Text.Trim()}'").Length>0)
+            {
+                MessageBox.Show("Sinh viên đã tồn tại");
+                return;
+
+            }
+            if (!KiemTraDuLieu())
+                return;
+            if (!KiemtraTrungLap())
                 return;
             DataRow newSinhVienRow = dtSinhVien.NewRow();
 
             newSinhVienRow["masv"] = txtMSSV.Text;
             newSinhVienRow["hoten"] = txtName.Text;
             newSinhVienRow["ngaysinh"] = dtpNgaySinh.Value;
-            newSinhVienRow["gioitinh"] = rdbNam.Checked ? "nam" : "nữ";
+            newSinhVienRow["gioitinh"] = rdbNam.Checked ? "nam" : "N'nữ'";
             newSinhVienRow["cccd"] = txtCCCD.Text;
             newSinhVienRow["sdt"] = txtSDT.Text;
             newSinhVienRow["sophong"] = txtSoPhong.Text;
@@ -206,6 +230,11 @@ namespace Đồ_án
             newDiaChiRow["sonha"] = txtDiaChiChiTiet.Text;
 
             dtDiaChi.Rows.Add(newDiaChiRow);
+
+            DataRow rowPhong = dsSinhVien.Tables["phong"].Select($"sophong = '{txtSoPhong.Text}'")[0];
+            rowPhong["sluongsv"] = int.Parse(rowPhong["sluongsv"].ToString())+1;
+            if (rowPhong["sluongsv"] == rowPhong["sluongtoida"])
+                rowPhong["tinhtrang"] = "Đủ người";
 
             MessageBox.Show("Dữ liệu đã được thêm vào bộ nhớ. Hãy nhấn 'Lưu' để lưu vào cơ sở dữ liệu.");
         }
@@ -233,7 +262,6 @@ namespace Đồ_án
                 {
                     diaChiRow.Delete();
                 }
-
                 // Thông báo đã xóa thành công
                 MessageBox.Show("Sinh viên đã được xóa.");
             }
@@ -258,19 +286,18 @@ namespace Đồ_án
             }
 
             // Tìm dòng dữ liệu của sinh viên với mã sinh viên nhập vào
-            DataRow sinhVienRow = dtSinhVien.Rows.Find(txtMSSV.Text);
+            DataRow sinhVienRow = dsSinhVien.Tables["sinhvien"].Select($"masv ='{txtMSSV.Text}'")[0];
             if (sinhVienRow != null)
             {
                 // Cập nhật các thông tin sinh viên (không thay đổi masv vì nó là khóa chính)
                 sinhVienRow["hoten"] = txtName.Text;
                 sinhVienRow["ngaysinh"] = dtpNgaySinh.Value;
-                sinhVienRow["gioitinh"] = rdbNam.Checked ? "nam" : "nữ";
+                sinhVienRow["gioitinh"] = rdbNam.Checked ? "nam" : "nữ'";
                 sinhVienRow["cccd"] = txtCCCD.Text;
                 sinhVienRow["sdt"] = txtSDT.Text;
-                sinhVienRow["sophong"] = txtSoPhong.Text;
 
-                // Thông báo cập nhật thông tin sinh viên thành công
-                MessageBox.Show("Thông tin sinh viên đã được cập nhật.");
+
+                sinhVienRow["sophong"] = txtSoPhong.Text;
             }
             else
             {
@@ -278,26 +305,9 @@ namespace Đồ_án
                 return;
             }
 
-            // Cập nhật thông tin địa chỉ
-            DataRow diaChiRow = dtDiaChi.Rows.Find(txtMSSV.Text);
-            if (diaChiRow != null)
-            {
-                diaChiRow["tinh"] = cbbTinh.Text;
-                diaChiRow["huyen_tp"] = cbbQuanHuyen.Text;
-                diaChiRow["sonha"] = txtDiaChiChiTiet.Text;
-
-                // Thông báo cập nhật thông tin địa chỉ thành công
-                MessageBox.Show("Thông tin địa chỉ đã được cập nhật.");
-            }
-            else
-            {
-                MessageBox.Show("Không tìm thấy địa chỉ của sinh viên này.");
-                return;
-            }
-
             // Thông báo yêu cầu nhấn Lưu để lưu vào cơ sở dữ liệu
             MessageBox.Show("Dữ liệu đã được cập nhật trong bộ nhớ. Hãy nhấn 'Lưu' để lưu vào cơ sở dữ liệu.");
-        
+
         }
 
 
@@ -305,6 +315,7 @@ namespace Đồ_án
         {
             txtMSSV.Text = "";
             txtCCCD.Text = "";
+            txtMaND.Text = "";
             txtDiaChiChiTiet.Text = "";
             txtName.Text = "";
             txtSDT.Text = "";
@@ -321,7 +332,7 @@ namespace Đồ_án
         {
             if (txtMSSV.Text == "")
             {
-                MessageBox.Show("Bạn chưa nhập mssv","Thông Báo");
+                MessageBox.Show("Bạn chưa nhập mssv", "Thông Báo");
                 txtMSSV.Focus();
                 return;
             }
@@ -329,10 +340,10 @@ namespace Đồ_án
             using (SqlConnection conn = ConnectionManager.GetConnection())
             {
                 conn.Open();
-                string query = "SELECT sv.hoten, sv.ngaysinh, sv.gioitinh, sv.cccd, sv.sdt, sv.sophong, " +
+                string query = "SELECT sv.hoten, sv.ngaysinh, sv.gioitinh, sv.cccd, sv.sdt, sv.sophong, sv.userid, " +
                        "dc.tinh, dc.huyen_tp, dc.sonha " +
                        "FROM sinhvien sv " +
-                       "JOIN diachisv dc ON sv.masv = dc.masv " +
+                        "JOIN diachisv dc ON sv.masv = dc.masv " +
                        "WHERE sv.masv = @masv";
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
@@ -345,6 +356,7 @@ namespace Đồ_án
                         {
                             // Đổ dữ liệu vào các TextBox tương ứng
                             txtName.Text = reader["hoten"].ToString();
+                            txtMaND.Text = reader["userid"].ToString();
                             dtpNgaySinh.Value = Convert.ToDateTime(reader["ngaysinh"]);
                             txtCCCD.Text = reader["cccd"].ToString();
                             txtSDT.Text = reader["sdt"].ToString();
@@ -380,9 +392,6 @@ namespace Đồ_án
                 dtSinhVien.RejectChanges();
                 dtDiaChi.RejectChanges();
 
-                // Sao chép lại dữ liệu gốc từ dsSinhVienGoc để khôi phục lại trạng thái ban đầu
-                dsSinhVien = dsSinhVienGoc.Copy();
-
                 // Cập nhật lại các DataTable
                 dtSinhVien = dsSinhVien.Tables["sinhvien"];
                 dtDiaChi = dsSinhVien.Tables["diachisv"];
@@ -399,217 +408,30 @@ namespace Đồ_án
                 using (SqlConnection conn = ConnectionManager.GetConnection())
                 {
                     conn.Open();
-
                     // Tạo một giao dịch (transaction) để đảm bảo tất cả thay đổi được cập nhật đồng bộ
                     SqlTransaction transaction = conn.BeginTransaction();
-
-                    try
+                    if (dsSinhVien.HasChanges(DataRowState.Added))
                     {
-                        bool dataChanged = false;
-
-                        // Cập nhật bảng sinhvien
-                        foreach (DataRow row in dtSinhVien.Rows)
-                        {
-                            if (row.RowState == DataRowState.Modified)
-                            {
-                                // Cập nhật các thay đổi trên bảng sinhvien
-                                string updateSinhVienSql = "UPDATE sinhvien SET " +
-                                    "hoten = @hoten, ngaysinh = @ngaysinh, gioitinh = @gioitinh, " +
-                                    "cccd = @cccd, sdt = @sdt, sophong = @sophong, userid = @userid " +
-                                    "WHERE masv = @masv";
-
-                                using (SqlCommand cmd = new SqlCommand(updateSinhVienSql, conn, transaction))
-                                {
-                                    cmd.Parameters.AddWithValue("@hoten", row["hoten"]);
-                                    cmd.Parameters.AddWithValue("@ngaysinh", row["ngaysinh"]);
-                                    cmd.Parameters.AddWithValue("@gioitinh", row["gioitinh"]);
-                                    cmd.Parameters.AddWithValue("@cccd", row["cccd"]);
-                                    cmd.Parameters.AddWithValue("@sdt", row["sdt"]);
-                                    cmd.Parameters.AddWithValue("@sophong", row["sophong"]);
-                                    cmd.Parameters.AddWithValue("@userid", row["userid"]);
-                                    cmd.Parameters.AddWithValue("@masv", row["masv"]);
-
-                                    cmd.ExecuteNonQuery();
-                                    dataChanged = true;  // Có thay đổi
-                                }
-                                string updateSoluongSinhVienSql = "UPDATE phong SET sluongsv = " +
-                                      "(SELECT COUNT(*) FROM sinhvien WHERE sophong = @sophong) " +
-                                      "WHERE sophong = @sophong";
-
-                                using (SqlCommand cmdUpdateSoluongSinhVien = new SqlCommand(updateSoluongSinhVienSql, conn, transaction))
-                                {
-                                    cmdUpdateSoluongSinhVien.Parameters.AddWithValue("@sophong", row["sophong"]);
-                                    cmdUpdateSoluongSinhVien.ExecuteNonQuery();
-                                }
-                                string updateTinhTrangPhongSql = "UPDATE phong SET tinhtrangphong = " +
-                                                                 "CASE WHEN sluongsv + 1 >= (SELECT sluongtoida FROM phong WHERE sophong = @sophong) THEN 'Đủ người' " +
-                                                                 "ELSE 'Còn trống' END " +
-                                                                 "WHERE sophong = @sophong";
-
-                                using (SqlCommand cmdUpdateTinhTrangPhong = new SqlCommand(updateTinhTrangPhongSql, conn, transaction))
-                                {
-                                    cmdUpdateTinhTrangPhong.Parameters.AddWithValue("@sophong", row["sophong"]);
-                                    cmdUpdateTinhTrangPhong.ExecuteNonQuery();
-                                }
-                            }
-                            else if (row.RowState == DataRowState.Added)
-                            {
-                                // Thêm mới sinh viên vào bảng sinhvien
-                                string insertSinhVienSql = "INSERT INTO sinhvien (masv, hoten, ngaysinh, gioitinh, cccd, sdt, sophong, userid) " +
-                                    "VALUES (@masv, @hoten, @ngaysinh, @gioitinh, @cccd, @sdt, @sophong, @userid)";
-
-                                using (SqlCommand cmd = new SqlCommand(insertSinhVienSql, conn, transaction))
-                                {
-                                    cmd.Parameters.AddWithValue("@masv", row["masv"]);
-                                    cmd.Parameters.AddWithValue("@hoten", row["hoten"]);
-                                    cmd.Parameters.AddWithValue("@ngaysinh", row["ngaysinh"]);
-                                    cmd.Parameters.AddWithValue("@gioitinh", row["gioitinh"]);
-                                    cmd.Parameters.AddWithValue("@cccd", row["cccd"]);
-                                    cmd.Parameters.AddWithValue("@sdt", row["sdt"]);
-                                    cmd.Parameters.AddWithValue("@sophong", row["sophong"]);
-                                    cmd.Parameters.AddWithValue("@userid", row["userid"]);
-
-                                    cmd.ExecuteNonQuery();
-                                    dataChanged = true;  // Có thay đổi
-                                }
-                                string updatePhongSoluongSql = "UPDATE phong SET sluongsv = sluongsv + 1 " +
-                                   "WHERE sophong = @sophong";
-
-                                using (SqlCommand cmdUpdatePhongSoluong = new SqlCommand(updatePhongSoluongSql, conn, transaction))
-                                {
-                                    cmdUpdatePhongSoluong.Parameters.AddWithValue("@sophong", row["sophong"]);
-                                    cmdUpdatePhongSoluong.ExecuteNonQuery();
-                                }
-
-                                // Cập nhật tình trạng phòng nếu số lượng sinh viên đạt tối đa
-                                string updateTinhTrangPhongSql = "UPDATE phong SET tinhtrangphong = " +
-                                                                 "CASE WHEN sluongsv + 1 >= (SELECT sluongtoida FROM phong WHERE sophong = @sophong) THEN 'Đủ người' " +
-                                                                 "ELSE 'Còn trống' END " +
-                                                                 "WHERE sophong = @sophong";
-
-                                using (SqlCommand cmdUpdateTinhTrangPhong = new SqlCommand(updateTinhTrangPhongSql, conn, transaction))
-                                {
-                                    cmdUpdateTinhTrangPhong.Parameters.AddWithValue("@sophong", row["sophong"]);
-                                    cmdUpdateTinhTrangPhong.ExecuteNonQuery();
-                                }
-                            }
-                            else if (row.RowState == DataRowState.Deleted)
-                            {
-                                // Xóa sinh viên khỏi bảng sinhvien
-                                string deleteSinhVienSql = "DELETE FROM sinhvien WHERE masv = @masv";
-
-                                using (SqlCommand cmd = new SqlCommand(deleteSinhVienSql, conn, transaction))
-                                {
-                                    // Dòng bị xóa có trạng thái Deleted, phải lấy giá trị trước khi xóa
-                                    cmd.Parameters.AddWithValue("@masv", row["masv", DataRowVersion.Original]);
-
-                                    cmd.ExecuteNonQuery();
-                                    dataChanged = true;  // Có thay đổi
-
-                                    // Cập nhật số lượng sinh viên trong phòng khi sinh viên bị xóa
-                                    string updatePhongSql = "UPDATE phong SET sluongsv = sluongsv - 1 " +
-                                                            "WHERE sophong = (SELECT sophong FROM sinhvien WHERE masv = @masv)";
-                                    using (SqlCommand cmdUpdatePhong = new SqlCommand(updatePhongSql, conn, transaction))
-                                    {
-                                        cmdUpdatePhong.Parameters.AddWithValue("@masv", row["masv", DataRowVersion.Original]);
-                                        cmdUpdatePhong.ExecuteNonQuery();
-                                    }
-
-                                    // Cập nhật tình trạng phòng nếu số lượng sinh viên = 0
-                                    string updatePhongTinhTrangSql = "UPDATE phong SET tinhtrangphong = 'Trống' " +
-                                                                    "WHERE sluongsv = 0 AND sophong = (SELECT sophong FROM sinhvien WHERE masv = @masv)";
-                                    using (SqlCommand cmdUpdateTinhTrang = new SqlCommand(updatePhongTinhTrangSql, conn, transaction))
-                                    {
-                                        cmdUpdateTinhTrang.Parameters.AddWithValue("@masv", row["masv", DataRowVersion.Original]);
-                                        cmdUpdateTinhTrang.ExecuteNonQuery();
-                                    }
-
-                                    // Xóa tài khoản người dùng
-                                    string deleteUserSql = "DELETE FROM nguoidung WHERE userid = (SELECT userid FROM sinhvien WHERE masv = @masv)";
-                                    using (SqlCommand cmdDeleteUser = new SqlCommand(deleteUserSql, conn, transaction))
-                                    {
-                                        cmdDeleteUser.Parameters.AddWithValue("@masv", row["masv", DataRowVersion.Original]);
-                                        cmdDeleteUser.ExecuteNonQuery();
-                                    }
-
-                                    // Xóa thông tin thân nhân của sinh viên
-                                    string deleteThanNhanSql = "DELETE FROM thannhan WHERE masv = @masv";
-                                    using (SqlCommand cmdDeleteThanNhan = new SqlCommand(deleteThanNhanSql, conn, transaction))
-                                    {
-                                        cmdDeleteThanNhan.Parameters.AddWithValue("@masv", row["masv", DataRowVersion.Original]);
-                                        cmdDeleteThanNhan.ExecuteNonQuery();
-                                    }
-                                }
-                            }
-                        }
-
-                        // Cập nhật bảng diachisv
-                        foreach (DataRow row in dtDiaChi.Rows)
-                        {
-                            if (row.RowState == DataRowState.Modified)
-                            {
-                                string updateDiaChiSql = "UPDATE diachisv SET " +
-                                    "tinh = @tinh, huyen_tp = @huyen_tp, sonha = @sonha " +
-                                    "WHERE masv = @masv";
-
-                                using (SqlCommand cmd = new SqlCommand(updateDiaChiSql, conn, transaction))
-                                {
-                                    cmd.Parameters.AddWithValue("@tinh", row["tinh"]);
-                                    cmd.Parameters.AddWithValue("@huyen_tp", row["huyen_tp"]);
-                                    cmd.Parameters.AddWithValue("@sonha", row["sonha"]);
-                                    cmd.Parameters.AddWithValue("@masv", row["masv"]);
-
-                                    cmd.ExecuteNonQuery();
-                                    dataChanged = true;  // Có thay đổi
-                                }
-                            }
-                            else if (row.RowState == DataRowState.Added)
-                            {
-                                string insertDiaChiSql = "INSERT INTO diachisv (masv, tinh, huyen_tp, sonha) " +
-                                    "VALUES (@masv, @tinh, @huyen_tp, @sonha)";
-
-                                using (SqlCommand cmd = new SqlCommand(insertDiaChiSql, conn, transaction))
-                                {
-                                    cmd.Parameters.AddWithValue("@masv", row["masv"]);
-                                    cmd.Parameters.AddWithValue("@tinh", row["tinh"]);
-                                    cmd.Parameters.AddWithValue("@huyen_tp", row["huyen_tp"]);
-                                    cmd.Parameters.AddWithValue("@sonha", row["sonha"]);
-
-                                    cmd.ExecuteNonQuery();
-                                    dataChanged = true;  // Có thay đổi
-                                }
-                            }
-                            else if (row.RowState == DataRowState.Deleted)
-                            {
-                                string deleteDiaChiSql = "DELETE FROM diachisv WHERE masv = @masv";
-
-                                using (SqlCommand cmd = new SqlCommand(deleteDiaChiSql, conn, transaction))
-                                {
-                                    cmd.Parameters.AddWithValue("@masv", row["masv", DataRowVersion.Original]);
-
-                                    cmd.ExecuteNonQuery();
-                                    dataChanged = true;  // Có thay đổi
-                                }
-                            }
-                        }
-
-                        // Nếu có thay đổi, commit giao dịch
-                        if (dataChanged)
-                        {
-                            transaction.Commit();
-                            MessageBox.Show("Dữ liệu đã được lưu thành công.");
-                        }
-                        else
-                        {
-                            MessageBox.Show("Không có thay đổi nào để lưu.");
-                        }
+                        adapterSinhVien.Update(dsSinhVien.GetChanges(DataRowState.Added), "sinhvien");
+                        adapterDiaChi.Update(dsSinhVien.GetChanges(DataRowState.Added), "diachisv");
+                        adapterPhong.Update(dsSinhVien.GetChanges(DataRowState.Added), "phong");
                     }
-                    catch (Exception ex)
+
+                    // 2. Xử lý các bản ghi Update
+                    if (dsSinhVien.HasChanges(DataRowState.Modified))
                     {
-                        // Rollback giao dịch nếu có lỗi
-                        transaction.Rollback();
-                        MessageBox.Show("Lỗi: " + ex.Message);
+                        adapterSinhVien.Update(dsSinhVien.GetChanges(DataRowState.Modified), "sinhvien");
+                        adapterDiaChi.Update(dsSinhVien.GetChanges(DataRowState.Modified), "diachisv");
                     }
+
+                    // 3. Xử lý các bản ghi Delete
+                    if (dsSinhVien.HasChanges(DataRowState.Deleted))
+                    {
+                        adapterSinhVien.Update(dsSinhVien.GetChanges(DataRowState.Deleted), "sinhvien");
+                    }
+
+                    transaction.Commit();
+                    MessageBox.Show("Dữ liệu đã được lưu thành công");
                 }
             }
             catch (Exception ex)
@@ -618,7 +440,68 @@ namespace Đồ_án
             }
         }
 
+        private void LoadTinh()
+        {
+            SqlConnection conn = ConnectionManager.GetConnection();
+            try
+            {
+                conn.Open();
+                string query = "SELECT TinhID, TenTinh FROM Tinh";
+                SqlDataAdapter daTinh = new SqlDataAdapter(query, conn);
+                DataTable dtTinh = new DataTable();
+                daTinh.Fill(dtTinh);
 
+                cbbTinh.DataSource = dtTinh;
+                cbbTinh.DisplayMember = "TenTinh";  // Hiển thị tên tỉnh
+                cbbTinh.ValueMember = "TinhID";    // Lưu giá trị là mã tỉnh
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+        private void LoadHuyen(int maTinh)
+        {
+            SqlConnection conn = ConnectionManager.GetConnection();
+            try
+            {
+                conn.Open();
+                string query = "SELECT HuyenID, TenHuyen FROM huyen WHERE TinhID = @TinhID";  // Lọc các huyện theo mã tỉnh
+                SqlDataAdapter daHuyen = new SqlDataAdapter(query, conn);
+                daHuyen.SelectCommand.Parameters.AddWithValue("@TinhID", maTinh);
+                DataTable dtHuyen = new DataTable();
+                daHuyen.Fill(dtHuyen);
 
+                cbbQuanHuyen.DataSource = dtHuyen;
+                cbbQuanHuyen.DisplayMember = "TenHuyen";  // Hiển thị tên huyện
+                cbbQuanHuyen.ValueMember = "HuyenID";    // Lưu giá trị là mã huyện
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+        private void cbbTinh_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbbTinh.SelectedIndex != -1)
+            {
+                // Lấy DataRowView từ SelectedItem
+                DataRowView selectedRow = (DataRowView)cbbTinh.SelectedItem;
+
+                // Lấy giá trị TinhID từ DataRowView
+                int matinh = Convert.ToInt32(selectedRow["TinhID"]);
+
+                LoadHuyen(matinh);
+            }
+        }
     }
+
 }

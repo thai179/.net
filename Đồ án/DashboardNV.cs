@@ -14,7 +14,6 @@ namespace Đồ_án
     {
         private bool logoutFlag = false;
 
-        private string username;
         private frmQLTTLienLac qlThanNhan;
         private frmQLPhong qlPhong;
         private frmThanhToan thanhToan;
@@ -22,7 +21,6 @@ namespace Đồ_án
         private frmThongKe thongKe;
         private frmQLSV qlSV;
         private frmViPham viPham;
-        private DataSet dsNguoiDung;
         public frmDashboardNV()
         {
             InitializeComponent();

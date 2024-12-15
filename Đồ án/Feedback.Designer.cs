@@ -42,7 +42,7 @@
             this.ptbSao1 = new System.Windows.Forms.PictureBox();
             this.txtYKien = new System.Windows.Forms.TextBox();
             this.btnGuiPhanHoi = new System.Windows.Forms.Button();
-            this.frmHuy = new System.Windows.Forms.Button();
+            this.btnHuy = new System.Windows.Forms.Button();
             this.ptbRong1 = new System.Windows.Forms.PictureBox();
             this.ptbRong2 = new System.Windows.Forms.PictureBox();
             this.ptbSao2 = new System.Windows.Forms.PictureBox();
@@ -176,15 +176,15 @@
             this.btnGuiPhanHoi.UseVisualStyleBackColor = true;
             this.btnGuiPhanHoi.Click += new System.EventHandler(this.btnGuiPhanHoi_Click);
             // 
-            // frmHuy
+            // btnHuy
             // 
-            this.frmHuy.Location = new System.Drawing.Point(496, 444);
-            this.frmHuy.Name = "frmHuy";
-            this.frmHuy.Size = new System.Drawing.Size(138, 51);
-            this.frmHuy.TabIndex = 17;
-            this.frmHuy.Text = "Hủy";
-            this.frmHuy.UseVisualStyleBackColor = true;
-            this.frmHuy.Click += new System.EventHandler(this.frmHuy_Click);
+            this.btnHuy.Location = new System.Drawing.Point(496, 444);
+            this.btnHuy.Name = "btnHuy";
+            this.btnHuy.Size = new System.Drawing.Size(138, 51);
+            this.btnHuy.TabIndex = 17;
+            this.btnHuy.Text = "Hủy";
+            this.btnHuy.UseVisualStyleBackColor = true;
+            this.btnHuy.Click += new System.EventHandler(this.frmHuy_Click);
             // 
             // ptbRong1
             // 
@@ -313,7 +313,7 @@
             this.Controls.Add(this.ptbRong2);
             this.Controls.Add(this.ptbSao2);
             this.Controls.Add(this.ptbRong1);
-            this.Controls.Add(this.frmHuy);
+            this.Controls.Add(this.btnHuy);
             this.Controls.Add(this.btnGuiPhanHoi);
             this.Controls.Add(this.txtYKien);
             this.Controls.Add(this.ptbSao1);
@@ -360,7 +360,7 @@
         private System.Windows.Forms.PictureBox ptbSao1;
         private System.Windows.Forms.TextBox txtYKien;
         private System.Windows.Forms.Button btnGuiPhanHoi;
-        private System.Windows.Forms.Button frmHuy;
+        private System.Windows.Forms.Button btnHuy;
         private System.Windows.Forms.PictureBox ptbRong1;
         private System.Windows.Forms.PictureBox ptbRong2;
         private System.Windows.Forms.PictureBox ptbSao2;

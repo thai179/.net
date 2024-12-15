@@ -16,27 +16,27 @@ namespace Đồ_án
     public partial class frmQLNguoiDung : Form
     {
         private DataSet dsNguoiDung;
-        private DataSet dsNguoiDungGoc;
         private DataTable dtNguoiDung;
         private DataTable dtDiaChi;
+        private SqlDataAdapter adapterNguoiDung;
+        private SqlDataAdapter adapterDiaChi;
         public frmQLNguoiDung()
         {
             InitializeComponent();
             this.TopLevel = false;
             dsNguoiDung = new DataSet();
-            dsNguoiDungGoc = new DataSet();
-            
+            cbbTinh.SelectedIndexChanged += cbbTinh_SelectedIndexChanged;
+            LoadTinh();
         }
 
         private void frmQLNguoiDung_Load(object sender, EventArgs e)
         {
             string queryNguoiDung = "select * from nguoidung";
             string queryDiaChi = "select * from diachind";
-            SqlDataAdapter adapterNguoiDung = new SqlDataAdapter(queryNguoiDung,ConnectionManager.GetConnection());
-            SqlDataAdapter adapterDiaChi = new SqlDataAdapter(queryDiaChi, ConnectionManager.GetConnection());
-            adapterNguoiDung.Fill(dsNguoiDungGoc,"nguoidung");
-            adapterDiaChi.Fill(dsNguoiDungGoc,"diachind");
-            dsNguoiDung = dsNguoiDungGoc.Copy();
+            adapterNguoiDung = new SqlDataAdapter(queryNguoiDung, ConnectionManager.GetConnection());
+            adapterDiaChi = new SqlDataAdapter(queryDiaChi, ConnectionManager.GetConnection());
+            adapterNguoiDung.Fill(dsNguoiDung, "nguoidung");
+            adapterDiaChi.Fill(dsNguoiDung, "diachind");
             dtNguoiDung = dsNguoiDung.Tables["nguoidung"];
             dtDiaChi = dsNguoiDung.Tables["diachind"];
 
@@ -47,6 +47,10 @@ namespace Đồ_án
             // Thiết lập mối quan hệ giữa các bảng
             DataRelation relation = new DataRelation("NguoiDung_DiaChi", dtNguoiDung.Columns["userid"], dtDiaChi.Columns["userid"]);
             dsNguoiDung.Relations.Add(relation);
+            SqlCommandBuilder cmddc = new SqlCommandBuilder(adapterDiaChi);
+            SqlCommandBuilder cmdnd = new SqlCommandBuilder(adapterNguoiDung);
+            adapterDiaChi.DeleteCommand = new SqlCommand("delete from diachind where userid = @userid", ConnectionManager.GetConnection());
+            adapterDiaChi.DeleteCommand.Parameters.Add("@userid", SqlDbType.VarChar, 50, "userid");
         }
 
         private void btnClear_Click(object sender, EventArgs e)
@@ -98,7 +102,6 @@ namespace Đồ_án
                 txtHoTen.Focus();
                 return false;
             }
-
             txtHoTen.Text = ChuanHoaTen(txtHoTen.Text);
 
             if (string.IsNullOrEmpty(txtSDT.Text))
@@ -144,6 +147,10 @@ namespace Đồ_án
                 return false;
             }
 
+            return true;
+        }
+        private bool KTUseridTrung()
+        {
             DataRow[] existingRows = dtNguoiDung.Select("userid = '" + txtMaND.Text + "'");
             if (existingRows.Length > 0)
             {
@@ -151,7 +158,6 @@ namespace Đồ_án
                 txtMaND.Focus();
                 return false;
             }
-
             return true;
         }
 
@@ -159,7 +165,8 @@ namespace Đồ_án
         {
             if (KiemTraTTConTrol() == false)
                 return;
-
+            if (KTUseridTrung()==false)
+                return;
             string matKhauMaHoa = MaHoaMatKhau(txtMatKhau.Text);
 
             DataRow newRow = dtNguoiDung.NewRow();
@@ -222,6 +229,68 @@ namespace Đồ_án
             return string.Join(" ", words);
         }
 
+        private void LoadTinh()
+        {
+            SqlConnection conn = ConnectionManager.GetConnection();
+            try
+            {
+                conn.Open();
+                string query = "SELECT TinhID, TenTinh FROM Tinh";  // Câu truy vấn lấy tất cả các tỉnh
+                SqlDataAdapter daTinh = new SqlDataAdapter(query, conn);
+                DataTable dtTinh = new DataTable();
+                daTinh.Fill(dtTinh);
+
+                cbbTinh.DataSource = dtTinh;
+                cbbTinh.DisplayMember = "TenTinh";  // Hiển thị tên tỉnh
+                cbbTinh.ValueMember = "TinhID";    // Lưu giá trị là mã tỉnh
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+        private void LoadHuyen(int maTinh)
+        {
+            SqlConnection conn = ConnectionManager.GetConnection();
+            try
+            {
+                conn.Open();
+                string query = "SELECT HuyenID, TenHuyen FROM huyen WHERE TinhID = @TinhID";  // Lọc các huyện theo mã tỉnh
+                SqlDataAdapter daHuyen = new SqlDataAdapter(query, conn);
+                daHuyen.SelectCommand.Parameters.AddWithValue("@TinhID", maTinh);
+                DataTable dtHuyen = new DataTable();
+                daHuyen.Fill(dtHuyen);
+
+                cbbQuanHuyen.DataSource = dtHuyen;
+                cbbQuanHuyen.DisplayMember = "TenHuyen";  // Hiển thị tên huyện
+                cbbQuanHuyen.ValueMember = "HuyenID";    // Lưu giá trị là mã huyện
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+        private void cbbTinh_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbbTinh.SelectedIndex != -1)
+            {
+                // Lấy DataRowView từ SelectedItem
+                DataRowView selectedRow = (DataRowView)cbbTinh.SelectedItem;
+
+                // Lấy giá trị TinhID từ DataRowView
+                int matinh = Convert.ToInt32(selectedRow["TinhID"]);
+
+                LoadHuyen(matinh);
+            }
+        }
 
         private void btnXoa_Click(object sender, EventArgs e)
         {
@@ -234,14 +303,13 @@ namespace Đồ_án
             DataRow rowToDelete = dtNguoiDung.Rows.Find(txtMaND.Text);
             if (rowToDelete != null)
             {
-                rowToDelete.Delete();
-
-                DataRow rowDiaChiToDelete = dtDiaChi.Rows.Find(txtMaND.Text);
+                DataRow rowDiaChiToDelete = dtDiaChi.Select($"userid = '{txtMaND.Text}'")[0];
                 if (rowDiaChiToDelete != null)
                 {
                     rowDiaChiToDelete.Delete();
+                    
                 }
-
+                rowToDelete.Delete();
                 MessageBox.Show("Dữ liệu đã được xóa khỏi DataSet.");
             }
             else
@@ -252,15 +320,14 @@ namespace Đồ_án
         }
 
 
-
         private void btnSua_Click(object sender, EventArgs e)
         {
-            if(KiemTraTTConTrol() == false)
+            if (KiemTraTTConTrol() == false)
                 return;
             string matKhauMaHoa = MaHoaMatKhau(txtMatKhau.Text);
-            DataRow rowNguoiDung = dtNguoiDung.Rows.Find(txtMaND.Text); 
+            DataRow rowNguoiDung = dtNguoiDung.Rows.Find(txtMaND.Text);
 
-            if (rowNguoiDung != null) 
+            if (rowNguoiDung != null)
             {
 
                 rowNguoiDung["matkhau"] = matKhauMaHoa;
@@ -272,7 +339,7 @@ namespace Đồ_án
 
                 DataRow rowDiaChi = dtDiaChi.Rows.Find(txtMaND.Text);
 
-                if (rowDiaChi != null) 
+                if (rowDiaChi != null)
                 {
 
                     rowDiaChi["tinh"] = cbbTinh.Text;
@@ -342,9 +409,12 @@ namespace Đồ_án
 
         private void btnHoanTac_Click(object sender, EventArgs e)
         {
-            DialogResult result = MessageBox.Show("Bạn có chắc muốn muốn hoàn tác không","Thông báo",MessageBoxButtons.YesNo);
+            DialogResult result = MessageBox.Show("Bạn có chắc muốn muốn hoàn tác không", "Thông báo", MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes)
-                dsNguoiDung = dsNguoiDungGoc.Copy();
+            {
+                dsNguoiDung.RejectChanges();
+                btnClear_Click(sender, e);
+            }
         }
 
         private void btnLuu_Click(object sender, EventArgs e)
@@ -352,163 +422,41 @@ namespace Đồ_án
             using (SqlConnection conn = ConnectionManager.GetConnection())
             {
                 conn.Open();
-                SqlTransaction transaction = conn.BeginTransaction();
-
-                try
+                using (SqlTransaction transaction = conn.BeginTransaction())
                 {
-                    // Cập nhật bảng nguoidung và diachind
-                    UpdateNguoiDungTable(conn, transaction);
-                    UpdateDiaChiTable(conn, transaction);
-
-                    // Commit transaction
-                    transaction.Commit();
-                    MessageBox.Show("Thông tin đã được lưu vào cơ sở dữ liệu thành công.");
-                }
-                catch (Exception ex)
-                {
-                    transaction.Rollback();
-                    MessageBox.Show("Lỗi khi lưu dữ liệu vào cơ sở dữ liệu: " + ex.Message + "\n" + ex.StackTrace);
-                }
-                finally
-                {
-                    conn.Close();
+                    try
+                    {
+                        if (dsNguoiDung.HasChanges(DataRowState.Added))
+                        {
+                            adapterNguoiDung.Update(dsNguoiDung.GetChanges(DataRowState.Added),"nguoidung");
+                            adapterDiaChi.Update(dsNguoiDung.GetChanges(DataRowState.Added), "diachind");
+                        }
+                        if (dsNguoiDung.HasChanges(DataRowState.Modified))
+                        {
+                            adapterNguoiDung.Update(dsNguoiDung.GetChanges(DataRowState.Modified), "nguoidung");
+                            adapterDiaChi.Update(dsNguoiDung.GetChanges(DataRowState.Modified), "diachind");
+                        }
+                        if (dsNguoiDung.HasChanges(DataRowState.Deleted))
+                        {
+                            adapterDiaChi.Update(dsNguoiDung.GetChanges(DataRowState.Deleted), "diachind");
+                            adapterNguoiDung.Update(dsNguoiDung.GetChanges(DataRowState.Deleted), "nguoidung");
+                        }
+                        // Commit transaction
+                        transaction.Commit();
+                        MessageBox.Show("Thông tin đã được lưu vào cơ sở dữ liệu thành công.");
+                    }
+                    catch (Exception ex)
+                    {
+                        transaction.Rollback();
+                        MessageBox.Show("Lỗi khi lưu dữ liệu vào cơ sở dữ liệu: " + ex.Message + "\n" + ex.StackTrace);
+                    }
+                    finally
+                    {
+                        transaction.Dispose();
+                        conn.Close();
+                    }
                 }
             }
         }
-
-        private void UpdateNguoiDungTable(SqlConnection conn, SqlTransaction transaction)
-        {
-            try
-            {
-                // INSERT vào bảng nguoidung
-                foreach (DataRow row in dtNguoiDung.Rows)
-                {
-                    if (row.RowState == DataRowState.Added)
-                    {
-                        string insertQuery = "INSERT INTO nguoidung (userid, matkhau, hoten, ngaysinh, sdt, chucvu) " +
-                                             "VALUES (@userid, @matkhau, @hoten, @ngaysinh, @sdt, @chucvu)";
-                        using (SqlCommand cmd = new SqlCommand(insertQuery, conn, transaction))
-                        {
-                            cmd.Parameters.AddWithValue("@userid", row["userid"]);
-                            cmd.Parameters.AddWithValue("@matkhau", row["matkhau"]);
-                            cmd.Parameters.AddWithValue("@hoten", row["hoten"]);
-                            cmd.Parameters.AddWithValue("@ngaysinh", row["ngaysinh"]);
-                            cmd.Parameters.AddWithValue("@sdt", row["sdt"]);
-                            cmd.Parameters.AddWithValue("@chucvu", row["chucvu"]);
-
-                            cmd.ExecuteNonQuery();  // Thực thi câu lệnh INSERT
-                        }
-                    }
-                }
-
-                // UPDATE bảng nguoidung
-                foreach (DataRow row in dtNguoiDung.Rows)
-                {
-                    if (row.RowState == DataRowState.Modified)
-                    {
-                        string updateQuery = "UPDATE nguoidung SET matkhau = @matkhau, hoten = @hoten, ngaysinh = @ngaysinh, " +
-                                             "sdt = @sdt, chucvu = @chucvu WHERE userid = @userid";
-                        using (SqlCommand cmd = new SqlCommand(updateQuery, conn, transaction))
-                        {
-                            cmd.Parameters.AddWithValue("@userid", row["userid"]);
-                            cmd.Parameters.AddWithValue("@matkhau", row["matkhau"]);
-                            cmd.Parameters.AddWithValue("@hoten", row["hoten"]);
-                            cmd.Parameters.AddWithValue("@ngaysinh", row["ngaysinh"]);
-                            cmd.Parameters.AddWithValue("@sdt", row["sdt"]);
-                            cmd.Parameters.AddWithValue("@chucvu", row["chucvu"]);
-
-                            cmd.ExecuteNonQuery();  // Thực thi câu lệnh UPDATE
-                        }
-                    }
-                }
-
-                // DELETE từ bảng nguoidung
-                foreach (DataRow row in dtNguoiDung.Rows)
-                {
-                    if (row.RowState == DataRowState.Deleted)
-                    {
-                        string deleteQuery = "DELETE FROM nguoidung WHERE userid = @userid";
-                        using (SqlCommand cmd = new SqlCommand(deleteQuery, conn, transaction))
-                        {
-                            cmd.Parameters.AddWithValue("@userid", row["userid", DataRowVersion.Original]);
-
-                            cmd.ExecuteNonQuery();  // Thực thi câu lệnh DELETE
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                // Nếu có lỗi, rollback giao dịch và ném lại lỗi
-                transaction.Rollback();
-                throw new Exception("Lỗi khi cập nhật bảng nguoidung", ex);
-            }
-        }
-
-        private void UpdateDiaChiTable(SqlConnection conn, SqlTransaction transaction)
-        {
-            try
-            {
-                // INSERT vào bảng diachind
-                foreach (DataRow row in dtDiaChi.Rows)
-                {
-                    if (row.RowState == DataRowState.Added)
-                    {
-                        string insertQuery = "INSERT INTO diachind (userid, tinh, huyen_tp, sonha) " +
-                                             "VALUES (@userid, @tinh, @huyen_tp, @sonha)";
-                        using (SqlCommand cmd = new SqlCommand(insertQuery, conn, transaction))
-                        {
-                            cmd.Parameters.AddWithValue("@userid", row["userid"]);
-                            cmd.Parameters.AddWithValue("@tinh", row["tinh"]);
-                            cmd.Parameters.AddWithValue("@huyen_tp", row["huyen_tp"]);
-                            cmd.Parameters.AddWithValue("@sonha", row["sonha"]);
-
-                            cmd.ExecuteNonQuery();  // Thực thi câu lệnh INSERT
-                        }
-                    }
-                }
-
-                // UPDATE bảng diachind
-                foreach (DataRow row in dtDiaChi.Rows)
-                {
-                    if (row.RowState == DataRowState.Modified)
-                    {
-                        string updateQuery = "UPDATE diachind SET tinh = @tinh, huyen_tp = @huyen_tp, sonha = @sonha " +
-                                             "WHERE userid = @userid";
-                        using (SqlCommand cmd = new SqlCommand(updateQuery, conn, transaction))
-                        {
-                            cmd.Parameters.AddWithValue("@userid", row["userid"]);
-                            cmd.Parameters.AddWithValue("@tinh", row["tinh"]);
-                            cmd.Parameters.AddWithValue("@huyen_tp", row["huyen_tp"]);
-                            cmd.Parameters.AddWithValue("@sonha", row["sonha"]);
-
-                            cmd.ExecuteNonQuery();  // Thực thi câu lệnh UPDATE
-                        }
-                    }
-                }
-
-                // DELETE từ bảng diachind
-                foreach (DataRow row in dtDiaChi.Rows)
-                {
-                    if (row.RowState == DataRowState.Deleted)
-                    {
-                        string deleteQuery = "DELETE FROM diachind WHERE userid = @userid";
-                        using (SqlCommand cmd = new SqlCommand(deleteQuery, conn, transaction))
-                        {
-                            cmd.Parameters.AddWithValue("@userid", row["userid", DataRowVersion.Original]);
-
-                            cmd.ExecuteNonQuery();  // Thực thi câu lệnh DELETE
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                // Nếu có lỗi, rollback giao dịch và ném lại lỗi
-                transaction.Rollback();
-                throw new Exception("Lỗi khi cập nhật bảng diachind", ex);
-            }
-        }
-
     }
 }

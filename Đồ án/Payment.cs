@@ -15,21 +15,18 @@ namespace Đồ_án
     public partial class frmThanhToan : Form
     {
         DataSet dsThanhToan;
-        DataSet dsThanhToanGoc;
         DataTable dtThanhToan;
         public frmThanhToan()
         {
             InitializeComponent();
             this.TopLevel = false;
             dsThanhToan = new DataSet();
-            dsThanhToanGoc = new DataSet();
         }
 
         private void frmThanhToan_Load(object sender, EventArgs e)
         {
             SqlDataAdapter adapter = new SqlDataAdapter("select * from thanhtoan",ConnectionManager.GetConnection());
-            adapter.Fill(dsThanhToanGoc, "thanhtoan");
-            dsThanhToan = dsThanhToanGoc.Copy();
+            adapter.Fill(dsThanhToan, "thanhtoan");
             dtThanhToan = dsThanhToan.Tables["thanhtoan"];
         }
 

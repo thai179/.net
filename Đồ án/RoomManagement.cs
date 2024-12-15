@@ -15,7 +15,6 @@ namespace Đồ_án
     {
 
         private DataSet dsPhong;
-        private DataSet dsPhongGoc;
         public frmQLPhong()
         {
             InitializeComponent();
@@ -54,42 +53,17 @@ namespace Đồ_án
         private void frmQLPhong_Load(object sender, EventArgs e)
         {
             dsPhong = new DataSet();
-            dsPhongGoc = new DataSet();
 
             string queryPhong = "SELECT * FROM phong";
-            string queryUpdateSoluongSv = @"UPDATE phong SET sluongsv = (SELECT COUNT(*) FROM sinhvien WHERE sinhvien.sophong = phong.sophong)";
 
-            string queryUpdateTinhTrangPhong = @"
-        UPDATE phong
-        SET tinhtrangphong = 
-            CASE 
-                WHEN sluongsv >= sluongtoida THEN 'Đầy'
-                ELSE 'Còn trống'
-            END
-        WHERE tinhtrangphong != 'Đang bảo trì'
-    ";
 
             using (SqlConnection conn = ConnectionManager.GetConnection())
             {
                 conn.Open();
-
-                // Cập nhật số lượng sinh viên cho mỗi phòng
-                using (SqlCommand cmdUpdateSv = new SqlCommand(queryUpdateSoluongSv, conn))
-                {
-                    cmdUpdateSv.ExecuteNonQuery();
-                }
-
-                // Cập nhật tình trạng phòng
-                using (SqlCommand cmdUpdateTinhTrang = new SqlCommand(queryUpdateTinhTrangPhong, conn))
-                {
-                    cmdUpdateTinhTrang.ExecuteNonQuery();
-                }
-
                 // Lấy dữ liệu từ bảng phong
                 using (SqlDataAdapter dataAdapter = new SqlDataAdapter(queryPhong, conn))
                 {
-                    dataAdapter.Fill(dsPhongGoc, "phong");
-                    dsPhong = dsPhongGoc.Copy();
+                    dataAdapter.Fill(dsPhong, "phong");
                 }
 
                 // Lấy bảng phong từ dataset
@@ -145,7 +119,7 @@ namespace Đồ_án
             DialogResult result = MessageBox.Show("Bạn có chắc muốn hoàn tác không?","Thông báo",MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes)
             {
-                dsPhong = dsPhongGoc.Copy();
+                dsPhong.RejectChanges();
                 dgvHienThi.DataSource = dsPhong.Tables["phong"];
                 MessageBox.Show("Hoàn tác thành công!", "Thông báo");
             }
@@ -170,7 +144,7 @@ namespace Đồ_án
                     MessageBox.Show($"Có lỗi xảy ra khi lưu dữ liệu: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-            dsPhongGoc = dsPhong.Copy();
+            
         }
     }
 }

@@ -26,6 +26,8 @@ E:\.Net\Doan\Đồ án\bin\Debug\Đồ án.pdb
 E:\.Net\Doan\Đồ án\obj\Debug\Đồ án.csproj.AssemblyReference.cache
 E:\.Net\Doan\Đồ án\obj\Debug\Đồ_án.frmQLTTLienLac.resources
 E:\.Net\Doan\Đồ án\obj\Debug\Đồ_án.frmDashboard.resources
+E:\.Net\Doan\Đồ án\obj\Debug\Đồ_án.frmDashboardNV.resources
+E:\.Net\Doan\Đồ án\obj\Debug\Đồ_án.frmDashboardSV.resources
 E:\.Net\Doan\Đồ án\obj\Debug\Đồ_án.frmViPham.resources
 E:\.Net\Doan\Đồ án\obj\Debug\Đồ_án.frmPhanHoi.resources
 E:\.Net\Doan\Đồ án\obj\Debug\Đồ_án.frmThanhToan.resources
@@ -42,5 +44,3 @@ E:\.Net\Doan\Đồ án\obj\Debug\Đồ án.csproj.GenerateResource.cache
 E:\.Net\Doan\Đồ án\obj\Debug\Đồ án.csproj.CoreCompileInputs.cache
 E:\.Net\Doan\Đồ án\obj\Debug\Đồ án.exe
 E:\.Net\Doan\Đồ án\obj\Debug\Đồ án.pdb
-E:\.Net\Doan\Đồ án\obj\Debug\Đồ_án.frmDashboardNV.resources
-E:\.Net\Doan\Đồ án\obj\Debug\Đồ_án.frmDashboardSV.resources

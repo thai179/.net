@@ -23,19 +23,19 @@ namespace Đồ_án
         {
             if (txtMoTaVanDe.Text == "")
             {
-                MessageBox.Show("Ban chua mo ta van de ban gap", "thong bao");
+                MessageBox.Show("Bạn chưa mô tả vấn đề bạn gặp", "Thông báo");
                 txtMoTaVanDe.Focus();
                 return;
             }
             if (txtSoPhong.Text == "")
             {
-                MessageBox.Show("ban chua nhap so phong", "thong bao");
+                MessageBox.Show("Bạn chưa nhập số phòng", "Thông báo");
                 txtSoPhong.Focus();
                 return;
             }
             if (cbbDoUuTien.Text == "")
             {
-                MessageBox.Show("Ban chua chon do uu tien");
+                MessageBox.Show("Bạn chưa chọn độ ưu tiên");
                 cbbDoUuTien.Focus();
                 return;
             }

@@ -15,21 +15,18 @@ namespace Đồ_án
     public partial class frmQLTTLienLac : Form
     {
         DataSet dsThanNhan;
-        DataSet dsThanNhanGoc;
         DataTable dtThanNhan;
         public frmQLTTLienLac()
         {
             InitializeComponent();
             this.TopLevel = false;
             dsThanNhan = new DataSet();
-            dsThanNhanGoc = new DataSet();
         }
 
         private void frmQLTTLienLac_Load(object sender, EventArgs e)
         {
             SqlDataAdapter adapter = new SqlDataAdapter("select * from thannhan",ConnectionManager.GetConnection());
-            adapter.Fill(dsThanNhanGoc,"thannhan");
-            dsThanNhan = dsThanNhanGoc.Copy();
+            adapter.Fill(dsThanNhan,"thannhan");
             dtThanNhan = dsThanNhan.Tables["thannhan"];
 
             dgvThanNhan.DataSource = dtThanNhan;
@@ -171,7 +168,7 @@ namespace Đồ_án
             DialogResult result = MessageBox.Show("Bạn có chắc muốn hoàn tác không?", "Thông báo", MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes)
             {
-                dsThanNhan = dsThanNhanGoc.Copy();
+                dsThanNhan.RejectChanges();
                 dgvThanNhan.DataSource = dsThanNhan.Tables["thannhan"];
                 MessageBox.Show("Hoàn tác thành công!", "Thông báo");
             }
@@ -208,18 +205,11 @@ namespace Đồ_án
                     MessageBox.Show($"Có lỗi xảy ra khi lưu dữ liệu: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-            dsThanNhan = dsThanNhanGoc.Copy() ;
         }
 
         private void btnRefresh_Click(object sender, EventArgs e)
         {
-            SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM thannhan", ConnectionManager.GetConnection());
-            dsThanNhanGoc.Tables["thannhan"].Clear();
-            adapter.Fill(dsThanNhanGoc, "thannhan");
-
-            dsThanNhan = dsThanNhanGoc.Copy();
-            dtThanNhan = dsThanNhan.Tables["thannhan"];
-            dgvThanNhan.DataSource = dtThanNhan;
+            frmQLTTLienLac_Load(sender, e);
         }
 
         private void txtTenTN_Leave(object sender, EventArgs e)
